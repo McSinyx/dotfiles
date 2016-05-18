@@ -1,0 +1,194 @@
+### Table         Russian Transliteration Table
+###
+### Description   Russian Transliteration Table for IBus-Table.
+###
+### This file must be encoded into UTF-8.
+
+### Begin Table definition.
+BEGIN_DEFINITION
+
+### An unique id to distinguish this table among others.
+### Use uuidgen to generate this kind of id.
+UUID = ab8be348-60d7-4643-bb8f-83488dd2b5da
+
+### A unique number indicates the version of this file.
+### For example the last modified date of this file.
+### This number must be less than 2^32.
+SERIAL_NUMBER = 2013
+
+### The default name of this table
+NAME = 'Russian'
+
+### ICON can be any format as long as your pygtk can recognized
+### the most widely ones are "png" and "svg", letter one is recommended
+ICON = ibus-table.svg
+
+### Supported languages of this table
+LANGUAGES = ru_RU
+
+### Prompt string to be displayed in the status area.
+STATUS_PROMPT = ру
+
+### The Keyboard Layout used by this table. Unset or set to "Unknown" to accept any kind of layouts.
+KEYBOARD_LAYOUT = Unknown
+
+### If true then the first candidate phrase
+### will be selected automatically during inputing.
+AUTO_SELECT = TRUE
+
+### If true then a multi wildcard will be appended
+### at the end of inputing string automatically.
+AUTO_WILDCARD = FALSE
+
+### If true then the result string will be committed to client automatically.
+### This should be used with AUTO_SELECT = TRUE.
+AUTO_COMMIT = TRUE
+
+### If true then the inputted string will be automatically splitted during inputing.
+AUTO_SPLIT = TRUE
+
+### If true then the phrases' frequencies will be adjusted dynamically.
+DYNAMIC_ADJUST = FALSE
+
+### If true then the preedit area will be filled up by the current candidate phrase automatically.
+AUTO_FILL = TRUE
+
+### If true then the lookup table will always be shown if there is any candidate phrase.
+### Otherwise the lookup table won't be shown unless the user requires it by moving the preedit caret left.
+ALWAYS_SHOW_LOOKUP = FALSE
+
+### Enable full width punctuation property
+USE_FULL_WIDTH_PUNCT = FALSE
+
+### Use full width punctuation by default
+DEF_FULL_WIDTH_PUNCT = FALSE
+
+### Enable full width letter property
+USE_FULL_WIDTH_LETTER = FALSE
+
+### Use full width letter by default
+DEF_FULL_WIDTH_LETTER = FALSE
+
+### The maxmium length of a key.
+MAX_KEY_LENGTH = 2
+
+### Valid input chars.
+VALID_INPUT_CHARS = ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnopqrstuvwxyzßẞ·
+
+END_DEFINITION
+
+### Begin Table data.
+BEGIN_TABLE
+
+### normal letters
+A	А	0
+B	Б	0
+C	Ц	0
+D	Д	0
+E	Э	0
+F	Ф	0
+G	Г	0
+H	Х	0
+I	И	0
+J	Й	0
+K	К	0
+L	Л	0
+M	М	0
+N	Н	0
+O	О	0
+P	П	0
+R	Р	0
+S	С	0
+T	Т	0
+U	У	0
+V	В	0
+W	Ш	0
+X	Х	0
+Z	З	0
+a	а	0
+b	б	0
+c	ц	0
+d	д	0
+e	э	0
+f	ф	0
+g	г	0
+h	х	0
+i	и	0
+j	й	0
+k	к	0
+l	л	0
+m	м	0
+n	н	0
+o	о	0
+p	п	0
+r	р	0
+s	с	0
+t	т	0
+u	у	0
+v	в	0
+w	ш	0
+x	х	0
+z	з	0
+
+# fake diacritic
+Q	Ь	0
+q	ь	0
+ß	ъ	0
+ẞ	Ъ	0
+
+### use y as a prefix for the digraphs
+YA	Я	0
+YC	Ч	0
+YE	Е	0
+YI	Ы	0
+YJ	Щ	0
+YO	Ё	0
+YS	Ш	0
+YU	Ю	0
+YZ	Ж	0
+Ya	Я	0
+Yc	Ч	0
+Ye	Е	0
+Yi	Ы	0
+Yj	Щ	0
+Yo	Ё	0
+Ys	Ш	0
+Yu	Ю	0
+Yz	Ж	0
+ya	я	0
+yc	ч	0
+ye	е	0
+yi	ы	0
+yj	щ	0
+yo	ё	0
+ys	ш	0
+yu	ю	0
+yz	ж	0
+
+### Kazakh letters, use · as prefix
+·C	Ҫ	0
+·E	Ә	0
+·H	Һ	0
+·I	Ұ	0
+·K	Ҡ	0
+·N	Ң	0
+·O	Ө	0
+·Q	Қ	0
+·R	Ғ	0
+·U	Ү	0
+·c	ҫ	0
+·e	ә	0
+·h	һ	0
+·i	ұ	0
+·k	ҡ	0
+·n	ң	0
+·o	ө	0
+·q	қ	0
+·r	ғ	0
+·u	ү	0
+
+### make the · typable by itself
+··	·	0
+··	·	0
+
+END_TABLE

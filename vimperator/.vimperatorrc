@@ -1,0 +1,8 @@
+set gui=none
+set popups=window
+colorscheme g
+map <C-c> <S-y>
+map <Space> <C-d>
+map <S-Space> <C-u>
+map F ;w
+map <A-r> :open https://www.reddit.com/
