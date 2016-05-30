@@ -5,5 +5,5 @@ synclient TapButton1=1 VertEdgeScroll=1 HorizEdgeScroll=1 VertTwoFingerScroll=0
 ibus-daemon -drx
 nm-applet &
 clipit &
-mate-power-manager &
+#mate-power-manager &
 exec awesome

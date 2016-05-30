@@ -1,0 +1,50 @@
+mkdir tables
+cd Downloads/
+cd /home/cnx/.vim/bundle/stime
+shell 
+shell bash
+rename 
+search 
+cd .vim
+ls -l
+cd /home/cnx/.vim/bundle
+rename README-vi.md
+rename README-vi.pdf
+search fp
+cd ~
+cd /tmp
+search vim
+cd /usr/share/vim/vim74/keymap
+rename Codes
+rename Gibberish.mp3
+open_with h
+open_with engrampa
+open_with xz -d
+shell xz -d Sources.xz
+mkdir bash
+mkdir vim
+mkdir awesome
+mkdir vimperator
+mkdir xterm
+mkdir aria2
+shell stow aria2
+rename X
+mkdir mutt
+mkdir ranger
+mkdir .config
+mkdir bin
+rename swampy
+
+shell unzip swampy-2.1.5.python3.zip 
+mkdir beej
+cd .local/
+rename hsg
+rename gruvbox.vimp
+cd .dotfiles/
+w
+open_with viewnior
+cd /home/cnx/.dotfiles/awesome/.config/awesome/themes/gruvbox/titlebar/
+rename theme.lua.ole
+rename theme.lua
+rename awesome.png
+delete

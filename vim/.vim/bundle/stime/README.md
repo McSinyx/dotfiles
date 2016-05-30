@@ -16,3 +16,9 @@ In vimrc add the following line, with the input method file name in the place of
 Input methods might be put in `{runtimepath}/tables/`. To create another input
 method, start from `tables/template`, which has similar format with Ibus Table's
 input method table.
+
+## Usage
+
+Use `<Leader><Space>` to toggle the plugin on/off. `<Leader>s<Space>` to reload
+input table and toggle the plugin. Further usage or customization, please read
+the plugin's source code.

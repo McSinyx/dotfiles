@@ -9,21 +9,18 @@ set showcmd
 set nostartofline
 set ruler
 set confirm
-set list
-set number
-set relativenumber
-set lazyredraw
-set tabstop=4
-set shiftwidth=4
-set expandtab
+set list listchars+=tab:\|\ 
+set number relativenumber lazyredraw
+set tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
 set notimeout
 set imdisable
 set omnifunc=syntaxcomplete#Complete
 set dictionary=/usr/share/dict/words
 syntax keyword pythonBoolean False True None
 autocmd BufNewFile,BufRead *.PAS set filetype=pascal
-autocmd FileType vim,pascal setl shiftwidth=2 tabstop=2
-autocmd FileType markdown,asciidoc set textwidth=80
+autocmd FileType vim,pascal setlocal shiftwidth=2 tabstop=2
+autocmd FileType c setlocal noexpandtab shiftwidth=8 tabstop=8
+autocmd FileType markdown,asciidoc setlocal textwidth=79
 autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
 let mapleader = ' '
 let g:stime_table = "telex"

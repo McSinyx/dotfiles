@@ -1,7 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/cnx/.themes/NOX'
-let g:netrw_dirhist_2='/home/cnx/.themes/NOX/gtk-2.0'
-let g:netrw_dirhist_3='/home/cnx/Codes/pascal/cụm-10-2015'
-let g:netrw_dirhist_4='/home/cnx/Codes/pascal/cụm-11-2016'
-let g:netrw_dirhist_5='/home/cnx/.vim/bundle/stime/autoload'
+let g:netrw_dirhist_cnt =0
