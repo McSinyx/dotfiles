@@ -1,160 +1,183 @@
-" Vim Keymap file for vietnamese through the usual viqr method
-" Maintainer: Samuel Thibault <samuel.thibault@ens-lyon.org>
-" Last Change: 2006 Jun 17
+" Vim Keymap file for Vietnamese through VNI method
+" Maintainer: McSinyx <vn.mcsinyx@gmail.com>
+" Last Change: 2016-06-06
 
 scriptencoding utf-8
 
 let b:keymap_name = "vietnamese"
 
 loadkeymap
-a	a
-A	A
-a`	à
-A`	À
-a?	ả
-A?	Ả
-a~	ã
-A~	Ã
-a'	á
-A'	Á
-a.	ạ
-A.	Ạ
-a(	ă
-A(	Ă
-a(`	ằ
-A(`	Ằ
-a(?	ẳ
-A(?	Ẳ
-a(~	ẵ
-A(~	Ẵ
-a('	ắ
-A('	Ắ
-a(.	ặ
-A(.	Ặ
-a^	â
-A^	Â
-a^`	ầ
-A^`	Ầ
-a^?	ẩ
-A^?	Ẩ
-a^~	ẫ
-A^~	Ẫ
-a^'	ấ
-A^'	Ấ
-a^.	ậ
-A^.	Ậ
-d	d
-D	D
-dd	đ
-Dd	Đ
-DD	Đ
-e	e
-E	E
-e`	è
-E`	È
-e?	ẻ
-E?	Ẻ
-e~	ẽ
-E~	Ẽ
-e'	é
-E'	É
-e.	ẹ
-E.	Ẹ
-e^	ê
-E^	Ê
-e^`	ề
-E^`	Ề
-e^?	ể
-E^?	Ể
-e^~	ễ
-E^~	Ễ
-e^'	ế
-E^'	Ế
-e^.	ệ
-E^.	Ệ
-i	i
-I	I
-i`	ì
-I`	Ì
-i?	ỉ
-I?	Ỉ
-i~	ĩ
-I~	Ĩ
-i'	í
-I'	Í
-i.	ị
-I.	Ị
-o	o
-O	O
-o`	ò
-O`	Ò
-o?	ỏ
-O?	Ỏ
-o~	õ
-O~	Õ
-o'	ó
-O'	Ó
-o.	ọ
-O.	Ọ
-o^	ô
-O^	Ô
-o^`	ồ
-O^`	Ồ
-o^?	ổ
-O^?	Ổ
-o^~	ỗ
-O^~	Ỗ
-o^'	ố
-O^'	Ố
-o^.	ộ
-O^.	Ộ
-o+	ơ
-O+	Ơ
-o+`	ờ
-O+`	Ờ
-o+?	ở
-O+?	Ở
-o+~	ỡ
-O+~	Ỡ
-o+'	ớ
-O+'	Ớ
-o+.	ợ
-O+.	Ợ
-u	u
-U	U
-u`	ù
-U`	Ù
-u?	ủ
-U?	Ủ
-u~	ũ
-U~	Ũ
-u'	ú
-U'	Ú
-u.	ụ
-U.	Ụ
-u+	ư
-U+	Ư
-u+`	ừ
-U+`	Ừ
-u+?	ử
-U+?	Ử
-u+~	ữ
-U+~	Ữ
-u+'	ứ
-U+'	Ứ
-u+.	ự
-U+.	Ự
-y	y
-Y	Y
-y`	ỳ
-Y`	Ỳ
-y?	ỷ
-Y?	Ỷ
-y~	ỹ
-Y~	Ỹ
-y'	ý
-Y'	Ý
-y.	ỵ
-Y.	Ỵ
-\\d	d
-\\D	D
+
+A\\     A
+A1      Á
+A2      À
+A3      Ả
+A4      Ã
+A5      Ạ
+
+A8      Ă
+A81     Ắ
+A82     Ằ
+A83     Ẳ
+A84     Ẵ
+A85     Ặ
+
+A6      Â
+A61     Ấ
+A62     Ầ
+A63     Ẩ
+A64     Ẫ
+A65     Ậ
+
+D\\     D
+D9      Đ
+
+E\\     E
+E1      É
+E2      È
+E3      Ẻ
+E4      Ẽ
+E5      Ẹ
+
+E6      Ê
+E61     Ế
+E62     Ề
+E63     Ể
+E64     Ễ
+E65     Ệ
+
+I\\     I
+I1      Í
+I2      Ì
+I3      Ỉ
+I4      Ĩ
+I5      Ị
+
+O\\     O
+O1      Ó
+O2      Ò
+O3      Ỏ
+O4      Õ
+O5      Ọ
+
+O6      Ô
+O61     Ố
+O62     Ồ
+O63     Ổ
+O64     Ỗ
+O65     Ộ
+
+O7      Ơ
+O71     Ớ
+O72     Ờ
+O73     Ở
+O74     Ỡ
+O75     Ợ
+
+U\\     U
+U1      Ú
+U2      Ù
+U3      Ủ
+U4      Ũ
+U5      Ụ
+
+U7      Ư
+U71     Ứ
+U72     Ừ
+U73     Ử
+U74     Ữ
+U75     Ự
+
+Y\\     Y
+Y1      Ý
+Y2      Ỳ
+Y3      Ỷ
+Y4      Ỹ
+Y5      Ỵ
+
+a\\     a
+a1      á
+a2      à
+a3      ả
+a4      ã
+a5      ạ
+
+a8      ă
+a81     ắ
+a82     ằ
+a83     ẳ
+a84     ẵ
+a85     ặ
+
+a6      â
+a61     ấ
+a62     ầ
+a63     ẩ
+a64     ẫ
+a65     ậ
+
+d\\     d
+d9      đ
+
+e\\     e
+e1      é
+e2      è
+e3      ẻ
+e4      ẽ
+e5      ẹ
+
+e6      ê
+e61     ế
+e62     ề
+e63     ể
+e64     ễ
+e65     ệ
+
+i\\     i
+i1      í
+i2      ì
+i3      ỉ
+i4      ĩ
+i5      ị
+
+o\\     o
+o1      ó
+o2      ò
+o3      ỏ
+o4      õ
+o5      ọ
+
+o6      ô
+o61     ố
+o62     ồ
+o63     ổ
+o64     ỗ
+o65     ộ
+
+o7      ơ
+o71     ớ
+o72     ờ
+o73     ở
+o74     ỡ
+o75     ợ
+
+u\\     u
+u1      ú
+u2      ù
+u3      ủ
+u4      ũ
+u5      ụ
+
+u7      ư
+u71     ứ
+u72     ừ
+u73     ử
+u74     ữ
+u75     ự
+
+y\\     y
+y1      ý
+y2      ỳ
+y3      ỷ
+y4      ỹ
+y5      ỵ

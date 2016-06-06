@@ -12,11 +12,12 @@ set confirm
 set list listchars+=tab:\|\ 
 set number relativenumber lazyredraw
 set tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
-set notimeout
-set imdisable
 set omnifunc=syntaxcomplete#Complete
 set tags+=~/.vim/systags
 set dictionary=/usr/share/dict/words
+set imdisable
+set keymap=vietnamese-telex
+set iminsert=0
 syntax keyword pythonBoolean False True None
 autocmd BufNewFile,BufRead *.PAS set filetype=pascal
 autocmd FileType vim,pascal setlocal shiftwidth=2 tabstop=2

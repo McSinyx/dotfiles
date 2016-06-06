@@ -1,7 +1,3 @@
-rename 
-search 
-cd .vim
-ls -l
 cd /home/cnx/.vim/bundle
 rename README-vi.md
 rename README-vi.pdf
@@ -29,7 +25,6 @@ mkdir ranger
 mkdir .config
 mkdir bin
 rename swampy
-
 shell unzip swampy-2.1.5.python3.zip 
 mkdir beej
 cd .local/
@@ -48,3 +43,8 @@ delete
 mkdir GNU
 cd /usr/include/
 search std
+cd /usr/share/vim/vim74
+cd /home/cnx/.dotfiles/
+
+shell 
+shell bash

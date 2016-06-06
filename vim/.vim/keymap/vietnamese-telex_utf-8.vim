@@ -1,12 +1,13 @@
 " Vim Keymap file for Vietnamese through Telex method
 " Maintainer: McSinyx <vn.mcsinyx@gmail.com>
-" Last Change:
+" Last Change: 2016-06-06
 
 scriptencoding utf-8
 
 let b:keymap_name = "vi"
 
 loadkeymap
+
 A\\     A
 Af      À
 As      Á
