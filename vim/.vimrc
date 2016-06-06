@@ -15,6 +15,7 @@ set tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
 set notimeout
 set imdisable
 set omnifunc=syntaxcomplete#Complete
+set tags+=~/.vim/systags
 set dictionary=/usr/share/dict/words
 syntax keyword pythonBoolean False True None
 autocmd BufNewFile,BufRead *.PAS set filetype=pascal

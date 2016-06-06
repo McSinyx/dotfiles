@@ -4,12 +4,10 @@
 
 scriptencoding utf-8
 
-let b:keymap_name = "vietnamese"
+let b:keymap_name = "vi"
 
 loadkeymap
-\\      <nop>
-\\\\    \\
-
+A\\     A
 Af      À
 As      Á
 Ar      Ả
@@ -30,8 +28,10 @@ Aar     Ẩ
 Aax     Ẫ
 Aaj     Ậ
 
+D\\     D
 Dd      Đ
 
+E\\     E
 Ef      È
 Es      É
 Er      Ẻ
@@ -45,12 +45,14 @@ Eer     Ể
 Eex     Ễ
 Eej     Ệ
 
+I\\     I
 If      Ì
 Is      Í
 Ir      Ỉ
 Ix      Ĩ
 Ij      Ị
 
+O\\     O
 Of      Ò
 Os      Ó
 Or      Ỏ
@@ -71,6 +73,7 @@ Owr     Ở
 Owx     Ỡ
 Owj     Ợ
 
+U\\     U
 Uf      Ù
 Us      Ú
 Ur      Ủ
@@ -84,12 +87,14 @@ Uwr     Ử
 Uwx     Ữ
 Uwj     Ự
 
+Y\\     Y
 Yf      Ỳ
 Ys      Ý
 Yr      Ỷ
 Yx      Ỹ
 Yj      Ỵ
 
+a\\     a
 af      à
 as      á
 ar      ả
@@ -110,8 +115,10 @@ aar     ẩ
 aax     ẫ
 aaj     ậ
 
+d\\     d
 dd      đ
 
+e\\     e
 ef      è
 es      é
 er      ẻ
@@ -125,12 +132,14 @@ eer     ể
 eex     ễ
 eej     ệ
 
+i\\     i
 if      ì
 is      í
 ir      ỉ
 ix      ĩ
 ij      ị
 
+o\\     o
 of      ò
 os      ó
 or      ỏ
@@ -151,6 +160,7 @@ owr     ở
 owx     ỡ
 owj     ợ
 
+u\\     u
 uf      ù
 us      ú
 ur      ủ
@@ -164,6 +174,7 @@ uwr     ử
 uwx     ữ
 uwj     ự
 
+y\\     y
 yf      ỳ
 ys      ý
 yr      ỷ

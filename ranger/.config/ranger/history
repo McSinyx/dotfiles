@@ -1,8 +1,3 @@
-mkdir tables
-cd Downloads/
-cd /home/cnx/.vim/bundle/stime
-shell 
-shell bash
 rename 
 search 
 cd .vim
@@ -43,8 +38,13 @@ rename gruvbox.vimp
 cd .dotfiles/
 w
 open_with viewnior
-cd /home/cnx/.dotfiles/awesome/.config/awesome/themes/gruvbox/titlebar/
-rename theme.lua.ole
-rename theme.lua
-rename awesome.png
+rename squarefw.png
+rename squarew.png
+cd .dotfiles/awesome/.config/awesome/themes/
+rename background.png
+rename squaref.png
+rename square.png
 delete
+mkdir GNU
+cd /usr/include/
+search std

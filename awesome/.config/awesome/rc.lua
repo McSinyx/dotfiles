@@ -137,7 +137,7 @@ vicious.register(
     function(widget, args)
         return("<span color='#3c3836'> CPU%03d%%</span>"):format(args[1])
     end,
-    5
+    2
 )
 mycpuwidget = wibox.widget.background()
 mycpuwidget:set_widget(mycpuwidget_text)
@@ -151,7 +151,7 @@ vicious.register(
     function(widget, args)
         return("<span color='#3c3836'> MEM%03d%%</span>"):format(args[1])
     end,
-    5
+    2
 )
 mymemwidget = wibox.widget.background()
 mymemwidget:set_widget(mymemwidget_text)
@@ -424,24 +424,24 @@ globalkeys = awful.util.table.join(
         ";",
         function() mypromptbox[mouse.screen]:run() end
     ),
-    awful.key(
-        {modkey},
-        "x",
-        function()
-            awful.prompt.run({prompt = "Run Lua code: "},
-            mypromptbox[mouse.screen].widget,
-            awful.util.eval, nil,
-            awful.util.getdir("cache") .. "/history_eval")
-        end
-    ),
+    --awful.key(
+    --    {modkey},
+    --    "x",
+    --    function()
+    --        awful.prompt.run({prompt = "Run Lua code: "},
+    --        mypromptbox[mouse.screen].widget,
+    --        awful.util.eval, nil,
+    --        awful.util.getdir("cache") .. "/history_eval")
+    --    end
+    --),
     -- Menubar
     awful.key({modkey, "Shift"}, "p", function() menubar.show() end),
 
     -- Applications
-    awful.key({modkey}, "t", function() awful.util.spawn(terminal) end),
+    awful.key({modkey}, "x", function() awful.util.spawn(terminal) end),
     awful.key(
         {modkey, "Shift"},
-        "t",
+        "x",
         function() awful.util.spawn(terminal .. " -e su -") end
     ),
     awful.key(
@@ -453,6 +453,11 @@ globalkeys = awful.util.table.join(
         {modkey},
         "r",
         function() awful.util.spawn(terminal .. " -e ranger") end
+    ),
+    awful.key(
+        {modkey},
+        "t",
+        function() awful.util.spawn(terminal .. " -e htop") end
     ),
     awful.key(
         {modkey},
