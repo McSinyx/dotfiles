@@ -4,7 +4,7 @@
 
 scriptencoding utf-8
 
-let b:keymap_name = "vietnamese"
+let b:keymap_name = "vi"
 
 loadkeymap
 
