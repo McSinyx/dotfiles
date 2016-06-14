@@ -1,6 +1,6 @@
 " Vim Keymap file for Vietnamese through Telex method
-" Maintainer: McSinyx <vn.mcsinyx@gmail.com>
-" Last Change: 2016-06-06
+" Maintainer: Raphael McSinyx <vn.mcsinyx@gmail.com>
+" Last Change: 2016-06-13
 
 scriptencoding utf-8
 

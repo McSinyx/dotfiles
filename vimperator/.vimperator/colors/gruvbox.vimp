@@ -11,7 +11,8 @@ hi  Key                             font-weight: bold;
 hi  Enabled                         color: #98971a;
 hi  Disabled                        color: #cc241d;
 
-hi  Normal                          color: #ebdbb2; background: #282828;
+hi  Normal                          color: #ebdbb2; background: #282828; font-family: Droid Sans Mono Slashed; font-size: 15px;
+
 hi  ErrorMsg                        color: #3c3836; background: #cc241d; font-weight: bold;
 hi  InfoMsg                         color: #b16286; background: #282828;
 hi  ModeMsg                         color: #3c3836; background: #98971a; border-radius: 1px; padding: 0px 5px;
@@ -25,7 +26,7 @@ hi  PromptText                      color: #3c3836; background: #d3869b;
 
 hi  CmdOutput                       white-space: pre;
 hi  CmdLine                         background: #282828; color: #ebdbb2; transition: all 0.25s;
-hi  CmdLine>*                       font-family: monospace;
+hi  CmdLine>*                       font-family: Droid Sans Mono Slashed; font-size: 15px;
 
 hi  ContentSeparator                border-top: 1px dotted #928374; display: -moz-box;
 
@@ -60,7 +61,7 @@ hi  URL:hover                       text-decoration: underline; cursor: pointer;
 hi  FrameIndicator                  background-color: #cc241d; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
 
 hi  Bell                            border: none; background-color: #ebdbb2;
-hi  Hint                            font-family: monospace; font-size: 10px; font-weight: bold; text-transform: uppercase; color: #3c3836; background-color: #cc241d; border-color: ButtonShadow; border-width: 0px; border-style: solid; padding: 0px 1px 0px 1px;
+hi  Hint                            font-family: Droid Sans Mono Slashed; font-size: 11px; font-weight: bold; text-transform: uppercase; color: #3c3836; background-color: #cc241d; border-color: ButtonShadow; border-width: 0px; border-style: solid; padding: 0px 1px 0px 1px;
 
 hi  Hint                            content: attr(number);
 hi  HintElem                        background-color: #d79921; color: #ebdbb2;
@@ -74,7 +75,7 @@ hi  HelpOptionalArg                 color: #6A97D4;
 
 hi  HelpBody                        display: block; margin: 1em auto; max-width: 100ex;
 hi  HelpBorder                      border-color: silver; border-width: 0px; border-style: solid;
-hi  HelpCode                        display: block; white-space: pre; margin-left: 2em; font-family: Terminus, Fixed, monospace;
+hi  HelpCode                        display: block; white-space: pre; margin-left: 2em; font-family: Droid Sans Mono Slashed
 
 hi  HelpDefault                     margin-right: 1ex; white-space: pre;
 
