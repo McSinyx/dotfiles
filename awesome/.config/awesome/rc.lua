@@ -402,8 +402,8 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({modkey, "Control"}, "r", awesome.restart),
-    -- Not needed / Too dangerous
-    --awful.key({modkey, "Shift"}, "q", awesome.quit),
+    awful.key({modkey, "Control"}, "q", awesome.quit),
+    -- Not needed
     awful.key({modkey}, "l", function() awful.tag.incmwfact(0.05) end),
     awful.key({modkey}, "h", function() awful.tag.incmwfact(-0.05) end),
     awful.key({modkey, "Shift"}, "h", function() awful.tag.incnmaster(1) end),
