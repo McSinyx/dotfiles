@@ -636,6 +636,7 @@ awful.rules.rules = {
     --{rule = {class = "pinentry"}, properties = {floating = true}},
     --{rule = {class = "gimp"}, properties = {floating = true}},
     {rule = {class = "Gcolor2"}, properties = {floating = true}},
+    {rule = {class = "flare"}, properties = {floating = true}},
     {rule = {class = "Torbrowser-launcher"}, properties = {floating = true}},
     {rule = {class = "Twf"}, properties = {floating = true}},
     -- Set Firefox to always map on tags number 2 of screen 1.
