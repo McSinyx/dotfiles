@@ -17,12 +17,11 @@ set list listchars+=tab:\|\
 set number relativenumber lazyredraw
 set tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
 set omnifunc=syntaxcomplete#Complete
-set tags+=~/.vim/systags
 set dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
 autocmd BufNewFile,BufRead *.PAS set filetype=pascal
 autocmd FileType vim,pascal,html setlocal shiftwidth=2 tabstop=2
-autocmd FileType c setlocal noexpandtab shiftwidth=8 tabstop=8
+autocmd FileType c setl tags+=~/.vim/systags noexpandtab shiftwidth=8 tabstop=8
 autocmd FileType markdown setlocal textwidth=79
 autocmd FileType python syntax keyword pythonBoolean False True None
 autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)

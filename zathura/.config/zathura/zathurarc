@@ -5,7 +5,7 @@ set completion-group-fg \#ebdbb2
 set completion-highlight-bg \#83a598
 set completion-highlight-fg \#504945
 set default-fg \#ebdbb2
-set default-bg \#282828
+set default-bg \#3c3836
 set font Droid\ Sans\ Mono\ Slashed\ 11
 set guioptions cs
 set inputbar-fg \#ebdbb2
