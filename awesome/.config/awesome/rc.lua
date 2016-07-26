@@ -127,7 +127,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 myclock_text = awful.widget.textclock("<span color='#3c3836'> #%u %FT%R</span>")
 myclock = wibox.widget.background()
 myclock:set_widget(myclock_text)
-myclock:set_bg("#d65d0e")
+myclock:set_bg("#cc241d")
 
 -- Create a CPU usage widget
 mycpuwidget_text = wibox.widget.textbox()
@@ -141,9 +141,9 @@ vicious.register(
 )
 mycpuwidget = wibox.widget.background()
 mycpuwidget:set_widget(mycpuwidget_text)
-mycpuwidget:set_bg("#d79921")
+mycpuwidget:set_bg("#d65d0e")
 
--- Create a memory usage widget
+-- Create memory usage widgets
 mymemwidget_text = wibox.widget.textbox()
 vicious.register(
     mymemwidget_text,
@@ -155,7 +155,20 @@ vicious.register(
 )
 mymemwidget = wibox.widget.background()
 mymemwidget:set_widget(mymemwidget_text)
-mymemwidget:set_bg("#98971a")
+mymemwidget:set_bg("#d79921")
+
+myswapwidget_text = wibox.widget.textbox()
+vicious.register(
+    myswapwidget_text,
+    vicious.widgets.mem,
+    function(widget, args)
+        return("<span color='#3c3836'> SWP%03d%%</span>"):format(args[5])
+    end,
+    2
+)
+myswapwidget = wibox.widget.background()
+myswapwidget:set_widget(myswapwidget_text)
+myswapwidget:set_bg("#98971a")
 
 -- Create a battery widget
 mybatwidget_text = wibox.widget.textbox()
@@ -319,10 +332,12 @@ for s = 1, screen.count() do
     local left_layout = wibox.layout.fixed.horizontal()
     --left_layout:add(mylauncher)
     left_layout:add(myclock)
-    left_layout:add(myarrow1)
+    left_layout:add(myarrow0)
     left_layout:add(mycpuwidget)
-    left_layout:add(myarrow2)
+    left_layout:add(myarrow1)
     left_layout:add(mymemwidget)
+    left_layout:add(myarrow2)
+    left_layout:add(myswapwidget)
     left_layout:add(myarrow3)
     left_layout:add(mybatwidget)
     left_layout:add(myarrow4)
