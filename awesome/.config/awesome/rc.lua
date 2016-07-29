@@ -480,6 +480,11 @@ globalkeys = awful.util.table.join(
         function() awful.util.spawn(terminal .. " -e cmus") end
     ),
     awful.key(
+        {modkey, "Shift"},
+        "c",
+        function() awful.util.spawn("cmus-remote -u") end
+    ),
+    awful.key(
         {modkey},
         "m",
         function() awful.util.spawn(terminal .. " -e mutt") end
