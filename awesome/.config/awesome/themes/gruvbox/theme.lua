@@ -1,6 +1,19 @@
----------------------------
--- gruvbox awesome theme --
----------------------------
+-- gruvbox awesome theme
+--
+-- Copyright (C) 2016 Raphael McSinyx
+--
+-- This program is free software: you can redistribute it and/or modify
+-- it under the terms of the GNU General Public License as published by
+-- the Free Software Foundation, either version 3 of the License, or
+-- (at your option) any later version.
+--
+-- This program is distributed in the hope that it will be useful,
+-- but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-- GNU General Public License for more details.
+--
+-- You should have received a copy of the GNU General Public License
+-- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 theme = {}
 
@@ -22,16 +35,15 @@ theme.border_normal = "#3c3836"
 theme.border_focus = "#b16286"
 theme.border_marked = "#91231c"
 
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
+-- There are other variable sets overriding the default one when defined,
+-- the sets are:
 -- taglist_[bg|fg]_[focus|urgent|occupied|empty]
 -- tasklist_[bg|fg]_[focus|urgent]
 -- titlebar_[bg|fg]_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- mouse_finder_[color|timeout|animate_timeout|radius|factor]
 
-theme.titlebar_bg_focus = "282828"
+theme.titlebar_bg_focus = "#282828"
 
 mythemedir = "~/.config/awesome/themes/gruvbox/"
 
@@ -46,8 +58,7 @@ theme.menu_submenu_icon = mythemedir .. "submenu.png"
 theme.menu_height = 20
 theme.menu_width  = 160
 
--- You can add as many variables as
--- you wish and access them by using
+-- You can add as many variables as you wish and access them by using
 -- beautiful.variable in your rc.lua
 --theme.bg_widget = "#cc0000"
 
@@ -93,8 +104,8 @@ theme.layout_dwindle = mythemedir .. "layouts/dwindle.png"
 
 theme.awesome_icon = mythemedir .. "awesome.png"
 
--- Define the icon theme for application icons. If not set then the icons 
--- from /usr/share/icons and /usr/share/icons/hicolor will be used.
+-- Define the icon theme for application icons. If not set then the icons from
+-- /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
 -- Arrows
