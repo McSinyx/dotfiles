@@ -1,4 +1,3 @@
-execute pathogen#infect()
 filetype plugin indent on
 syntax enable
 set nocompatible
@@ -24,3 +23,4 @@ autocmd FileType c setlocal noexpandtab shiftwidth=8 tabstop=8
 autocmd FileType markdown setlocal textwidth=79
 autocmd FileType python syntax keyword pythonBoolean False True None
 autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
+map Q gq
