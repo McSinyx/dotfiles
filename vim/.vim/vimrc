@@ -12,7 +12,12 @@ set showcmd
 set nostartofline
 set ruler
 set confirm
-set list listchars+=space:·,tab:\ \ 
+set list
+if has("patch-7.4.710")
+  set listchars+=space:·,tab:\ \ 
+else
+  set listchars+=tab:├─
+endif
 set tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
 set omnifunc=syntaxcomplete#Complete
 set dictionary=/usr/share/dict/words

@@ -60,7 +60,8 @@ editor_cmd = terminal .. " -e vim"
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
+-- However, you can use another modifier like Mod1, but it may interact with
+-- others.
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -119,12 +120,16 @@ mylauncher = awful.widget.launcher({
 })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- Set the terminal for applications that require it
+menubar.utils.terminal = terminal
 -- }}}
 
 -- {{{ Wibox
 -- Create a textclock widget
-myclock_text = awful.widget.textclock("<span color='#3c3836'> #%u %FT%R</span>")
+myclock_text = awful.widget.textclock(
+    "<span color='#3c3836'> #%u %FT%R</span>",
+    1
+)
 myclock = wibox.widget.background()
 myclock:set_widget(myclock_text)
 myclock:set_bg("#cc241d")
@@ -302,8 +307,8 @@ mytasklist.buttons = awful.util.table.join(
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({prompt = " "})
-    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
+    -- Create an imagebox widget which will contains an icon indicating
+    -- which layout we're using. We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
     mylayoutbox[s]:buttons(awful.util.table.join(
             awful.button({}, 1, function() awful.layout.inc(layouts, 1) end),
