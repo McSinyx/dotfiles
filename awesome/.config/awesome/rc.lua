@@ -55,6 +55,10 @@ beautiful.init("/home/cnx/.config/awesome/themes/gruvbox/theme.lua")
 terminal = "x-terminal-emulator"
 editor = "gvim"
 editor_cmd = terminal .. " -e vim"
+cmus = terminal .. " -e cmus"
+cmus_pause = "cmus-remote -u"
+cmus_prev = "cmus-remote -r"
+cmus_next = "cmus-remote -n"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -482,12 +486,22 @@ globalkeys = awful.util.table.join(
     awful.key(
         {modkey},
         "c",
-        function() awful.util.spawn(terminal .. " -e cmus") end
+        function() awful.util.spawn(cmus) end
     ),
     awful.key(
         {modkey, "Shift"},
         "c",
-        function() awful.util.spawn("cmus-remote -u") end
+        function() awful.util.spawn(cmus_pause) end
+    ),
+    awful.key(
+        {modkey, "Control"},
+        "c",
+        function() awful.util.spawn(cmus_prev) end
+    ),
+    awful.key(
+        {modkey, "Mod1"},
+        "c",
+        function() awful.util.spawn(cmus_next) end
     ),
     awful.key(
         {modkey},

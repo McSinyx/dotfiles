@@ -22,9 +22,9 @@ set tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
 set omnifunc=syntaxcomplete#Complete
 set dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
-autocmd BufNewFile,BufRead *.PAS set filetype=pascal
+autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
 autocmd FileType vim,pascal,html setlocal shiftwidth=2 tabstop=2
-autocmd FileType c setlocal noexpandtab shiftwidth=8 tabstop=8
+autocmd FileType c,h,cpp,arduino setlocal noexpandtab shiftwidth=8 tabstop=8
 autocmd FileType markdown setlocal textwidth=79
 autocmd FileType python syntax keyword pythonBoolean False True None
 autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
