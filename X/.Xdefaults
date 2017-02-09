@@ -1,56 +1,8 @@
-! URxvt configs
-! General
-!urxvt*termName:  rxvt-256color
-urxvt*loginShell:         true
-urxvt*scrollBar:         false
-urxvt*secondaryScroll:    true
-urxvt*saveLines:         65535
-urxvt*cursorBlink:       false
-urxvt*urgentOnBell:       true
-!urxvt*override-redirect:false
-!urxvt*borderLess:       false
-!urxvt*internalBorder:       0
-!urxvt*externalBorder:       0
-
-! Extensions
-urxvt*perl-lib:         /usr/lib/urxvt/perl/
-urxvt*perl-ext-common:  default,matcher,searchable-scrollback
-urxvt*urlLauncher:      /usr/bin/firefox
-urxvt*matcher.button:   1
-!  - catch ugly URLs
-urxvt.cutchars:         `()'*<>[]{|}"
-
-! Appearance
-!  - use xft for drawing fonts
-urxvt.font:             xft:Droid Sans Mono Slashed:size=11
-urxvt.letterSpace:      -1
-!  - cursor
-!urxvt*cursorColor: #DCDCCC
-!  - color scheme
-urxvt.background:       #282828
-urxvt.foreground:       #ebdbb2
-urxvt*color0:           #282828
-urxvt*color1:           #cc241d
-urxvt*color2:           #98971a
-urxvt*color3:           #d79921
-urxvt*color4:           #458588
-urxvt*color5:           #b16286
-urxvt*color6:           #689d6a
-urxvt*color7:           #a89984
-urxvt*color8:           #928374
-urxvt*color9:           #fb4934
-urxvt*color10:          #b8bb26
-urxvt*color11:          #fabd2f
-urxvt*color12:          #83a598
-urxvt*color13:          #d3869b
-urxvt*color14:          #8ec07c
-urxvt*color15:          #ebdbb2
-
 ! XTerm configs
-UXTerm*faceName:    Droid Sans Mono Slashed:size=11
-UXTerm*background:  #282828
-UXTerm*foreground:  #ebdbb2
-UXTerm*color0:      #282828
+UXTerm*faceName:    Space Mono:size=10
+UXTerm*background:  #fbf1c7
+UXTerm*foreground:  #3c3836
+UXTerm*color0:      #fbf1c7
 UXTerm*color1:      #cc241d
 UXTerm*color2:      #98971a
 UXTerm*color3:      #d79921
@@ -59,13 +11,13 @@ UXTerm*color5:      #b16286
 UXTerm*color6:      #689d6a
 UXTerm*color7:      #a89984
 UXTerm*color8:      #928374
-UXTerm*color9:      #fb4934
-UXTerm*color10:     #b8bb26
-UXTerm*color11:     #fabd2f
-UXTerm*color12:     #83a598
-UXTerm*color13:     #d3869b
-UXTerm*color14:     #8ec07c
-UXTerm*color15:     #ebdbb2
+UXTerm*color9:      #9d0006
+UXTerm*color10:     #79740e
+UXTerm*color11:     #b57614
+UXTerm*color12:     #076678
+UXTerm*color13:     #8f3f71
+UXTerm*color14:     #427b58
+UXTerm*color15:     #3c3836
 UXTerm*loginShell:  true
 UXTerm*scrollBar:   false
 UXTerm*saveLines:   65535

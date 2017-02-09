@@ -6,7 +6,7 @@
   proper algorithim, e.g. in GIMP use *None* or *Linear* interpolation.
 
 * Titlebar and wibox use some pixel arts, so please keep theme at the size of
-  24 (wibox) and 6 (titlebar).
+  22px.
 
-* I added some 24-pixel high arrows to the theme. You might wanna use them to
+* I added some 22-pixel high arrows to the theme. You might wanna use them to
   rice your desktop in the *powerarrow* way.

@@ -129,5 +129,5 @@ fi
 # vi mode input
 set -o vi
 
-export RTV_EDITOR=vim
-export BROWSER=w3m
+export EDITOR=vim
+export PAGER=less

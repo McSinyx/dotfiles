@@ -1,6 +1,6 @@
 set number relativenumber lazyredraw
-set guifont=Droid\ Sans\ Mono\ Dotted\ 11
+set guifont=Space\ Mono\ 10
 set guioptions=Pc
 set guicursor+=a:blinkon0
-set background=dark
+set background=light
 colorscheme gruvbox

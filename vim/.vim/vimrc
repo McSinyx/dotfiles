@@ -6,14 +6,13 @@ set directory=~/.cache/vim/swap
 set backupdir=~/.cache/vim/backup
 set viminfo+=n~/.cache/vim/viminfo
 set clipboard=exclude:cons\|linux
-set hidden
 set wildmenu
 set showcmd
 set nostartofline
 set ruler
 set confirm
 set list
-if has("patch-7.4.710")
+if has("patch-7.4.710") && has("gui_running")
   set listchars+=space:·,tab:\ \ 
 else
   set listchars+=tab:├─
@@ -23,7 +22,7 @@ set omnifunc=syntaxcomplete#Complete
 set dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
 autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
-autocmd FileType vim,pascal,html setlocal shiftwidth=2 tabstop=2
+autocmd FileType vim,pascal,lua,html,rst setlocal shiftwidth=2 tabstop=2
 autocmd FileType c,h,cpp,arduino setlocal noexpandtab shiftwidth=8 tabstop=8
 autocmd FileType markdown setlocal textwidth=79
 autocmd FileType python syntax keyword pythonBoolean False True None
