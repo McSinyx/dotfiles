@@ -1,9 +1,0 @@
-set gui=none
-set popups=window
-colorscheme gruvbox
-map <C-c> <S-y>
-map <Space> <C-d>
-map <S-Space> <C-u>
-map F ;w
-map <A-r> :open https://www.reddit.com/
-map <A-c> :open http://c.xkcd.com/random/comic<CR>

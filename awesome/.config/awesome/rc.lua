@@ -52,6 +52,7 @@ editor = "gvim"
 root_terminal = terminal .. " -e su -"
 ranger = terminal .. " -e ranger"
 python = terminal .. " -e python3"
+guile = terminal .. " -e guile"
 mutt = terminal .. " -e mutt"
 cmus = terminal .. " -e cmus"
 cmus_pause = "cmus-remote -u"
@@ -75,7 +76,7 @@ modkey = "Mod4"
 awful.layout.layouts = {
   awful.layout.suit.tile,
   -- awful.layout.suit.tile.left,
-  awful.layout.suit.tile.bottom,
+  -- awful.layout.suit.tile.bottom,
   -- awful.layout.suit.tile.top,
   -- awful.layout.suit.fair,
   -- awful.layout.suit.fair.horizontal,
@@ -359,6 +360,8 @@ globalkeys = awful.util.table.join(
             {description = "open ranger file manager", group = "launcher"}),
   awful.key({modkey}, "p", function() awful.spawn(python) end,
             {description = "open Python 3 interpreter", group = "launcher"}),
+  awful.key({modkey}, "g", function() awful.spawn(guile) end,
+            {description = "open Guile interpreter", group = "launcher"}),
   awful.key({modkey}, "z", function() awful.spawn("zathura") end,
             {description = "open zathura document viewer", group = "launcher"}),
   awful.key({modkey}, "m", function() awful.spawn(mutt) end,
