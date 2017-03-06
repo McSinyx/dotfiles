@@ -88,8 +88,8 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
+alias ll='ls -l'
+alias la='ls -A'
 #alias l='ls -CF'
 
 # Alias definitions.
@@ -99,21 +99,13 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias x='cd ~ && startx'
 alias scot='scrot ~/Pictures/Screenshots/%FT%T.png'
 alias gcc='gcc -O2 -lm'
-alias fpc='fpc -O1 -XS'
+alias fpc='fpc -O1 -XS -gl'
 alias mount='udevil mount'
 alias umount='udevil umount'
 TF_ALIAS=fuck alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
-function dct {
-    while true
-    do
-        dict $1 | less
-    done
-}
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

@@ -17,14 +17,13 @@ if has("patch-7.4.710") && has("gui_running")
 else
   set listchars+=tab:├─
 endif
-set tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
+set tabstop=8 expandtab shiftwidth=2 softtabstop=2 smarttab
 set omnifunc=syntaxcomplete#Complete
 set dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
 autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
-autocmd FileType vim,pascal,lua,html,rst setlocal shiftwidth=2 tabstop=2
 autocmd FileType c,h,cpp,arduino setlocal noexpandtab shiftwidth=8 tabstop=8
-autocmd FileType markdown setlocal textwidth=79
+autocmd FileType markdown,python setlocal shiftwidth=2 tabstop=2
 autocmd FileType python syntax keyword pythonBoolean False True None
 autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
 map Q gq
