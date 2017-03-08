@@ -55,10 +55,12 @@ python = terminal .. " -e python3"
 guile = terminal .. " -e guile"
 mutt = terminal .. " -e mutt"
 cmus = terminal .. " -e cmus"
-cmus_pause = "cmus-remote -u"
-cmus_prev = "cmus-remote -r"
-cmus_next = "cmus-remote -n"
-slock_suspend = "slock systemctl -i suspend"
+cmus_pause = "cmus-remote --pause"
+cmus_prev = "cmus-remote --prev"
+cmus_next = "cmus-remote --next"
+scrot = "scrot /home/cnx/Pictures/Screenshots/%FT%T.png"
+scrot_select = "scrot --select /home/cnx/Pictures/Screenshots/%FT%T.png"
+slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 function volume_lower() awful.spawn("amixer sset Master 5%-", false) end
 function volume_raise() awful.spawn("amixer sset Master 5%+", false) end
 function volume_mute() awful.util.spawn("amixer sset Master toggle", false) end
@@ -356,6 +358,8 @@ globalkeys = awful.util.table.join(
             {description = "open GVim", group = "launcher"}),
   awful.key({modkey}, "b", function() awful.spawn("torbrowser-launcher") end,
             {description = "open Tor Browser", group = "launcher"}),
+  awful.key({modkey, "Shift"}, "b", function() awful.spawn("firefox-esr") end,
+            {description = "open Firefox ESR", group = "launcher"}),
   awful.key({modkey}, "r", function() awful.spawn(ranger) end,
             {description = "open ranger file manager", group = "launcher"}),
   awful.key({modkey}, "p", function() awful.spawn(python) end,
@@ -375,11 +379,16 @@ globalkeys = awful.util.table.join(
   awful.key({modkey}, "c", function() awful.spawn(cmus) end,
             {description = "open cmus music player", group = "launcher"}),
   awful.key({modkey}, "XF86AudioPlay", function() awful.spawn(cmus_pause) end,
-            {description = "cmus: pause", group = "multimedia"}),
+            {description = "cmus: play/pause", group = "multimedia"}),
   awful.key({modkey}, "XF86AudioPrev", function() awful.spawn(cmus_prev) end,
             {description = "cmus: previous track", group = "multimedia"}),
   awful.key({modkey}, "XF86AudioNext", function() awful.spawn(cmus_next) end,
             {description = "cmus: next track", group = "multimedia"}),
+  awful.key({}, "Print", function() awful.spawn(scrot) end,
+            {description = "capture a screenshot", group = "multimedia"}),
+  awful.key({modkey}, "Print", function() awful.spawn(scrot_select) end,
+            {description = "shoot a window or rectangle selected with a mouse",
+             group = "multimedia"}),
   awful.key({}, "XF86AudioRaiseVolume", volume_raise,
             {description = "raise 5% volume", group = "multimedia"}),
   awful.key({}, "XF86AudioLowerVolume", volume_lower,
@@ -456,6 +465,8 @@ clientkeys = awful.util.table.join(
             {description = "toggle fullscreen", group = "client"}),
   awful.key({modkey}, "q", function(c) c:kill() end,
             {description = "close", group = "client"}),
+  awful.key({modkey, "Control"}, "q", function() awful.spawn("xkill") end,
+            {description = "select a window to be killed", group = "client"}),
   awful.key({modkey, "Control"}, "Return", awful.client.floating.toggle,
             {description = "toggle floating", group = "client"}),
   awful.key({modkey, "Control"}, "space",
