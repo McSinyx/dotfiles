@@ -59,6 +59,7 @@ cmus_pause = "cmus-remote --pause"
 cmus_prev = "cmus-remote --prev"
 cmus_next = "cmus-remote --next"
 scrot = "scrot /home/cnx/Pictures/Screenshots/%FT%T.png"
+scrot_delay = "scrot --delay 3 /home/cnx/Pictures/Screenshots/%FT%T.png"
 scrot_select = "scrot --select /home/cnx/Pictures/Screenshots/%FT%T.png"
 slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 function volume_lower() awful.spawn("amixer sset Master 5%-", false) end
@@ -370,8 +371,6 @@ globalkeys = awful.util.table.join(
             {description = "open zathura document viewer", group = "launcher"}),
   awful.key({modkey}, "m", function() awful.spawn(mutt) end,
             {description = "open mutt mail client", group = "launcher"}),
-  awful.key({modkey}, "y", function() awful.spawn("smtube") end,
-            {description = "open YouTube browser", group = "launcher"}),
   awful.key({modkey}, "s", function() awful.spawn("slock") end,
             {description = "lock screen", group = "launcher"}),
   awful.key({modkey, "Shift"}, "s", function() awful.spawn(slock_suspend) end,
@@ -386,7 +385,10 @@ globalkeys = awful.util.table.join(
             {description = "cmus: next track", group = "multimedia"}),
   awful.key({}, "Print", function() awful.spawn(scrot) end,
             {description = "capture a screenshot", group = "multimedia"}),
-  awful.key({modkey}, "Print", function() awful.spawn(scrot_select) end,
+  awful.key({"Shift"}, "Print", function() awful.spawn(scrot_delay) end,
+            {description = "wait 3 seconds then capture a screenshot",
+             group = "multimedia"}),
+  awful.key({"Control"}, "Print", function() awful.spawn(scrot_select) end,
             {description = "shoot a window or rectangle selected with a mouse",
              group = "multimedia"}),
   awful.key({}, "XF86AudioRaiseVolume", volume_raise,

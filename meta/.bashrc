@@ -96,12 +96,12 @@ alias la='ls -A'
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-alias x='cd ~ && startx'
-alias scot='scrot ~/Pictures/Screenshots/%FT%T.png'
 alias gcc='gcc -O2 -lm'
 alias fpc='fpc -O1 -XS -gl'
+alias mpa='mpv --no-video'
 alias mount='udevil mount'
 alias umount='udevil umount'
+alias x='cd ~ && startx'
 TF_ALIAS=fuck alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
