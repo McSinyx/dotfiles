@@ -1,5 +1,9 @@
 [user]
 	email = vn.mcsinyx@gmail.com
 	name = Raphael McSinyx
+[diff]
+	tool = vimdif
+	guitool = gvimdif
 [github]
 	user = McSinyx
+
