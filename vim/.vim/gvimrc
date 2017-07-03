@@ -1,6 +1,11 @@
+runtime ftplugin/man.vim
+nmap K :Man <cword><CR>
 set number relativenumber lazyredraw
 set guifont=Space\ Mono\ 10
 set guioptions=Pc
 set guicursor+=a:blinkon0
+if has("patch-7.4.710")
+  set listchars+=space:·,tab:\ \ 
+endif
 set background=light
 colorscheme gruvbox
