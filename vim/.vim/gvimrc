@@ -1,7 +1,7 @@
 runtime ftplugin/man.vim
 nmap K :Man <cword><CR>
 set number relativenumber lazyredraw
-set guifont=Space\ Mono\ 10
+set guifont=Space\ Mono\ 9.5
 set guioptions=Pc
 set guicursor+=a:blinkon0
 if has("patch-7.4.710")
