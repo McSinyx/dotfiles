@@ -98,10 +98,11 @@ alias la='ls -A'
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 alias gcc='gcc -O2 -lm'
 alias fpc='fpc -O1 -XS -gl'
-alias mpa='mpv --no-video'
+alias mpa='mpv --no-video --loop=inf'
 alias mount='udevil mount'
 alias umount='udevil umount'
 alias x='cd ~ && startx'
+alias flare='cd ~/.local/flare-game/ && ./flare && cd -'
 TF_ALIAS=fuck alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
