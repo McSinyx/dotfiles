@@ -13,18 +13,9 @@ set tabstop=8 expandtab shiftwidth=2 softtabstop=-1 smarttab
 set dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
 set omnifunc=syntaxcomplete#Complete
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 0
-let g:jedi#show_call_signatures = 2
-let g:jedi#smart_auto_mappings = 0
 autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
-autocmd FileType c,h,go setlocal noexpandtab shiftwidth=8
-autocmd FileType cpp setlocal cinoptions={s}s
+autocmd FileType c,h,go setlocal cindent noexpandtab shiftwidth=8
 autocmd FileType rst setlocal shiftwidth=3
-autocmd FileType css,javascript,markdown,python setlocal shiftwidth=4
-autocmd FileType python syntax keyword pythonBoolean False True None
+autocmd FileType css,javascript setlocal shiftwidth=4
 autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
 map Q gq
-inoremap <M-,> ≤
-inoremap <M-.> ≥
-inoremap ... …
