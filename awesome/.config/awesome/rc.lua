@@ -46,15 +46,15 @@ end
 beautiful.init("~/.config/awesome/themes/gruvbox/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "x-terminal-emulator -e dvtm"
 editor = "gvim"
 -- And some additional applications
-root_terminal = terminal .. " -e su -"
-ranger = terminal .. " -e ranger"
-python = terminal .. " -e python3"
-guile = terminal .. " -e guile"
-mutt = terminal .. " -e mutt"
-cmus = terminal .. " -e cmus"
+root_terminal = "x-terminal-emulator -e su --login --command dvtm"
+ranger = "x-terminal-emulator -e ranger"
+python = "x-terminal-emulator -e python3"
+guile = "x-terminal-emulator -e guile"
+mutt = "x-terminal-emulator -e mutt"
+cmus = "x-terminal-emulator -e cmus"
 cmus_pause = "cmus-remote --pause"
 cmus_prev = "cmus-remote --prev"
 cmus_next = "cmus-remote --next"
@@ -65,7 +65,6 @@ slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 function volume_lower() awful.spawn("amixer sset Master 5%-", false) end
 function volume_raise() awful.spawn("amixer sset Master 5%+", false) end
 function volume_mute() awful.util.spawn("amixer sset Master toggle", false) end
-
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -152,7 +151,6 @@ vicious.register(mycpuusage, vicious.widgets.cpu,
                  end, 2)
 
 -- Create memory usage widgets
-vicious.cache(vicious.widgets.mem)
 mymemusage = wibox.widget.textbox() -- RAM
 vicious.register(mymemusage, vicious.widgets.mem,
                  function(widget, args)

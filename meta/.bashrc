@@ -102,7 +102,6 @@ alias fpc='fpc -O1 -XS -gl'
 alias mpa='mpv --no-video --loop=inf'
 alias mount='udevil mount'
 alias umount='udevil umount'
-alias x='cd ~ && startx'
 alias flare='cd ~/.local/flare-game/ && ./flare && cd -'
 TF_ALIAS=fuck alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
 if [ -f ~/.bash_aliases ]; then
