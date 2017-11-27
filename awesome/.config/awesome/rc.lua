@@ -49,7 +49,7 @@ beautiful.init("~/.config/awesome/themes/gruvbox/theme.lua")
 terminal = "x-terminal-emulator -e dvtm"
 editor = "gvim"
 -- And some additional applications
-root_terminal = "x-terminal-emulator -e su --login --command dvtm"
+root_terminal = "x-terminal-emulator -e sudo dvtm"
 ranger = "x-terminal-emulator -e ranger"
 python = "x-terminal-emulator -e python3"
 guile = "x-terminal-emulator -e guile"
@@ -166,14 +166,14 @@ vicious.register(myswpusage, vicious.widgets.mem,
 mybattery = wibox.widget.textbox()
 vicious.register(mybattery, vicious.widgets.bat,
                  function(widget, args)
-                   return(" %s%03d%%"):format(args[1], args[2])
+                   return (" %s%03d%%"):format(args[1], args[2])
                  end, 5, "C11F")
 
 -- Create a volume widget
 myvolume_text = wibox.widget.textbox()
 vicious.register(myvolume_text, vicious.widgets.volume,
                  function(widget, args)
-                   return(" %s%03d%%"):format(args[2], args[1])
+                   return (" %s%03d%%"):format(args[2], args[1])
                  end, 1, "Master")
 myvolume = wibox.container.background(myvolume_text, "#458588")
 myvolume:buttons(awful.util.table.join(
@@ -183,6 +183,18 @@ myvolume:buttons(awful.util.table.join(
   awful.button({}, 4, volume_raise),
   awful.button({}, 5, volume_lower)
 ))
+
+-- Create a weather widget
+myweather = wibox.widget.textbox()
+vicious.register(myweather, vicious.widgets.weather,
+                 function(widget, args)
+                   if args["{city}"] ~= "N/A" then
+                     return (" %s°C %s%%"):format(args["{tempc}"],
+                                                  args["{humid}"])
+                   else
+                     return ""
+                   end
+                 end, 60, "VVNB")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
@@ -286,8 +298,9 @@ awful.screen.connect_for_each_screen(function(s)
       wibox.widget.imagebox(beautiful.arrow4),
       myvolume,
       wibox.widget.imagebox(beautiful.arrow5),
-      wibox.container.background(s.mypromptbox, "#b16286"),
-      wibox.widget.imagebox(beautiful.arrow6)
+      wibox.container.background(myweather, "#b16286"),
+      wibox.widget.imagebox(beautiful.arrow6),
+      s.mypromptbox
     },
     { -- Middle widget
       layout = wibox.layout.fixed.horizontal,
