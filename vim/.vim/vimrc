@@ -1,5 +1,3 @@
-filetype plugin indent on
-syntax enable
 set nocompatible
 set undodir=~/.cache/vim/undo
 set directory=~/.cache/vim/swap
@@ -13,9 +11,19 @@ set tabstop=8 expandtab shiftwidth=2 softtabstop=-1 smarttab
 set dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
 set omnifunc=syntaxcomplete#Complete
+autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
 autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
 autocmd FileType c,h,go setlocal cindent noexpandtab shiftwidth=8
 autocmd FileType rst setlocal shiftwidth=3
-autocmd FileType css,javascript setlocal shiftwidth=4
-autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
+autocmd FileType css,javascript,python setlocal shiftwidth=4
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+let g:jedi#show_call_signatures = 2
+let g:jedi#smart_auto_mappings = 0
 map Q gq
+
+call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'https://github.com/tpope/vim-abolish.git'
+Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}
+call plug#end()

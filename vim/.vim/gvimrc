@@ -9,3 +9,4 @@ if has("patch-7.4.710")
 endif
 set background=light
 colorscheme gruvbox
+autocmd FileType python syntax keyword pythonBoolean False True None

@@ -1,7 +1,0 @@
-[submodule "gruvbox"]
-	path = vim/.vim/pack/gruvbox
-	url = https://github.com/McSinyx/gruvbox.git
-
-[submodule "vim-abolish"]
-	path = vim/.vim/pack/abolish/start/vim-abolish
-	url = https://github.com/tpope/vim-abolish.git

@@ -49,7 +49,7 @@ beautiful.init("~/.config/awesome/themes/gruvbox/theme.lua")
 terminal = "x-terminal-emulator -e dvtm"
 editor = "gvim"
 -- And some additional applications
-root_terminal = "x-terminal-emulator -e sudo dvtm"
+root_terminal = "x-terminal-emulator -e sudo -i dvtm"
 ranger = "x-terminal-emulator -e ranger"
 python = "x-terminal-emulator -e python3"
 guile = "x-terminal-emulator -e guile"
