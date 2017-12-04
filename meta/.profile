@@ -19,3 +19,4 @@ fi
 PATH="$HOME/.local/bin:$HOME/.local/share/go/bin:$PATH"
 export GOPATH="$HOME/.local/share/go"
 export XMODIFIERS=@im=ibus
+export WEBKIT_DISABLE_COMPOSITING_MODE=1

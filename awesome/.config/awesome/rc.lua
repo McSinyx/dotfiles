@@ -51,7 +51,8 @@ editor = "gvim"
 -- And some additional applications
 root_terminal = "x-terminal-emulator -e sudo -i dvtm"
 ranger = "x-terminal-emulator -e ranger"
-python = "x-terminal-emulator -e python3"
+ipython = "x-terminal-emulator -e ipython"
+python3 = "x-terminal-emulator -e python3"
 guile = "x-terminal-emulator -e guile"
 mutt = "x-terminal-emulator -e mutt"
 cmus = "x-terminal-emulator -e cmus"
@@ -368,15 +369,17 @@ globalkeys = awful.util.table.join(
             {description = "open a root terminal", group = "launcher"}),
   awful.key({modkey}, "v", function() awful.spawn(editor) end,
             {description = "open GVim", group = "launcher"}),
-  awful.key({modkey}, "b", function() awful.spawn("firefox") end,
-            {description = "open Firefox", group = "launcher"}),
+  awful.key({modkey}, "b", function() awful.spawn("luakit") end,
+            {description = "open Luakit", group = "launcher"}),
   awful.key({modkey, "Shift"}, "b",
             function() awful.spawn("torbrowser-launcher") end,
             {description = "open Tor Browser", group = "launcher"}),
   awful.key({modkey}, "r", function() awful.spawn(ranger) end,
             {description = "open ranger file manager", group = "launcher"}),
-  awful.key({modkey}, "p", function() awful.spawn(python) end,
+  awful.key({modkey}, "p", function() awful.spawn(python3) end,
             {description = "open Python 3 interpreter", group = "launcher"}),
+  awful.key({modkey, "Shift"}, "p", function() awful.spawn(ipython) end,
+            {description = "open Interactive Python 2", group = "launcher"}),
   awful.key({modkey}, "g", function() awful.spawn(guile) end,
             {description = "open Guile interpreter", group = "launcher"}),
   awful.key({modkey}, "z", function() awful.spawn("zathura") end,
