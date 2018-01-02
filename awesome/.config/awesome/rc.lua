@@ -1,28 +1,28 @@
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
-require("awful.autofocus")
+local gears = require"gears"
+local awful = require"awful"
+require"awful.autofocus"
 -- Widget and layout library
-local wibox = require("wibox")
+local wibox = require"wibox"
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful = require"beautiful"
 -- Notification library
-local naughty = require("naughty")
-local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup").widget
+local naughty = require"naughty"
+local menubar = require"menubar"
+local hotkeys_popup = require"awful.hotkeys_popup".widget
 -- System data library
-local vicious = require("vicious")
+local vicious = require"vicious"
 
 -- Load Debian menu entries
-require("debian.menu")
+require"debian.menu"
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-  naughty.notify({preset = naughty.config.presets.critical,
-                  title = "Oops, there were errors during startup!",
-                  text = awesome.startup_errors})
+  naughty.notify{preset = naughty.config.presets.critical,
+                 title = "Oops, there were errors during startup!",
+                 text = awesome.startup_errors}
 end
 
 -- Handle runtime errors after startup
@@ -33,9 +33,9 @@ do
     if in_error then return end
     in_error = true
 
-    naughty.notify({preset = naughty.config.presets.critical,
-                    title = "Oops, an error happened!",
-                    text = tostring(err)})
+    naughty.notify{preset = naughty.config.presets.critical,
+                   title = "Oops, an error happened!",
+                   text = tostring(err)}
     in_error = false
   end)
 end
@@ -43,7 +43,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/themes/gruvbox/theme.lua")
+beautiful.init"~/.config/awesome/themes/gruvbox/theme.lua"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator -e dvtm"
@@ -105,7 +105,7 @@ local function client_menu_toggle_fn()
       instance:hide()
       instance = nil
     else
-      instance = awful.menu.clients({theme = {width = 250}})
+      instance = awful.menu.clients{theme = {width = 250}}
     end
   end
 end
@@ -121,14 +121,14 @@ myawesomemenu = {
   {"quit", function() awesome.quit() end}
 }
 
-mymainmenu = awful.menu({items = {
+mymainmenu = awful.menu{items = {
   {"awesome", myawesomemenu, beautiful.awesome_icon},
   {"debian", debian.menu.Debian_menu.Debian},
   {"open terminal", terminal}
-}})
+}}
 
--- mylauncher = awful.widget.launcher({image = beautiful.awesome_icon,
---                                     menu = mymainmenu})
+-- mylauncher = awful.widget.launcher{image = beautiful.awesome_icon,
+--                                    menu = mymainmenu}
 
 -- Menubar configuration
 -- Set geometry so it would overlay the wibox
@@ -142,7 +142,7 @@ menubar.utils.terminal = terminal
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" #%u %FT%R")
+mytextclock = wibox.widget.textclock" #%u %FT%R"
 
 -- Create a CPU usage widget
 mycpuusage = wibox.widget.textbox()
@@ -242,7 +242,7 @@ local tasklist_buttons = awful.util.table.join(
 --    gears.wallpaper.maximized(wallpaper, s, true)
 --  end
 --end
-awful.spawn("hsetroot -solid '#fbf1c7'")
+awful.spawn"hsetroot -solid '#fbf1c7'"
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 -- screen.connect_signal("property::geometry", set_wallpaper)
@@ -256,7 +256,7 @@ awful.screen.connect_for_each_screen(function(s)
             awful.layout.layouts[1])
 
   -- Create a promptbox for each screen
-  s.mypromptbox = awful.widget.prompt({prompt = " "})
+  s.mypromptbox = awful.widget.prompt{prompt = " "}
   -- Create an imagebox widget which will contains an icon indicating which
   -- layout we're using.
   -- We need one layoutbox per screen.
@@ -279,7 +279,7 @@ awful.screen.connect_for_each_screen(function(s)
   -- )
 
   -- Create the wibox
-  s.mywibox = awful.wibar({position = "top", height = "22", screen = s})
+  s.mywibox = awful.wibar{position = "top", height = "22", screen = s}
 
   -- Add widgets to the wibox
   s.mywibox:setup {
@@ -369,10 +369,10 @@ globalkeys = awful.util.table.join(
             {description = "open a root terminal", group = "launcher"}),
   awful.key({modkey}, "v", function() awful.spawn(editor) end,
             {description = "open GVim", group = "launcher"}),
-  awful.key({modkey}, "b", function() awful.spawn("luakit") end,
+  awful.key({modkey}, "b", function() awful.spawn"luakit" end,
             {description = "open Luakit", group = "launcher"}),
   awful.key({modkey, "Shift"}, "b",
-            function() awful.spawn("torbrowser-launcher") end,
+            function() awful.spawn"torbrowser-launcher" end,
             {description = "open Tor Browser", group = "launcher"}),
   awful.key({modkey}, "r", function() awful.spawn(ranger) end,
             {description = "open ranger file manager", group = "launcher"}),
@@ -382,11 +382,11 @@ globalkeys = awful.util.table.join(
             {description = "open Interactive Python 2", group = "launcher"}),
   awful.key({modkey}, "g", function() awful.spawn(guile) end,
             {description = "open Guile interpreter", group = "launcher"}),
-  awful.key({modkey}, "z", function() awful.spawn("zathura") end,
+  awful.key({modkey}, "z", function() awful.spawn"zathura" end,
             {description = "open zathura document viewer", group = "launcher"}),
   awful.key({modkey}, "m", function() awful.spawn(mutt) end,
             {description = "open mutt mail client", group = "launcher"}),
-  awful.key({modkey}, "s", function() awful.spawn("slock") end,
+  awful.key({modkey}, "s", function() awful.spawn"slock" end,
             {description = "lock screen", group = "launcher"}),
   awful.key({modkey, "Shift"}, "s", function() awful.spawn(slock_suspend) end,
             {description = "lock screen then suspend", group = "launcher"}),
@@ -482,7 +482,7 @@ clientkeys = awful.util.table.join(
             {description = "toggle fullscreen", group = "client"}),
   awful.key({modkey}, "q", function(c) c:kill() end,
             {description = "close", group = "client"}),
-  awful.key({modkey, "Control"}, "q", function() awful.spawn("xkill") end,
+  awful.key({modkey, "Control"}, "q", function() awful.spawn"xkill" end,
             {description = "select a window to be killed", group = "client"}),
   awful.key({modkey, "Control"}, "Return", awful.client.floating.toggle,
             {description = "toggle floating", group = "client"}),
