@@ -7,7 +7,7 @@ require "lfs"
 require "unique_instance"
 
 -- Set the number of web processes to use. A value of 0 means 'no limit'.
-luakit.process_limit = 4
+luakit.process_limit = 1
 -- Set the cookie storage location
 soup.cookies_storage = luakit.data_dir .. "/cookies.db"
 
@@ -27,7 +27,7 @@ local window = require "window"
 -- ("$XDG_CONFIG_HOME/luakit/webview.lua" or "/etc/xdg/luakit/webview.lua")
 local webview = require "webview"
 
--- Add luakit;//log/ chrome page
+-- Add luakit://log/ chrome page
 local log_chrome = require "log_chrome"
 
 window.add_signal("build", function (w)
@@ -58,6 +58,10 @@ modes.add_binds("normal", { { "v", "Play video in page", function (w)
 end } })
 
 local settings = require "settings"
+settings.window.home_page = "luakit://newtab"
+settings.window.close_with_last_tab = true
+settings.window.search_engines["neoitem"] = "https://items.jellyneo.net/search/?name=%s"
+settings.window.default_search_engine = "duckduckgo"
 require "settings_chrome"
 
 ----------------------------------
