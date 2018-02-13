@@ -17,6 +17,10 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 PATH="$HOME/.local/bin:$HOME/.local/share/go/bin:$PATH"
+export MANPATH="$HOME/.local/share/man:$MANPATH"
 export GOPATH="$HOME/.local/share/go"
 export XMODIFIERS=@im=ibus
 export WEBKIT_DISABLE_COMPOSITING_MODE=1
+
+# OPAM configuration
+. /home/cnx/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true

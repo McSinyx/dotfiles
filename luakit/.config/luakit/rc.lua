@@ -7,7 +7,7 @@ require "lfs"
 require "unique_instance"
 
 -- Set the number of web processes to use. A value of 0 means 'no limit'.
-luakit.process_limit = 1
+luakit.process_limit = 4
 -- Set the cookie storage location
 soup.cookies_storage = luakit.data_dir .. "/cookies.db"
 
@@ -60,6 +60,8 @@ end } })
 local settings = require "settings"
 settings.window.home_page = "luakit://newtab"
 settings.window.close_with_last_tab = true
+settings.window.search_engines["debian"] = "https://packages.debian.org/search?keywords=%s"
+settings.window.search_engines["youtube"] = "https://www.youtube.com/results?search_query=%s"
 settings.window.search_engines["neoitem"] = "https://items.jellyneo.net/search/?name=%s"
 settings.window.default_search_engine = "duckduckgo"
 require "settings_chrome"
