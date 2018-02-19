@@ -58,9 +58,9 @@ cmus = "x-terminal-emulator -e cmus"
 cmus_pause = "cmus-remote --pause"
 cmus_prev = "cmus-remote --prev"
 cmus_next = "cmus-remote --next"
-scrot = "scrot /home/cnx/Pictures/Screenshots/%FT%T.png"
-scrot_delay = "scrot --delay 3 /home/cnx/Pictures/Screenshots/%FT%T.png"
-scrot_select = "scrot --select /home/cnx/Pictures/Screenshots/%FT%T.png"
+scrot = "scrot /home/cnx/Desktop/%FT%T.png"
+scrot_delay = "scrot --delay 3 /home/cnx/Desktop/%FT%T.png"
+scrot_select = "scrot --select /home/cnx/Desktop/%FT%T.png"
 slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 function volume_lower() awful.spawn("amixer sset Master 5%-", false) end
 function volume_raise() awful.spawn("amixer sset Master 5%+", false) end
