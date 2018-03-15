@@ -16,10 +16,6 @@ set notification-error-bg \#9d0006
 set notification-error-fg \#fbf1c7
 set notification-warning-bg \#fbf1c7
 set notification-warning-fg \#9d0006
-set tabbar-bg \#fbf1c7
-set tabbar-fg \#a89984
-set tabbar-focus-bg \#a89984
-set tabbar-focus-fg \#fbf1c7
 set statusbar-bg \#a89984
 set statusbar-fg \#fbf1c7
 set adjust-open width

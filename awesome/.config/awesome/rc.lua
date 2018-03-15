@@ -158,7 +158,12 @@ vicious.register(mymemusage, vicious.widgets.mem,
 myswpusage = wibox.widget.textbox() -- swap
 vicious.register(myswpusage, vicious.widgets.mem,
                  function(widget, args)
-                   return (" SWP%03d%%"):format(args[5])
+                   -- Without swap, args[5] will be nan
+                   if args[5] ~= args[5] then
+                     return ""
+                   else
+                     return (" SWP%03d%%"):format(args[5])
+                   end
                  end, 2)
 
 -- Create a battery widget
