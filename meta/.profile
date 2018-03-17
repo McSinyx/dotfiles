@@ -21,6 +21,7 @@ export MANPATH="$HOME/.local/share/man:$MANPATH"
 export GOPATH="$HOME/.local/share/go"
 export XMODIFIERS=@im=ibus
 export WEBKIT_DISABLE_COMPOSITING_MODE=1
+export NLTK_DATA="$HOME/Sources/nlp/nltk_data"
 
 # OPAM configuration
 . /home/cnx/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
