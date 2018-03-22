@@ -66,6 +66,9 @@ settings.window.search_engines["neoitem"] = "https://items.jellyneo.net/search/?
 settings.window.default_search_engine = "duckduckgo"
 require "settings_chrome"
 
+require "undoclose"
+settings.undoclose.max_saved_tabs = 4
+
 ----------------------------------
 -- Optional user script loading --
 ----------------------------------
@@ -90,6 +93,7 @@ local session = require "session"
 
 -- Add command to list closed tabs & bind to open closed tabs
 local undoclose = require "undoclose"
+settings.undoclose.max_saved_tabs = 4
 
 -- Add command to list tab history items
 local tabhistory = require "tabhistory"
