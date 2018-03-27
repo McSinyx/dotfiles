@@ -1,0 +1,25 @@
+# cmus colorscheme based on comp (Curses Omni Media Player),
+# which is healivily inspired by cmus.
+set color_cmdline_bg=default
+set color_cmdline_fg=default
+set color_error=lightred
+set color_info=lightyellow
+set color_separator=green
+set color_statusline_bg=cyan
+set color_statusline_fg=default
+set color_titleline_bg=blue
+set color_titleline_fg=default
+set color_win_bg=default
+set color_win_cur=lightyellow
+set color_win_cur_sel_bg=yellow
+set color_win_cur_sel_fg=white
+set color_win_dir=lightblue
+set color_win_fg=default
+set color_win_inactive_cur_sel_bg=magenta
+set color_win_inactive_cur_sel_fg=white
+set color_win_inactive_sel_bg=default
+set color_win_inactive_sel_fg=lightmagenta
+set color_win_sel_bg=gray
+set color_win_sel_fg=white
+set color_win_title_bg=green
+set color_win_title_fg=white
