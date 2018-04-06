@@ -58,10 +58,11 @@ cmus = "x-terminal-emulator -e cmus"
 cmus_pause = "cmus-remote --pause"
 cmus_prev = "cmus-remote --prev"
 cmus_next = "cmus-remote --next"
+slock_suspend = "slock systemctl --ignore-inhibitors suspend"
+
 scrot = "scrot /home/cnx/Desktop/%FT%T.png"
 scrot_delay = "scrot --delay 3 /home/cnx/Desktop/%FT%T.png"
 scrot_select = "scrot --select /home/cnx/Desktop/%FT%T.png"
-slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 function volume_lower() awful.spawn("amixer sset Master 5%-", false) end
 function volume_raise() awful.spawn("amixer sset Master 5%+", false) end
 function volume_mute() awful.util.spawn("amixer sset Master toggle", false) end
@@ -372,6 +373,8 @@ globalkeys = awful.util.table.join(
             {description = "open a root terminal", group = "launcher"}),
   awful.key({modkey}, "v", function() awful.spawn(editor) end,
             {description = "open GVim", group = "launcher"}),
+  awful.key({modkey}, "e", function() awful.spawn("emacs") end,
+            {description = "open Emacs", group = "launcher"}),
   awful.key({modkey}, "b", function() awful.spawn"luakit" end,
             {description = "open Luakit", group = "launcher"}),
   awful.key({modkey, "Shift"}, "b",
@@ -395,6 +398,7 @@ globalkeys = awful.util.table.join(
             {description = "lock screen then suspend", group = "launcher"}),
   awful.key({modkey}, "c", function() awful.spawn(cmus) end,
             {description = "open cmus music player", group = "launcher"}),
+
   awful.key({modkey}, "XF86AudioPlay", function() awful.spawn(cmus_pause) end,
             {description = "cmus: play/pause", group = "multimedia"}),
   awful.key({modkey}, "XF86AudioPrev", function() awful.spawn(cmus_prev) end,
