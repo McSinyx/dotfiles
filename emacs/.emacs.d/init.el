@@ -13,16 +13,30 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
-   ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
- '(blink-cursor-mode nil)
+   ["#2e3436" "#a40000" "#4e9a06" "#c4a000"
+    "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
  '(custom-enabled-themes (quote (tango)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(whitespace-style
+   (quote (face trailing spaces newline space-mark newline-mark))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Space Mono" :foundry "CF  " :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "Space Mono"
+                        :foundry "CF  "
+                        :slant normal
+                        :weight normal
+                        :height 98
+                        :width normal))))
+ '(whitespace-space ((t (:foreground "gray")))))
+
+(setq-default indent-tabs-mode nil)
+(add-hook 'find-file-hook 'whitespace-mode)
+(add-hook 'find-file-hook 'ruler-mode)
+
+(setq inhibit-splash-screen t)

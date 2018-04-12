@@ -48,6 +48,7 @@ beautiful.init"~/.config/awesome/themes/gruvbox/theme.lua"
 terminal = "x-terminal-emulator -e dvtm"
 editor = "gvim"
 -- And some additional applications
+emacserver = "emacs --daemon"
 root_terminal = "x-terminal-emulator -e sudo -i dvtm"
 ranger = "x-terminal-emulator -e ranger"
 ipython = "x-terminal-emulator -e ipython"
@@ -373,7 +374,9 @@ globalkeys = awful.util.table.join(
             {description = "open a root terminal", group = "launcher"}),
   awful.key({modkey}, "v", function() awful.spawn(editor) end,
             {description = "open GVim", group = "launcher"}),
-  awful.key({modkey}, "e", function() awful.spawn("emacs") end,
+  awful.key({modkey}, "e", function() awful.spawn("emacsclient -c") end,
+            {description = "open Emacs", group = "launcher"}),
+  awful.key({modkey, 'Shift'}, "e", function() awful.spawn(emacserver) end,
             {description = "open Emacs", group = "launcher"}),
   awful.key({modkey}, "b", function() awful.spawn"luakit" end,
             {description = "open Luakit", group = "launcher"}),
