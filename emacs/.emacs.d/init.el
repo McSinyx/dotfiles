@@ -4,7 +4,7 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 (require 'geiser)
-(setq geiser-repl-use-other-window nil)
+(setq-default geiser-repl-use-other-window nil)
 (pdf-tools-install)
 
 (custom-set-variables
@@ -35,8 +35,8 @@
                         :width normal))))
  '(whitespace-space ((t (:foreground "gray")))))
 
+(setq-default inhibit-splash-screen t)
+(setq-default fill-column 80)
+(add-hook 'prog-mode-hook 'ruler-mode)
 (setq-default indent-tabs-mode nil)
-(add-hook 'find-file-hook 'whitespace-mode)
-(add-hook 'find-file-hook 'ruler-mode)
-
-(setq inhibit-splash-screen t)
+(add-hook 'prog-mode-hook 'whitespace-mode)
