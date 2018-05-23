@@ -102,11 +102,7 @@ alias fpc='fpc -O1 -XS -gl'
 alias mpa='mpv --no-video --loop=inf'
 alias mount='udevil mount'
 alias umount='udevil umount'
-alias flare='cd ~/.local/flare-game/ && ./flare && cd -'
-TF_ALIAS=fuck alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+alias flare='DBUS_FATAL_WARNINGS=0 flare'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

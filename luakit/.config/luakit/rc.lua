@@ -27,6 +27,15 @@ local window = require "window"
 -- ("$XDG_CONFIG_HOME/luakit/webview.lua" or "/etc/xdg/luakit/webview.lua")
 local webview = require "webview"
 
+webview.add_signal("init", function (view)
+    view:add_signal("navigation-request", function (v, uri)
+        if string.match(string.lower(uri), "^magnet:") then
+            luakit.spawn(string.format("%s %q", "transmission-gtk", uri))
+            return false
+        end
+    end)
+end)
+
 -- Add luakit://log/ chrome page
 local log_chrome = require "log_chrome"
 

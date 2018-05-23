@@ -38,5 +38,10 @@
 (setq-default inhibit-splash-screen t)
 (setq-default fill-column 80)
 (add-hook 'prog-mode-hook 'ruler-mode)
+(add-hook 'python-mode-hook
+          (lambda ()
+            (setq fill-column 79)
+            (setq comment-fill-column 72)))
+
 (setq-default indent-tabs-mode nil)
-(add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'find-file-hook 'whitespace-mode)

@@ -9,6 +9,5 @@ redshift-gtk &
 ibus-daemon -drx
 connman-ui-gtk &
 clipit &
-emacs --daemon
 exec awesome
 cd -
