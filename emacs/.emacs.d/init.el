@@ -3,8 +3,6 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
-(require 'geiser)
-(setq-default geiser-repl-use-other-window nil)
 (pdf-tools-install)
 
 (custom-set-variables
@@ -35,9 +33,15 @@
                         :width normal))))
  '(whitespace-space ((t (:foreground "gray")))))
 
+(cua-mode)
 (setq-default inhibit-splash-screen t)
 (setq-default fill-column 80)
 (add-hook 'prog-mode-hook 'ruler-mode)
+(add-hook 'scheme-mode-hook
+          (lambda ()
+            (require 'geiser)
+            (setq-default geiser-repl-use-other-window nil)
+            (setq-default geiser-repl-query-on-kill-p nil)))
 (add-hook 'python-mode-hook
           (lambda ()
             (setq fill-column 79)

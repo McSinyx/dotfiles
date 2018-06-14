@@ -115,8 +115,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# vi mode input
-set -o vi
+# emacs mode input
+set -o emacs
 
 export EDITOR=vim
 export PAGER=less
