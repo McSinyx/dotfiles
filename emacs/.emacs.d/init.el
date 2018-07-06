@@ -14,6 +14,7 @@
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000"
     "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tango)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
@@ -25,27 +26,26 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Space Mono"
-                        :foundry "CF  "
-                        :slant normal
-                        :weight normal
-                        :height 98
-                        :width normal))))
+ '(default ((t (:family "Latin Modern Mono" :foundry "UKWN"
+                :slant normal :weight normal :height 120 :width normal))))
  '(whitespace-space ((t (:foreground "gray")))))
 
 (cua-mode)
 (setq-default inhibit-splash-screen t)
 (setq-default fill-column 80)
 (add-hook 'prog-mode-hook 'ruler-mode)
+(setq-default indent-tabs-mode nil)
+(add-hook 'find-file-hook 'whitespace-mode)
+
 (add-hook 'scheme-mode-hook
           (lambda ()
             (require 'geiser)
+            (setq-default geiser-active-implementations '(guile racket))
             (setq-default geiser-repl-use-other-window nil)
             (setq-default geiser-repl-query-on-kill-p nil)))
 (add-hook 'python-mode-hook
           (lambda ()
             (setq fill-column 79)
             (setq comment-fill-column 72)))
-
-(setq-default indent-tabs-mode nil)
-(add-hook 'find-file-hook 'whitespace-mode)
+; The SBCL binary and command-line arguments
+(setq inferior-lisp-program "/usr/local/bin/sbcl --noinform")

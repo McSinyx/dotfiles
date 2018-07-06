@@ -16,9 +16,11 @@
 *color13:     #8f3f71
 *color14:     #427b58
 *color15:     #3c3836
+*loginShell:  true
+*scrollBar:   false
+*saveLines:   1024
+*cursorBlink: false
+*jumpScroll:  true
+URxvt.termName: rxvt
+URxvt.font:   xft:Latin Modern Mono:size=12
 UXTerm*faceName:    Space Mono:size=9.5
-UXTerm*loginShell:  true
-UXTerm*scrollBar:   false
-UXTerm*saveLines:   1024
-UXTerm*cursorBlink: false
-UXTerm*jumpScroll:  true
