@@ -24,3 +24,4 @@
 URxvt.termName: rxvt
 URxvt.font:   xft:Latin Modern Mono:size=12
 UXTerm*faceName:    Space Mono:size=9.5
+UXTerm.geometry:    80x25

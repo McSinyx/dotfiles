@@ -6,7 +6,7 @@ set completion-highlight-bg \#076678
 set completion-highlight-fg \#d5c4a1
 set default-fg \#3c3836
 set default-bg \#ebdbb2
-set font Space\ Mono\ 10
+set font Latin\ Modern\ Mono\ 12
 set guioptions cs
 set inputbar-fg \#3c3836
 set inputbar-bg \#fbf1c7

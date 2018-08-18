@@ -19,7 +19,7 @@ local theme = {}
 -- Working directory (where you place this theme)
 theme.wd = "~/.config/awesome/themes/gruvbox/"
 
-theme.font          = "Space Mono 10"
+theme.font          = "Latin Modern Mono Caps 12"
 
 theme.bg_normal     = "#fbf1c7"
 theme.bg_focus      = "#ebdbb2"
