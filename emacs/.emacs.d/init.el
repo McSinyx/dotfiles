@@ -2,6 +2,8 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+(require 'package)
+(add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 (package-initialize)
 (pdf-tools-install)
 
@@ -16,6 +18,7 @@
  '(column-number-mode t)
  '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tango)))
+ '(package-selected-packages (quote (geiser slime pdf-tools)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
@@ -49,3 +52,4 @@
             (setq comment-fill-column 72)))
 ; The SBCL binary and command-line arguments
 (setq inferior-lisp-program "/usr/local/bin/sbcl --noinform")
+(when window-system (set-frame-size (selected-frame) 80 25))
