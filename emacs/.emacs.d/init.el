@@ -12,33 +12,61 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ac-auto-show-menu nil)
+ '(ac-auto-start nil)
+ '(ac-expand-on-auto-complete nil)
+ '(ac-trigger-key "M-RET")
  '(ansi-color-names-vector
-   ["#2e3436" "#a40000" "#4e9a06" "#c4a000"
-    "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
+   ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
- '(cua-mode t nil (cua-base))
  '(custom-enabled-themes (quote (tango)))
- '(package-selected-packages (quote (geiser slime pdf-tools)))
+ '(package-selected-packages (quote (magit geiser slime pdf-tools)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(whitespace-style
-   (quote (face trailing spaces newline space-mark newline-mark))))
+   (quote
+    (face trailing spaces newline space-mark newline-mark))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Latin Modern Mono" :foundry "UKWN"
-                :slant normal :weight normal :height 120 :width normal))))
+ '(default ((t (:family "Latin Modern Mono" :foundry "UKWN" :slant normal :weight normal :height 120 :width normal))))
  '(whitespace-space ((t (:foreground "gray")))))
 
-(cua-mode)
+(savehist-mode 1)
 (setq-default inhibit-splash-screen t)
-(setq-default fill-column 80)
+(setq-default fill-column 79)
 (add-hook 'prog-mode-hook 'ruler-mode)
 (setq-default indent-tabs-mode nil)
 (add-hook 'find-file-hook 'whitespace-mode)
+(global-set-key (kbd "C-<return>") #'cua-rectangle-mark-mode)
+
+(defun c-lineup-arglist-tabs-only (ignored)
+  "Line up argument lists by tabs, not spaces"
+  (let* ((anchor (c-langelem-pos c-syntactic-element))
+         (column (c-langelem-2nd-pos c-syntactic-element))
+         (offset (- (1+ column) anchor))
+         (steps (floor offset c-basic-offset)))
+    (* (max steps 1)
+       c-basic-offset)))
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            ;; Add kernel style
+            (c-add-style
+             "linux-tabs-only"
+             '("linux" (c-offsets-alist
+                        (arglist-cont-nonempty
+                         c-lineup-gcc-asm-reg
+                         c-lineup-arglist-tabs-only))))))
+
+(add-hook 'c-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode t)
+            (setq show-trailing-whitespace t)
+            (c-set-style "linux-tabs-only")))
 
 (add-hook 'scheme-mode-hook
           (lambda ()
@@ -47,9 +75,7 @@
             (setq-default geiser-repl-use-other-window nil)
             (setq-default geiser-repl-query-on-kill-p nil)))
 (add-hook 'python-mode-hook
-          (lambda ()
-            (setq fill-column 79)
-            (setq comment-fill-column 72)))
+          (lambda () (setq comment-fill-column 72)))
 ; The SBCL binary and command-line arguments
 (setq inferior-lisp-program "/usr/local/bin/sbcl --noinform")
 (when window-system (set-frame-size (selected-frame) 80 25))
