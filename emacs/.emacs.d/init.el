@@ -7,6 +7,14 @@
 (package-initialize)
 (pdf-tools-install)
 
+(require 'slime)
+(setq inferior-lisp-program "sbcl --noinform"
+      slime-contribs '(slime-fancy))
+(require 'geiser)
+(setq-default geiser-active-implementations '(guile racket))
+(setq-default geiser-repl-use-other-window nil)
+(setq-default geiser-repl-query-on-kill-p nil)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -20,7 +28,9 @@
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
  '(custom-enabled-themes (quote (tango)))
- '(package-selected-packages (quote (magit geiser slime pdf-tools)))
+ '(package-selected-packages
+   (quote
+    (smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
@@ -41,41 +51,12 @@
 (add-hook 'prog-mode-hook 'ruler-mode)
 (setq-default indent-tabs-mode nil)
 (add-hook 'find-file-hook 'whitespace-mode)
+(global-set-key (kbd "C-<tab>") (lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-<return>") #'cua-rectangle-mark-mode)
 
-(defun c-lineup-arglist-tabs-only (ignored)
-  "Line up argument lists by tabs, not spaces"
-  (let* ((anchor (c-langelem-pos c-syntactic-element))
-         (column (c-langelem-2nd-pos c-syntactic-element))
-         (offset (- (1+ column) anchor))
-         (steps (floor offset c-basic-offset)))
-    (* (max steps 1)
-       c-basic-offset)))
+(smart-tabs-insinuate 'c)
+(setq c-default-style "linux")
+(add-hook 'python-mode-hook (lambda () (setq comment-fill-column 72)))
+(add-hook 'pdf-tools-enabled-hook 'auto-revert-mode)
 
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            ;; Add kernel style
-            (c-add-style
-             "linux-tabs-only"
-             '("linux" (c-offsets-alist
-                        (arglist-cont-nonempty
-                         c-lineup-gcc-asm-reg
-                         c-lineup-arglist-tabs-only))))))
-
-(add-hook 'c-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode t)
-            (setq show-trailing-whitespace t)
-            (c-set-style "linux-tabs-only")))
-
-(add-hook 'scheme-mode-hook
-          (lambda ()
-            (require 'geiser)
-            (setq-default geiser-active-implementations '(guile racket))
-            (setq-default geiser-repl-use-other-window nil)
-            (setq-default geiser-repl-query-on-kill-p nil)))
-(add-hook 'python-mode-hook
-          (lambda () (setq comment-fill-column 72)))
-; The SBCL binary and command-line arguments
-(setq inferior-lisp-program "/usr/local/bin/sbcl --noinform")
 (when window-system (set-frame-size (selected-frame) 80 25))
