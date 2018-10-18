@@ -20,7 +20,7 @@ PATH="$HOME/.local/bin:$HOME/.local/share/go/bin:$PATH"
 export MANPATH="$HOME/.local/share/man:$MANPATH"
 export GOPATH="$HOME/.local/share/go"
 export XMODIFIERS=@im=ibus
-export WEBKIT_DISABLE_COMPOSITING_MODE=1
+#export WEBKIT_DISABLE_COMPOSITING_MODE=1
 export NLTK_DATA="$HOME/Sources/nlp/nltk_data"
 
 # OPAM configuration

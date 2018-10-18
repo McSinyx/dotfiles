@@ -172,7 +172,7 @@ mybattery = wibox.widget.textbox()
 vicious.register(mybattery, vicious.widgets.bat,
                  function(widget, args)
                    return (" %s%03d%%"):format(args[1], args[2])
-                 end, 5, "C11F")
+                 end, 5, "BAT0")
 
 -- Create a volume widget
 myvolume_text = wibox.widget.textbox()

@@ -28,9 +28,10 @@
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
  '(custom-enabled-themes (quote (tango)))
+ '(erc-nick "cnx")
  '(package-selected-packages
    (quote
-    (smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
+    (markdown-mode smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
