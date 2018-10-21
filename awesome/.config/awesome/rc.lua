@@ -14,6 +14,7 @@ local menubar = require"menubar"
 local hotkeys_popup = require"awful.hotkeys_popup".widget
 -- System data library
 local vicious = require"vicious"
+vicious.contrib = require"vicious.contrib"
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -54,18 +55,21 @@ ipython = "x-terminal-emulator -e ipython"
 python3 = "x-terminal-emulator -e python3"
 guile = "x-terminal-emulator -e guile"
 mutt = "x-terminal-emulator -e mutt"
-cmus = "x-terminal-emulator -e cmus"
-cmus_pause = "cmus-remote --pause"
-cmus_prev = "cmus-remote --prev"
-cmus_next = "cmus-remote --next"
 slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 scrot = "scrot /home/cnx/Desktop/%FT%T.png"
 scrot_delay = "scrot --delay 3 /home/cnx/Desktop/%FT%T.png"
 scrot_select = "scrot --select /home/cnx/Desktop/%FT%T.png"
-function volume_lower() awful.spawn("amixer sset Master 5%-", false) end
-function volume_raise() awful.spawn("amixer sset Master 5%+", false) end
-function volume_mute() awful.util.spawn("amixer sset Master toggle", false) end
+function power_preferences() awful.spawn"mate-power-preferences" end
+function power_statistics() awful.spawn"mate-power-statistics" end
+function volume_lower() awful.spawn"amixer sset Master 5%-" end
+function volume_raise() awful.spawn"amixer sset Master 5%+" end
+function volume_mute() awful.spawn"amixer sset Master toggle" end
+function cmus() awful.spawn"x-terminal-emulator -e cmus" end
+function cmus_pause() awful.spawn"cmus-remote --pause" end
+function cmus_repeat1() awful.spawn"cmus-remote -C 'toggle repeat_current'" end
+function cmus_prev() awful.spawn"cmus-remote --prev" end
+function cmus_next() awful.spawn"cmus-remote --next" end
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -148,31 +152,26 @@ mycpuusage = wibox.widget.textbox()
 vicious.register(mycpuusage, vicious.widgets.cpu,
                  function(widget, args)
                    return (" CPU%03d%%"):format(args[1])
-                 end, 2)
+                 end, 3)
 
 -- Create memory usage widgets
-mymemusage = wibox.widget.textbox() -- RAM
+mymemusage = wibox.widget.textbox()
 vicious.register(mymemusage, vicious.widgets.mem,
                  function(widget, args)
                    return (" MEM%03d%%"):format(args[1])
                  end, 2)
-myswpusage = wibox.widget.textbox() -- swap
-vicious.register(myswpusage, vicious.widgets.mem,
-                 function(widget, args)
-                   -- Without swap, args[5] will be nan
-                   if args[5] ~= args[5] then
-                     return ""
-                   else
-                     return (" SWP%03d%%"):format(args[5])
-                   end
-                 end, 2)
 
 -- Create a battery widget
-mybattery = wibox.widget.textbox()
-vicious.register(mybattery, vicious.widgets.bat,
+mybattery_text = wibox.widget.textbox()
+vicious.register(mybattery_text, vicious.widgets.bat,
                  function(widget, args)
                    return (" %s%03d%%"):format(args[1], args[2])
                  end, 5, "BAT0")
+mybattery = wibox.container.background(mybattery_text, "#98971a")
+mybattery:buttons(awful.util.table.join(
+  awful.button({}, 1, power_statistics),
+  awful.button({}, 3, power_preferences)
+))
 
 -- Create a volume widget
 myvolume_text = wibox.widget.textbox()
@@ -180,11 +179,11 @@ vicious.register(myvolume_text, vicious.widgets.volume,
                  function(widget, args)
                    return (" %s%03d%%"):format(args[2], args[1])
                  end, 1, "Master")
-myvolume = wibox.container.background(myvolume_text, "#458588")
+myvolume = wibox.container.background(myvolume_text, "#689d6a")
 myvolume:buttons(awful.util.table.join(
-  awful.button({}, 1, volume_raise),
+  awful.button({}, 1, volume_lower),
   awful.button({}, 2, volume_mute),
-  awful.button({}, 3, volume_lower),
+  awful.button({}, 3, volume_raise),
   awful.button({}, 4, volume_raise),
   awful.button({}, 5, volume_lower)
 ))
@@ -200,6 +199,27 @@ vicious.register(myweather, vicious.widgets.weather,
                      return ""
                    end
                  end, 60, "VVNB")
+
+-- Create cmus widget
+mycmus_text = wibox.widget.textbox()
+vicious.register(
+  mycmus_text,
+  vicious.contrib.cmus,
+  function(widget, args)
+    return (args["{artist}"] ~= "N/A" and " " .. args["{artist}"] or "")
+           .. (args["{status}"] == "playing" and " > " or " | ")
+           .. (args["{title}"] ~= "N/A" and args["{title}"] or "")
+  end,
+  1
+)
+mycmus = wibox.container.background(mycmus_text, "#b16286")
+mycmus:buttons(awful.util.table.join(
+  awful.button({}, 1, cmus_pause),
+  awful.button({}, 2, cmus_repeat1),
+  awful.button({}, 3, cmus),
+  awful.button({}, 4, cmus_next),
+  awful.button({}, 5, cmus_prev)
+))
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
@@ -235,25 +255,13 @@ local tasklist_buttons = awful.util.table.join(
   awful.button({}, 5, function() awful.client.focus.byidx(-1) end)
 )
 
---local function set_wallpaper(s)
---  -- Wallpaper
---  if beautiful.wallpaper then
---    local wallpaper = beautiful.wallpaper
---    -- If wallpaper is a function, call it with the screen
---    if type(wallpaper) == "function" then
---      wallpaper = wallpaper(s)
---    end
---    gears.wallpaper.maximized(wallpaper, s, true)
---  end
---end
-awful.spawn"hsetroot -solid '#fbf1c7'"
-
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
--- screen.connect_signal("property::geometry", set_wallpaper)
+local function set_bg(s) awful.spawn"hsetroot -solid '#fbf1c7'" end
+-- Re-set background color when a screen's geometry changes
+screen.connect_signal("property::geometry", set_bg)
 
 awful.screen.connect_for_each_screen(function(s)
-  -- Wallpaper
-  -- set_wallpaper(s)
+  -- Background color
+  set_bg(s)
 
   -- Each screen has its own tag table.
   awful.tag({"1", "2", "3", "4", "5", "6", "7", "8", "9"}, s,
@@ -297,13 +305,13 @@ awful.screen.connect_for_each_screen(function(s)
       wibox.widget.imagebox(beautiful.arrow1),
       wibox.container.background(mymemusage, "#d79921"),
       wibox.widget.imagebox(beautiful.arrow2),
-      wibox.container.background(myswpusage, "#98971a"),
+      mybattery,
       wibox.widget.imagebox(beautiful.arrow3),
-      wibox.container.background(mybattery, "#689d6a"),
-      wibox.widget.imagebox(beautiful.arrow4),
       myvolume,
+      wibox.widget.imagebox(beautiful.arrow4),
+      wibox.container.background(myweather, "#458588"),
       wibox.widget.imagebox(beautiful.arrow5),
-      wibox.container.background(myweather, "#b16286"),
+      mycmus,
       wibox.widget.imagebox(beautiful.arrow6),
       s.mypromptbox
     },
@@ -392,18 +400,20 @@ globalkeys = awful.util.table.join(
             {description = "open zathura document viewer", group = "launcher"}),
   awful.key({modkey}, "m", function() awful.spawn(mutt) end,
             {description = "open mutt mail client", group = "launcher"}),
+  awful.key({modkey}, "y", function() awful.spawn"diodon" end,
+            {description = "open clipboard manager", group = "launcher"}),
   awful.key({modkey}, "s", function() awful.spawn"slock" end,
             {description = "lock screen", group = "launcher"}),
   awful.key({modkey, "Shift"}, "s", function() awful.spawn(slock_suspend) end,
             {description = "lock screen then suspend", group = "launcher"}),
-  awful.key({modkey}, "c", function() awful.spawn(cmus) end,
+  awful.key({modkey}, "c", cmus,
             {description = "open cmus music player", group = "launcher"}),
 
-  awful.key({modkey}, "XF86AudioPlay", function() awful.spawn(cmus_pause) end,
+  awful.key({modkey}, "XF86AudioPlay", cmus_pause,
             {description = "cmus: play/pause", group = "multimedia"}),
-  awful.key({modkey}, "XF86AudioPrev", function() awful.spawn(cmus_prev) end,
+  awful.key({modkey}, "XF86AudioPrev", cmus_prev,
             {description = "cmus: previous track", group = "multimedia"}),
-  awful.key({modkey}, "XF86AudioNext", function() awful.spawn(cmus_next) end,
+  awful.key({modkey}, "XF86AudioNext", cmus_next,
             {description = "cmus: next track", group = "multimedia"}),
   awful.key({}, "Print", function() awful.spawn(scrot) end,
             {description = "capture a screenshot", group = "multimedia"}),

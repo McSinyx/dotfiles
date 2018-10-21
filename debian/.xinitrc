@@ -6,7 +6,9 @@ xrandr --output DP-1 --mode 1600x900 --primary --right-of eDP-1
 redshift-gtk -l 21.028333:105.854167 &
 mate-power-manager &
 ibus-daemon -drx
+blueman-applet &
 nm-applet &
-clipit &
+keynav &
+diodon &
 exec awesome
 cd -
