@@ -60,16 +60,6 @@ slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 scrot = "scrot /home/cnx/Desktop/%FT%T.png"
 scrot_delay = "scrot --delay 3 /home/cnx/Desktop/%FT%T.png"
 scrot_select = "scrot --select /home/cnx/Desktop/%FT%T.png"
-function power_preferences() awful.spawn"mate-power-preferences" end
-function power_statistics() awful.spawn"mate-power-statistics" end
-function volume_lower() awful.spawn"amixer sset Master 5%-" end
-function volume_raise() awful.spawn"amixer sset Master 5%+" end
-function volume_mute() awful.spawn"amixer sset Master toggle" end
-function cmus() awful.spawn"x-terminal-emulator -e cmus" end
-function cmus_pause() awful.spawn"cmus-remote --pause" end
-function cmus_repeat1() awful.spawn"cmus-remote -C 'toggle repeat_current'" end
-function cmus_prev() awful.spawn"cmus-remote --prev" end
-function cmus_next() awful.spawn"cmus-remote --next" end
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -166,11 +156,11 @@ mybattery_text = wibox.widget.textbox()
 vicious.register(mybattery_text, vicious.widgets.bat,
                  function(widget, args)
                    return (" %s%03d%%"):format(args[1], args[2])
-                 end, 5, "BAT0")
+                 end, 7, "BAT0")
 mybattery = wibox.container.background(mybattery_text, "#98971a")
 mybattery:buttons(awful.util.table.join(
-  awful.button({}, 1, power_statistics),
-  awful.button({}, 3, power_preferences)
+  awful.button({}, 1, function() awful.spawn"mate-power-preferences" end),
+  awful.button({}, 3, function() awful.spawn"mate-power-statistics" end)
 ))
 
 -- Create a volume widget
@@ -179,13 +169,22 @@ vicious.register(myvolume_text, vicious.widgets.volume,
                  function(widget, args)
                    return (" %s%03d%%"):format(args[2], args[1])
                  end, 1, "Master")
+
+function volume_setter(parameter)
+  return function()
+           if type(parameter) ~= "string" then return end
+           awful.spawn.easy_async("amixer sset Master " .. parameter,
+                                  function() vicious.force{myvolume_text} end)
+         end
+end
+
 myvolume = wibox.container.background(myvolume_text, "#689d6a")
 myvolume:buttons(awful.util.table.join(
-  awful.button({}, 1, volume_lower),
-  awful.button({}, 2, volume_mute),
-  awful.button({}, 3, volume_raise),
-  awful.button({}, 4, volume_raise),
-  awful.button({}, 5, volume_lower)
+  awful.button({}, 1, volume_setter"5%-"),
+  awful.button({}, 2, volume_setter"toggle"),
+  awful.button({}, 3, volume_setter"5%+"),
+  awful.button({}, 4, volume_setter"5%+"),
+  awful.button({}, 5, volume_setter"5%-")
 ))
 
 -- Create a weather widget
@@ -198,7 +197,7 @@ vicious.register(myweather, vicious.widgets.weather,
                    else
                      return ""
                    end
-                 end, 60, "VVNB")
+                 end, 61, "VVNB")
 
 -- Create cmus widget
 mycmus_text = wibox.widget.textbox()
@@ -212,6 +211,16 @@ vicious.register(
   end,
   1
 )
+
+function cmus_spawn(command)
+  awful.spawn.easy_async(command, function() vicious.force{mycmus_text} end)
+end
+function cmus() cmus_spawn"x-terminal-emulator -e cmus" end
+function cmus_pause() cmus_spawn"cmus-remote --pause" end
+function cmus_repeat1() cmus_spawn"cmus-remote -C 'toggle repeat_current'" end
+function cmus_prev() cmus_spawn"cmus-remote --prev" end
+function cmus_next() cmus_spawn"cmus-remote --next" end
+
 mycmus = wibox.container.background(mycmus_text, "#b16286")
 mycmus:buttons(awful.util.table.join(
   awful.button({}, 1, cmus_pause),
@@ -423,11 +432,11 @@ globalkeys = awful.util.table.join(
   awful.key({"Control"}, "Print", function() awful.spawn(scrot_select) end,
             {description = "shoot a window or rectangle selected with a mouse",
              group = "multimedia"}),
-  awful.key({}, "XF86AudioRaiseVolume", volume_raise,
+  awful.key({}, "XF86AudioRaiseVolume", volume_setter"5%+",
             {description = "raise 5% volume", group = "multimedia"}),
-  awful.key({}, "XF86AudioLowerVolume", volume_lower,
+  awful.key({}, "XF86AudioLowerVolume", volume_setter"5%-",
             {description = "lower 5% volume", group = "multimedia"}),
-  awful.key({}, "XF86AudioMute", volume_mute,
+  awful.key({}, "XF86AudioMute", volume_setter"toggle",
             {description = "(un)mute volume", group = "multimedia"}),
 
   awful.key({modkey, "Control"}, "r", awesome.restart,
