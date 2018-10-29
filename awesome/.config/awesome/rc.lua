@@ -58,7 +58,6 @@ mutt = "x-terminal-emulator -e mutt"
 slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 scrot = "scrot /home/cnx/Desktop/%FT%T.png"
-scrot_delay = "scrot --delay 3 /home/cnx/Desktop/%FT%T.png"
 scrot_select = "scrot --select /home/cnx/Desktop/%FT%T.png"
 
 -- Default modkey.
@@ -159,8 +158,8 @@ vicious.register(mybattery_text, vicious.widgets.bat,
                  end, 7, "BAT0")
 mybattery = wibox.container.background(mybattery_text, "#98971a")
 mybattery:buttons(awful.util.table.join(
-  awful.button({}, 1, function() awful.spawn"mate-power-preferences" end),
-  awful.button({}, 3, function() awful.spawn"mate-power-statistics" end)
+  awful.button({}, 1, function() awful.spawn"mate-power-statistics" end),
+  awful.button({}, 3, function() awful.spawn"mate-power-preferences" end)
 ))
 
 -- Create a volume widget
@@ -395,8 +394,8 @@ globalkeys = awful.util.table.join(
   awful.key({modkey}, "b", function() awful.spawn"luakit" end,
             {description = "open Luakit", group = "launcher"}),
   awful.key({modkey, "Shift"}, "b",
-            function() awful.spawn"torbrowser-launcher" end,
-            {description = "open Tor Browser", group = "launcher"}),
+            function() awful.spawn"torify luakit --nounique" end,
+            {description = "open torified Luakit", group = "launcher"}),
   awful.key({modkey}, "r", function() awful.spawn(ranger) end,
             {description = "open ranger file manager", group = "launcher"}),
   awful.key({modkey}, "p", function() awful.spawn(python3) end,
@@ -426,10 +425,7 @@ globalkeys = awful.util.table.join(
             {description = "cmus: next track", group = "multimedia"}),
   awful.key({}, "Print", function() awful.spawn(scrot) end,
             {description = "capture a screenshot", group = "multimedia"}),
-  awful.key({"Shift"}, "Print", function() awful.spawn(scrot_delay) end,
-            {description = "wait 3 seconds then capture a screenshot",
-             group = "multimedia"}),
-  awful.key({"Control"}, "Print", function() awful.spawn(scrot_select) end,
+  awful.key({"Shift"}, "Print", nil, function() awful.spawn(scrot_select) end,
             {description = "shoot a window or rectangle selected with a mouse",
              group = "multimedia"}),
   awful.key({}, "XF86AudioRaiseVolume", volume_setter"5%+",
@@ -623,7 +619,6 @@ awful.rules.rules = {
       "Twf",
       "Wpa_gui",
       "ac_client",
-      "flare",
       "pinentry",
       "veromix",
       "xtightvncviewer"

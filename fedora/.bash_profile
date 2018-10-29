@@ -9,3 +9,5 @@ fi
 PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.local/share/go/bin
 export PATH
 export GOPATH=$HOME/.local/share/go
+
+export PATH="$HOME/.cargo/bin:$PATH"

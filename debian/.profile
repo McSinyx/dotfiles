@@ -16,7 +16,7 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-PATH="$HOME/.local/bin:$HOME/.local/share/go/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/share/go/bin:$HOME/.cargo/bin:$PATH"
 export MANPATH="$HOME/.local/share/man:$MANPATH"
 export GOPATH="$HOME/.local/share/go"
 export XMODIFIERS=@im=ibus
