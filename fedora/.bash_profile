@@ -6,8 +6,6 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.local/share/go/bin
+PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.local/share/go/bin:$HOME/.cargo/bin
 export PATH
 export GOPATH=$HOME/.local/share/go
-
-export PATH="$HOME/.cargo/bin:$PATH"
