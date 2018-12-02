@@ -48,6 +48,7 @@
 
 (savehist-mode 1)
 (setq-default inhibit-splash-screen t)
+(setq-default initial-buffer-choice "/usr/share/dict/words")
 (setq-default fill-column 79)
 (add-hook 'prog-mode-hook 'ruler-mode)
 (setq-default indent-tabs-mode nil)

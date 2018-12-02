@@ -1,5 +1,4 @@
 #!/bin/sh
-cd $HOME
 xrdb -merge ~/.Xresources
 setxkbmap -option caps:ctrl_modifier
 xrandr --output DP-1 --mode 1600x900 --primary --right-of eDP-1
@@ -11,4 +10,3 @@ nm-applet &
 keynav &
 diodon &
 exec awesome
-cd -

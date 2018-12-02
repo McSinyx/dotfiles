@@ -20,23 +20,31 @@ local theme = {}
 theme.wd = "~/.config/awesome/themes/gruvbox/"
 
 theme.font          = "Latin Modern Mono Caps 12"
+theme.hotkeys_font  = "Latin Modern Mono Bold 12"
+theme.hotkeys_description_font = theme.font
 
 theme.bg_normal     = "#fbf1c7"
 theme.bg_focus      = "#ebdbb2"
 theme.bg_urgent     = theme.bg_normal
 theme.bg_minimize   = theme.bg_focus
 theme.bg_systray    = theme.bg_normal
+theme.hotkeys_bg    = theme.bg_normal
 
 theme.fg_normal     = "#3c3836"
 theme.fg_focus      = theme.fg_normal
 theme.fg_urgent     = "#8f3f71"
 theme.fg_minimize   = theme.fg_normal
+theme.hotkeys_fg    = theme.fg_normal
 
 theme.useless_gap   = 0
 theme.border_width  = 1
 theme.border_normal = theme.bg_focus
 theme.border_focus  = "#b16286"
 theme.border_marked = "#cc241d"
+
+theme.hotkeys_border_color = theme.border_focus
+theme.hotkeys_border_width = theme.border_width
+theme.hotkeys_modifiers_fg = theme.fg_urgent
 
 -- There are other variable sets
 -- overriding the default one when

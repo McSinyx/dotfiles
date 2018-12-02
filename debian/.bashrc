@@ -104,6 +104,7 @@ alias mpvx='mpv --wid=$WINDOWID --vo=xv'
 alias mount='udevil mount'
 alias umount='udevil umount'
 alias flare='DBUS_FATAL_WARNINGS=0 flare'
+alias x='cd $HOME && startx && cd -'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
