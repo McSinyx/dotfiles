@@ -31,7 +31,7 @@
  '(erc-nick "cnx")
  '(package-selected-packages
    (quote
-    (markdown-mode smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
+    (lua-mode markdown-mode smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)

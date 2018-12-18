@@ -27,7 +27,7 @@
 # around the `%s`
 image/x-imgur-album; feh %s; test=test -n "$DISPLAY"
 image/gif; mpv '%s' --loop=inf; test=test -n "$DISPLAY"
-#image/*; feh '%s'; test=test -n "$DISPLAY"
+image/*; feh '%s'; test=test -n "$DISPLAY"
 
 # Youtube videos are assigned a custom mime-type, which can be streamed with
 # vlc or youtube-dl.
@@ -55,7 +55,7 @@ image/x-imgur-album; echo
 # 256 color images using half-width unicode characters
 # Much higher quality that img2txt, but must be built from source
 # https://github.com/rossy/img2xterm
-image/*; curl -s '%s' | convert -resize 80x80 - jpg:/tmp/rtv.jpg && img2xterm /tmp/rtv.jpg; needsterminal; copiousoutput
+#image/*; curl -s '%s' | convert -resize 80x80 - jpg:/tmp/rtv.jpg && img2xterm /tmp/rtv.jpg; needsterminal; copiousoutput
 
 # Display images in classic ascii using img2txt and lib-caca
 image/*; curl -s '%s' | convert - jpg:/tmp/rtv.jpg && img2txt -f utf8 /tmp/rtv.jpg; needsterminal; copiousoutput

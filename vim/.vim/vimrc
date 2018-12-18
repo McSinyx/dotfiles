@@ -11,6 +11,7 @@ set tabstop=8 expandtab shiftwidth=2 softtabstop=-1 smarttab
 set dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
 set omnifunc=syntaxcomplete#Complete
+set diffopt+=algorithm:patience
 autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
 autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
 autocmd FileType c,h,go setlocal cindent noexpandtab shiftwidth=8
