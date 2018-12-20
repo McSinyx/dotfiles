@@ -51,8 +51,8 @@ editor = "gvim"
 -- And some additional applications
 root_terminal = "x-terminal-emulator -e sudo -i dvtm"
 ranger = "x-terminal-emulator -e ranger"
-ipython = "x-terminal-emulator -e ipython"
 python3 = "x-terminal-emulator -e python3"
+perl6 = "x-terminal-emulator -e perl6"
 guile = "x-terminal-emulator -e guile"
 mutt = "x-terminal-emulator -e mutt"
 slock_suspend = "slock systemctl --ignore-inhibitors suspend"
@@ -169,7 +169,7 @@ vicious.register(myvolume_text, vicious.widgets.volume,
                    return (" %s%03d%%"):format(args[2], args[1])
                  end, 1, "Master")
 
-function volume_setter(parameter)
+local function volume_setter(parameter)
   return function()
            if type(parameter) ~= "string" then return end
            awful.spawn.easy_async("amixer sset Master " .. parameter,
@@ -211,19 +211,19 @@ vicious.register(
   1
 )
 
-function cmus_spawn(command)
+local function cmus_spawn(command)
   awful.spawn.easy_async(command, function() vicious.force{mycmus_text} end)
 end
-function cmus() cmus_spawn"x-terminal-emulator -e cmus" end
-function cmus_pause() cmus_spawn"cmus-remote --pause" end
-function cmus_repeat1() cmus_spawn"cmus-remote -C 'toggle repeat_current'" end
-function cmus_prev() cmus_spawn"cmus-remote --prev" end
-function cmus_next() cmus_spawn"cmus-remote --next" end
+local function cmus() cmus_spawn"x-terminal-emulator -e cmus" end
+local function cmus_pause() cmus_spawn"cmus-remote --pause" end
+local function cmus_one() cmus_spawn"cmus-remote -C'toggle repeat_current'" end
+local function cmus_prev() cmus_spawn"cmus-remote --prev" end
+local function cmus_next() cmus_spawn"cmus-remote --next" end
 
 mycmus = wibox.container.background(mycmus_text, "#b16286")
 mycmus:buttons(awful.util.table.join(
   awful.button({}, 1, cmus_pause),
-  awful.button({}, 2, cmus_repeat1),
+  awful.button({}, 2, cmus_one),
   awful.button({}, 3, cmus),
   awful.button({}, 4, cmus_next),
   awful.button({}, 5, cmus_prev)
@@ -346,8 +346,24 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
+-- {{{ Prompt for Lua code
+local function lua_prompt()
+  local textbox = awful.screen.focused().mypromptbox.widget
+  awful.prompt.run{prompt = " ", text = "return ",
+                   exe_callback = function(s)
+                     -- In case awful.util.eval returns nothing, result is nil
+                     result = awful.util.eval(s)
+                     textbox:set_text(" " .. tostring(result))
+                   end,
+                   history_path = awful.util.get_cache_dir() .. "/lua_history",
+                   textbox = textbox}
+end
+-- }}}
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+  awful.key({modkey, "Control"}, "x", lua_prompt,
+            {description = "execute prompt", group = "awesome"}),
   awful.key({modkey, "Control"}, "s", hotkeys_popup.show_help,
             {description="show help", group="awesome"}),
   awful.key({modkey}, "Left", awful.tag.viewprev,
@@ -403,8 +419,8 @@ globalkeys = awful.util.table.join(
             {description = "open ranger file manager", group = "launcher"}),
   awful.key({modkey}, "p", function() awful.spawn(python3) end,
             {description = "open Python 3 interpreter", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "p", function() awful.spawn(ipython) end,
-            {description = "open Interactive Python 2", group = "launcher"}),
+  awful.key({modkey, "Shift"}, "p", function() awful.spawn(perl6) end,
+            {description = "open Perl 6", group = "launcher"}),
   awful.key({modkey}, "g", function() awful.spawn(guile) end,
             {description = "open Guile interpreter", group = "launcher"}),
   awful.key({modkey}, "z", function() awful.spawn"zathura" end,
@@ -482,20 +498,8 @@ globalkeys = awful.util.table.join(
             function() awful.screen.focused().mypromptbox:run() end,
             {description = "run prompt", group = "launcher"}),
   -- Menubar
-  awful.key({modkey, "Shift"}, ";", function() menubar.show() end,
+  awful.key({modkey, "Shift"}, ";", menubar.show,
             {description = "show the menubar", group = "launcher"})
-
-  -- I don't know any Lua.
-  -- awful.key({modkey}, "x",
-  --           function()
-  --             awful.prompt.run {
-  --               prompt = "Run Lua code: ",
-  --               textbox = awful.screen.focused().mypromptbox.widget,
-  --               exe_callback = awful.util.eval,
-  --               history_path = awful.util.get_cache_dir() .. "/history_eval"
-  --             }
-  --           end,
-  --           {description = "lua execute prompt", group = "awesome"}),
 )
 
 clientkeys = awful.util.table.join(
