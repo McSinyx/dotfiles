@@ -216,7 +216,7 @@ local function cmus_spawn(command)
 end
 local function cmus() cmus_spawn"x-terminal-emulator -e cmus" end
 local function cmus_pause() cmus_spawn"cmus-remote --pause" end
-local function cmus_one() cmus_spawn"cmus-remote -C'toggle repeat_current'" end
+local function cmus_one() cmus_spawn"cmus-remote -C 'toggle repeat_current'" end
 local function cmus_prev() cmus_spawn"cmus-remote --prev" end
 local function cmus_next() cmus_spawn"cmus-remote --next" end
 
@@ -435,7 +435,10 @@ globalkeys = awful.util.table.join(
             {description = "lock screen then suspend", group = "launcher"}),
   awful.key({modkey}, "c", cmus,
             {description = "open cmus music player", group = "launcher"}),
-
+  awful.key({modkey, "Shift"}, "c", cmus_one,
+            {description = "cmus: toggle repeat current", group = "multimedia"}),
+  awful.key({modkey, "Control"}, "c", cmus_pause,
+            {description = "cmus: play/pause", group = "multimedia"}),
   awful.key({}, "XF86AudioPlay", cmus_pause,
             {description = "cmus: play/pause", group = "multimedia"}),
   awful.key({}, "XF86AudioPrev", cmus_prev,
