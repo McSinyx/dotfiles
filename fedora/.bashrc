@@ -10,3 +10,4 @@ fi
 
 # User specific aliases and functions
 alias stow='stow -t /home/436e58'
+alias raku=perl6
