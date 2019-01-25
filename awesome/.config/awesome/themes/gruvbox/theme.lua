@@ -37,7 +37,7 @@ theme.fg_minimize   = theme.fg_normal
 theme.hotkeys_fg    = theme.fg_normal
 
 theme.useless_gap   = 0
-theme.border_width  = 1
+theme.border_width  = 2
 theme.border_normal = theme.bg_focus
 theme.border_focus  = "#b16286"
 theme.border_marked = "#cc241d"

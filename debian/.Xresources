@@ -21,7 +21,5 @@
 *saveLines:   1024
 *cursorBlink: false
 *jumpScroll:  true
-URxvt.termName: rxvt
 URxvt.font:   xft:Latin Modern Mono:size=12
-UXTerm*faceName:    Space Mono:size=9.5
-UXTerm.geometry:    80x25
+URxvt.termName: rxvt

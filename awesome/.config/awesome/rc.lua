@@ -57,6 +57,13 @@ local guile = "x-terminal-emulator -e guile"
 local mutt = "x-terminal-emulator -e mutt"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
+-- Audacious media player
+local audacious_main_window = "audacious --show-main-window"
+local audacious_jump_box = "audacious --show-jump-box"
+local audacious_play_pause = "audacious --play-pause"
+local audacious_rewind = "audacious --rew"
+local audacious_forward = "audacious --fwd"
+
 local scrot = "scrot /home/cnx/Desktop/%FT%T.png"
 local scrot_select = "scrot --select /home/cnx/Desktop/%FT%T.png"
 
@@ -71,20 +78,20 @@ local modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
   awful.layout.suit.tile,
-  -- awful.layout.suit.tile.left,
-  -- awful.layout.suit.tile.bottom,
-  -- awful.layout.suit.tile.top,
-  -- awful.layout.suit.fair,
-  -- awful.layout.suit.fair.horizontal,
-  -- awful.layout.suit.spiral,
-  -- awful.layout.suit.spiral.dwindle,
+  --awful.layout.suit.tile.left,
+  --awful.layout.suit.tile.bottom,
+  --awful.layout.suit.tile.top,
+  awful.layout.suit.fair,
+  --awful.layout.suit.fair.horizontal,
+  --awful.layout.suit.spiral,
+  --awful.layout.suit.spiral.dwindle,
   awful.layout.suit.max,
-  -- awful.layout.suit.max.fullscreen,
-  -- awful.layout.suit.magnifier,
-  -- awful.layout.suit.corner.nw,
-  -- awful.layout.suit.corner.ne,
-  -- awful.layout.suit.corner.sw,
-  -- awful.layout.suit.corner.se
+  --awful.layout.suit.max.fullscreen,
+  --awful.layout.suit.magnifier,
+  --awful.layout.suit.corner.nw,
+  --awful.layout.suit.corner.ne,
+  --awful.layout.suit.corner.sw,
+  --awful.layout.suit.corner.se
   awful.layout.suit.floating,
 }
 -- }}}
@@ -101,6 +108,10 @@ local function client_menu_toggle_fn()
       instance = awful.menu.clients{theme = {width = 250}}
     end
   end
+end
+
+local function spawner(command)
+  return function () awful.spawn(command) end
 end
 -- }}}
 
@@ -144,10 +155,16 @@ vicious.register(mycpuusage, vicious.widgets.cpu,
                  end, 3)
 
 -- Create memory usage widgets
+vicious.cache(vicious.widgets.mem)
 local mymemusage = wibox.widget.textbox()
 vicious.register(mymemusage, vicious.widgets.mem,
                  function (widget, args)
                    return (" MEM%03d%%"):format(args[1])
+                 end, 2)
+local myswapusage = wibox.widget.textbox()
+vicious.register(myswapusage, vicious.widgets.mem,
+                 function (widget, args)
+                   return (" SWAP%03d%%"):format(args[5])
                  end, 2)
 
 -- Create a battery widget
@@ -156,10 +173,10 @@ vicious.register(mybattery_text, vicious.widgets.bat,
                  function (widget, args)
                    return (" %s%03d%%"):format(args[1], args[2])
                  end, 7, "BAT0")
-local mybattery = wibox.container.background(mybattery_text, "#98971a")
+local mybattery = wibox.container.background(mybattery_text, "#689d6a")
 mybattery:buttons(awful.util.table.join(
-  awful.button({}, 1, function () awful.spawn"mate-power-statistics" end),
-  awful.button({}, 3, function () awful.spawn"mate-power-preferences" end)
+  awful.button({}, 1, spawner"mate-power-statistics"),
+  awful.button({}, 3, spawner"mate-power-preferences")
 ))
 
 -- Create a volume widget
@@ -177,7 +194,7 @@ local function volume_setter(parameter)
          end
 end
 
-local myvolume = wibox.container.background(myvolume_text, "#689d6a")
+local myvolume = wibox.container.background(myvolume_text, "#458588")
 myvolume:buttons(awful.util.table.join(
   awful.button({}, 1, volume_setter"5%-"),
   awful.button({}, 2, volume_setter"toggle"),
@@ -197,37 +214,6 @@ vicious.register(myweather, vicious.widgets.weather,
                      return ""
                    end
                  end, 61, "VVNB")
-
--- Create cmus widget
-local mycmus_text = wibox.widget.textbox()
-vicious.register(
-  mycmus_text,
-  vicious.contrib.cmus,
-  function (widget, args)
-    return (args["{artist}"] ~= "N/A" and " " .. args["{artist}"] or "")
-           .. (args["{status}"] == "playing" and " > " or " | ")
-           .. (args["{title}"] ~= "N/A" and args["{title}"] or "")
-  end,
-  1
-)
-
-local function cmus_spawn(command)
-  awful.spawn.easy_async(command, function () vicious.force{mycmus_text} end)
-end
-local function cmus() cmus_spawn"x-terminal-emulator -e cmus" end
-local function cmus_pause() cmus_spawn"cmus-remote --pause" end
-local function cmus_one() cmus_spawn"cmus-remote -C 'toggle repeat_current'" end
-local function cmus_prev() cmus_spawn"cmus-remote --prev" end
-local function cmus_next() cmus_spawn"cmus-remote --next" end
-
-local mycmus = wibox.container.background(mycmus_text, "#b16286")
-mycmus:buttons(awful.util.table.join(
-  awful.button({}, 1, cmus_pause),
-  awful.button({}, 2, cmus_one),
-  awful.button({}, 3, cmus),
-  awful.button({}, 4, cmus_next),
-  awful.button({}, 5, cmus_prev)
-))
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
@@ -313,13 +299,13 @@ awful.screen.connect_for_each_screen(function (s)
       wibox.widget.imagebox(beautiful.arrow1),
       wibox.container.background(mymemusage, "#d79921"),
       wibox.widget.imagebox(beautiful.arrow2),
-      mybattery,
+      wibox.container.background(myswapusage, "#98971a"),
       wibox.widget.imagebox(beautiful.arrow3),
-      myvolume,
+      mybattery,
       wibox.widget.imagebox(beautiful.arrow4),
-      wibox.container.background(myweather, "#458588"),
+      myvolume,
       wibox.widget.imagebox(beautiful.arrow5),
-      mycmus,
+      wibox.container.background(myweather, "#b16286"),
       wibox.widget.imagebox(beautiful.arrow6),
       s.mypromptbox
     },
@@ -402,56 +388,55 @@ local globalkeys = awful.util.table.join(
             {description = "go back", group = "client"}),
 
   -- Standard program
-  awful.key({modkey}, "x", function () awful.spawn(terminal) end,
+  awful.key({modkey}, "x", spawner(terminal),
             {description = "open a terminal", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "x", function () awful.spawn(root_terminal) end,
+  awful.key({modkey, "Shift"}, "x", spawner(root_terminal),
             {description = "open a root terminal", group = "launcher"}),
-  awful.key({modkey}, "v", function () awful.spawn(editor) end,
+  awful.key({modkey}, "v", spawner(editor),
             {description = "open GVim", group = "launcher"}),
-  awful.key({modkey}, "e", function () awful.spawn("emacs") end,
+  awful.key({modkey}, "e", spawner"emacs",
             {description = "open Emacs", group = "launcher"}),
-  awful.key({modkey}, "b", function () awful.spawn"luakit" end,
+  awful.key({modkey}, "b", spawner"luakit",
             {description = "open Luakit", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "b",
-            function () awful.spawn"torify luakit --nounique" end,
+  awful.key({modkey, "Shift"}, "b", spawner"torify luakit --nounique",
             {description = "open torified Luakit", group = "launcher"}),
-  awful.key({modkey}, "r", function () awful.spawn(ranger) end,
+  awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
-  awful.key({modkey}, "p", function () awful.spawn(python3) end,
+  awful.key({modkey}, "p", spawner(python3),
             {description = "open Python 3 interpreter", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "p", function () awful.spawn(perl6) end,
+  awful.key({modkey, "Shift"}, "p", spawner(perl6),
             {description = "open Perl 6", group = "launcher"}),
-  awful.key({modkey}, "g", function () awful.spawn(guile) end,
+  awful.key({modkey}, "g", spawner(guile),
             {description = "open Guile interpreter", group = "launcher"}),
-  awful.key({modkey}, "z", function () awful.spawn"zathura" end,
+  awful.key({modkey}, "z", spawner"zathura",
             {description = "open zathura document viewer", group = "launcher"}),
-  awful.key({modkey}, "m", function () awful.spawn(mutt) end,
+  awful.key({modkey}, "m", spawner(mutt),
             {description = "open mutt mail client", group = "launcher"}),
-  awful.key({modkey}, "y", function () awful.spawn"diodon" end,
+  awful.key({modkey}, "d", spawner"diodon",
             {description = "open clipboard manager", group = "launcher"}),
-  awful.key({modkey}, "s", function () awful.spawn"slock" end,
+  awful.key({modkey}, "s", spawner"slock",
             {description = "lock screen", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "s", function () awful.spawn(slock_suspend) end,
+  awful.key({modkey, "Shift"}, "s", spawner(slock_suspend),
             {description = "lock screen then suspend", group = "launcher"}),
-  awful.key({modkey}, "c", cmus,
-            {description = "open cmus music player", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "c", cmus_one,
-            {description = "cmus: toggle repeat current", group = "multimedia"}),
-  awful.key({modkey, "Control"}, "c", cmus_pause,
-            {description = "cmus: play/pause", group = "multimedia"}),
-  awful.key({modkey}, "Up", cmus_prev,
-            {description = "cmus: previous track", group = "multimedia"}),
-  awful.key({modkey}, "Down", cmus_next,
-            {description = "cmus: next track", group = "multimedia"}),
-  awful.key({}, "XF86AudioPlay", cmus_pause,
-            {description = "cmus: play/pause", group = "multimedia"}),
-  awful.key({}, "XF86AudioPrev", cmus_prev,
-            {description = "cmus: previous track", group = "multimedia"}),
-  awful.key({}, "XF86AudioNext", cmus_next,
-            {description = "cmus: next track", group = "multimedia"}),
-  awful.key({}, "Print", nil, function () awful.spawn(scrot_select) end,
+  awful.key({modkey}, "a", spawner(audacious_jump_box),
+            {description = "Audacious: jump-to-song", group = "multimedia"}),
+  awful.key({modkey, "Shift"}, "a", spawner(audacious_main_window),
+            {description = "Audacious: main window", group = "launcher"}),
+  awful.key({modkey, "Control"}, "a", spawner(audacious_play_pause),
+            {description = "Audacious: play/pause", group = "multimedia"}),
+  awful.key({modkey}, "Up", spawner(audacious_rewind),
+            {description = "Audacious: previous track", group = "multimedia"}),
+  awful.key({modkey}, "Down", spawner(audacious_forward),
+            {description = "Audacious: next track", group = "multimedia"}),
+  awful.key({}, "XF86AudioPlay", spawner(audacious_play_pause),
+            {description = "Audacious: jump-to-song", group = "multimedia"}),
+  awful.key({}, "XF86AudioPrev", spawner(audacious_rewind),
+            {description = "Audacious: previous track", group = "multimedia"}),
+  awful.key({}, "XF86AudioNext", spawner(audacious_forward),
+            {description = "Audacious: next track", group = "multimedia"}),
+  awful.key({}, "Print", nil, spawner(scrot_select),
             {description = "capture a screenshot", group = "multimedia"}),
-  awful.key({"Shift"}, "Print", function () awful.spawn(scrot) end,
+  awful.key({"Shift"}, "Print", spawner(scrot),
             {description = "shoot a window or rectangle selected with a mouse",
              group = "multimedia"}),
   awful.key({}, "XF86AudioRaiseVolume", volume_setter"5%+",
@@ -484,9 +469,9 @@ local globalkeys = awful.util.table.join(
   awful.key({modkey, "Control"}, "l",
             function () awful.tag.incncol(-1, nil, true) end,
             {description = "decrease the number of columns", group = "layout"}),
-  awful.key({modkey}, "Return", function () awful.layout.inc(-1) end,
+  awful.key({modkey}, "Return", function () awful.layout.inc(1) end,
             {description = "select next", group = "layout"}),
-  awful.key({modkey, "Shift"}, "Return", function () awful.layout.inc(1) end,
+  awful.key({modkey, "Shift"}, "Return", function () awful.layout.inc(-1) end,
             {description = "select previous", group = "layout"}),
 
   awful.key({modkey, "Control"}, "n",
@@ -518,7 +503,7 @@ local clientkeys = awful.util.table.join(
             {description = "toggle fullscreen", group = "client"}),
   awful.key({modkey}, "q", function (c) c:kill() end,
             {description = "close", group = "client"}),
-  awful.key({modkey, "Control"}, "q", function () awful.spawn"xkill" end,
+  awful.key({modkey, "Control"}, "q", spawner"xkill",
             {description = "select a window to be killed", group = "client"}),
   awful.key({modkey, "Control"}, "Return", awful.client.floating.toggle,
             {description = "toggle floating", group = "client"}),
