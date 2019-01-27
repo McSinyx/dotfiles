@@ -1,3 +1,5 @@
+-- Localize Lua standard library
+local io = {popen = io.popen}
 -- Standard awesome library
 local gears = require"gears"
 local awful = require"awful"
@@ -113,6 +115,10 @@ end
 local function spawner(command)
   return function () awful.spawn(command) end
 end
+
+local function update_widget(command, widget)
+  awful.spawn.easy_async(command, function () vicious.force{widget} end)
+end
 -- }}}
 
 -- {{{ Menu
@@ -155,25 +161,19 @@ vicious.register(mycpuusage, vicious.widgets.cpu,
                  end, 3)
 
 -- Create memory usage widgets
-vicious.cache(vicious.widgets.mem)
 local mymemusage = wibox.widget.textbox()
 vicious.register(mymemusage, vicious.widgets.mem,
                  function (widget, args)
                    return (" MEM%03d%%"):format(args[1])
                  end, 2)
-local myswapusage = wibox.widget.textbox()
-vicious.register(myswapusage, vicious.widgets.mem,
-                 function (widget, args)
-                   return (" SWAP%03d%%"):format(args[5])
-                 end, 2)
-
+                 --
 -- Create a battery widget
 local mybattery_text = wibox.widget.textbox()
 vicious.register(mybattery_text, vicious.widgets.bat,
                  function (widget, args)
                    return (" %s%03d%%"):format(args[1], args[2])
                  end, 7, "BAT0")
-local mybattery = wibox.container.background(mybattery_text, "#689d6a")
+local mybattery = wibox.container.background(mybattery_text, "#98971a")
 mybattery:buttons(awful.util.table.join(
   awful.button({}, 1, spawner"mate-power-statistics"),
   awful.button({}, 3, spawner"mate-power-preferences")
@@ -181,27 +181,46 @@ mybattery:buttons(awful.util.table.join(
 
 -- Create a volume widget
 local myvolume_text = wibox.widget.textbox()
-vicious.register(myvolume_text, vicious.widgets.volume,
+vicious.register(myvolume_text,
+                 function (format, warg)
+                   local f = io.popen("pulsemixer --get-volume --get-mute")
+                   left, right, mute = f:read("*number", "*number", "*number")
+                   f:close()
+                   return {left, right, mute}
+                 end,
                  function (widget, args)
-                   return (" %s%03d%%"):format(args[2], args[1])
-                 end, 1, "Master")
+                   return (" %s%03d%%"):format(args[3] == 0 and '🔉' or '🔈',
+                                               (args[1] + args[2]) / 2)
+                 end, 1)
 
 local function volume_setter(parameter)
   return function ()
            if type(parameter) ~= "string" then return end
-           awful.spawn.easy_async("amixer sset Master " .. parameter,
-                                  function () vicious.force{myvolume_text} end)
+           update_widget("pulsemixer --change-volume " .. parameter,
+                         myvolume_text)
          end
 end
+local function volume_mute(parameter)
+  update_widget("pulsemixer --toggle-mute", myvolume_text)
+end
 
-local myvolume = wibox.container.background(myvolume_text, "#458588")
+local myvolume = wibox.container.background(myvolume_text, "#689d6a")
 myvolume:buttons(awful.util.table.join(
-  awful.button({}, 1, volume_setter"5%-"),
-  awful.button({}, 2, volume_setter"toggle"),
-  awful.button({}, 3, volume_setter"5%+"),
-  awful.button({}, 4, volume_setter"5%+"),
-  awful.button({}, 5, volume_setter"5%-")
+  awful.button({}, 1, volume_setter"-5"),
+  awful.button({}, 2, volume_mute),
+  awful.button({}, 3, volume_setter"+5"),
+  awful.button({}, 4, volume_setter"+5"),
+  awful.button({}, 5, volume_setter"-5")
 ))
+
+-- Create a widget for music player
+local myplayer = wibox.widget.textbox()
+awful.spawn.with_line_callback(
+  "playerctl --follow metadata --format ' {{artist}} <{{status}}> {{title}}'",
+  {stdout = function (line)
+     myplayer:set_text(line:gsub('<Playing>', '>'):gsub('<.+>', '|'))
+   end}
+)
 
 -- Create a weather widget
 local myweather = wibox.widget.textbox()
@@ -299,13 +318,13 @@ awful.screen.connect_for_each_screen(function (s)
       wibox.widget.imagebox(beautiful.arrow1),
       wibox.container.background(mymemusage, "#d79921"),
       wibox.widget.imagebox(beautiful.arrow2),
-      wibox.container.background(myswapusage, "#98971a"),
-      wibox.widget.imagebox(beautiful.arrow3),
       mybattery,
-      wibox.widget.imagebox(beautiful.arrow4),
+      wibox.widget.imagebox(beautiful.arrow3),
       myvolume,
+      wibox.widget.imagebox(beautiful.arrow4),
+      wibox.container.background(myweather, "#458588"),
       wibox.widget.imagebox(beautiful.arrow5),
-      wibox.container.background(myweather, "#b16286"),
+      wibox.container.background(myplayer, "#b16286"),
       wibox.widget.imagebox(beautiful.arrow6),
       s.mypromptbox
     },
@@ -439,11 +458,11 @@ local globalkeys = awful.util.table.join(
   awful.key({"Shift"}, "Print", spawner(scrot),
             {description = "shoot a window or rectangle selected with a mouse",
              group = "multimedia"}),
-  awful.key({}, "XF86AudioRaiseVolume", volume_setter"5%+",
+  awful.key({}, "XF86AudioRaiseVolume", volume_setter"+5",
             {description = "raise 5% volume", group = "multimedia"}),
-  awful.key({}, "XF86AudioLowerVolume", volume_setter"5%-",
+  awful.key({}, "XF86AudioLowerVolume", volume_setter"-5",
             {description = "lower 5% volume", group = "multimedia"}),
-  awful.key({}, "XF86AudioMute", volume_setter"toggle",
+  awful.key({}, "XF86AudioMute", volume_mute,
             {description = "(un)mute volume", group = "multimedia"}),
 
   awful.key({modkey, "Control"}, "r", awesome.restart,
