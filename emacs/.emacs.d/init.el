@@ -31,7 +31,7 @@
  '(erc-nick "cnx")
  '(package-selected-packages
    (quote
-    (perl6-mode fireplace lua-mode markdown-mode smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
+    (glsl-mode perl6-mode fireplace lua-mode markdown-mode smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
@@ -48,7 +48,7 @@
 
 (savehist-mode 1)
 (setq-default inhibit-splash-screen t)
-(setq-default initial-buffer-choice "/usr/share/dict/words")
+(find-file-noselect "/usr/share/dict/words")
 (setq-default fill-column 79)
 (add-hook 'prog-mode-hook 'ruler-mode)
 (setq-default indent-tabs-mode nil)
