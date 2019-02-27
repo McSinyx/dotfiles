@@ -16,7 +16,6 @@ local menubar = require"menubar"
 local hotkeys_popup = require"awful.hotkeys_popup".widget
 -- System data library
 local vicious = require"vicious"
-vicious.contrib = require"vicious.contrib"
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -48,10 +47,10 @@ end
 beautiful.init"~/.config/awesome/themes/gruvbox/theme.lua"
 
 -- This is used later as the default terminal and editor to run.
-local terminal = "x-terminal-emulator -e dvtm"
+local terminal = "x-terminal-emulator"
 local editor = "gvim"
 -- And some additional applications
-local root_terminal = "x-terminal-emulator -e sudo -i dvtm"
+local root_terminal = "x-terminal-emulator -e su -"
 local ranger = "x-terminal-emulator -e ranger"
 local python3 = "x-terminal-emulator -e python3"
 local perl6 = "x-terminal-emulator -e perl6"
@@ -79,12 +78,12 @@ local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+  awful.layout.suit.fair,
+  --awful.layout.suit.fair.horizontal,
   awful.layout.suit.tile,
   --awful.layout.suit.tile.left,
   --awful.layout.suit.tile.bottom,
   --awful.layout.suit.tile.top,
-  awful.layout.suit.fair,
-  --awful.layout.suit.fair.horizontal,
   --awful.layout.suit.spiral,
   --awful.layout.suit.spiral.dwindle,
   awful.layout.suit.max,
