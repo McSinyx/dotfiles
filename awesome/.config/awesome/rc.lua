@@ -515,6 +515,7 @@ local globalkeys = awful.util.table.join(
 local clientkeys = awful.util.table.join(
   awful.key({modkey}, "f",
             function (c)
+              awful.titlebar.show(c)
               c.fullscreen = not c.fullscreen
               c:raise()
             end,
@@ -723,8 +724,7 @@ client.connect_signal(
 
     -- Show titlebar if client is floating, hide otherwise.
     if not c.floating and
-       awful.screen.focused().selected_tag.layout ~=
-       awful.layout.suit.floating then
+       awful.layout.get(c.screen) ~= awful.layout.suit.floating then
       awful.titlebar.hide(c)
     end
   end
@@ -734,11 +734,8 @@ client.connect_signal(
 client.connect_signal(
   "property::floating",
   function (c)
-    if c.first_tag == nil then
-      end
     if c.floating or
-       (c.first_tag ~= nil and
-        c.first_tag.layout == awful.layout.suit.floating) then
+       awful.layout.get(c.screen) == awful.layout.suit.floating then
       awful.titlebar.show(c)
     else
       awful.titlebar.hide(c)
