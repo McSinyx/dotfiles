@@ -213,13 +213,28 @@ myvolume:buttons(awful.util.table.join(
 ))
 
 -- Create a widget for music player
-local myplayer = wibox.widget.textbox()
+local myplayer_text = wibox.widget.textbox()
 awful.spawn.with_line_callback(
   "playerctl --follow metadata --format ' {{artist}} <{{status}}> {{title}}'",
   {stdout = function (line)
-     myplayer:set_text(line:gsub('<Playing>', '>'):gsub('<.+>', '|'))
+     myplayer_text:set_text(line:gsub('<Playing>', '>'):gsub('<.+>', '|'))
    end}
 )
+
+local function audacious_seeker(time)
+  return function ()
+    awful.spawn(("audtool playback-seek-relative %f"):format(time))
+  end
+end
+
+local myplayer = wibox.container.background(myplayer_text, "#b16286")
+myplayer:buttons(awful.util.table.join(
+  awful.button({}, 1, spawner(audacious_rewind)),
+  awful.button({}, 2, spawner(audacious_play_pause)),
+  awful.button({}, 3, spawner(audacious_forward)),
+  awful.button({}, 4, audacious_seeker(1)),
+  awful.button({}, 5, audacious_seeker(-1))
+))
 
 -- Create a weather widget
 local myweather = wibox.widget.textbox()
@@ -323,7 +338,7 @@ awful.screen.connect_for_each_screen(function (s)
       wibox.widget.imagebox(beautiful.arrow4),
       wibox.container.background(myweather, "#458588"),
       wibox.widget.imagebox(beautiful.arrow5),
-      wibox.container.background(myplayer, "#b16286"),
+      myplayer,
       wibox.widget.imagebox(beautiful.arrow6),
       s.mypromptbox
     },
