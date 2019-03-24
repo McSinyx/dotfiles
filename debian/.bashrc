@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=32767
+HISTFILESIZE=65536
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -103,6 +103,7 @@ alias fpc='fpc -O1 -XS -gl'
 alias mpa='mpv --no-video --loop=inf'
 alias raku=perl6
 alias x='cd $HOME && startx && cd -'
+eval $(thefuck --alias)
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

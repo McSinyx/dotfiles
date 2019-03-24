@@ -1,5 +1,5 @@
--- gruvbox awesome theme
--- Copyright (C) 2016 Raphael McSinyx
+-- gruvbox awesome theme, light variant
+-- Copyright (C) 2016-2019  Nguyễn Gia Phong
 --
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 local theme = {}
 
 -- Working directory (where you place this theme)
-theme.wd = "~/.config/awesome/themes/gruvbox/"
+theme.wd = "~/.config/awesome/themes/gruvbox-light/"
 
 theme.font          = "Latin Modern Mono Caps 12"
 theme.hotkeys_font  = "Latin Modern Mono Bold 12"
@@ -54,8 +54,8 @@ theme.hotkeys_modifiers_fg = theme.fg_urgent
 -- titlebar_[bg|fg]_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
+theme.titlebar_bg_normal = theme.bg_normal
+theme.titlebar_bg_focus = theme.bg_normal
 
 -- Display the taglist squares
 theme.taglist_squares_sel   = theme.wd .. "taglist/squaref.png"

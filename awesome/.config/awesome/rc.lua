@@ -173,6 +173,7 @@ vicious.register(mybattery_text, vicious.widgets.bat,
                    return (" %s%03d%%"):format(args[1], args[2])
                  end, 7, "BAT0")
 local mybattery = wibox.container.background(mybattery_text, "#98971a")
+mybattery.fg = "#282828"
 mybattery:buttons(awful.util.table.join(
   awful.button({}, 1, spawner"mate-power-statistics"),
   awful.button({}, 3, spawner"mate-power-preferences")
@@ -204,6 +205,7 @@ local function volume_mute(parameter)
 end
 
 local myvolume = wibox.container.background(myvolume_text, "#689d6a")
+myvolume.fg = "#282828"
 myvolume:buttons(awful.util.table.join(
   awful.button({}, 1, volume_setter"-5"),
   awful.button({}, 2, volume_mute),
@@ -228,6 +230,7 @@ local function audacious_seeker(time)
 end
 
 local myplayer = wibox.container.background(myplayer_text, "#b16286")
+myplayer.fg = "#282828"
 myplayer:buttons(awful.util.table.join(
   awful.button({}, 1, spawner(audacious_rewind)),
   awful.button({}, 2, spawner(audacious_play_pause)),
@@ -321,29 +324,41 @@ awful.screen.connect_for_each_screen(function (s)
   s.mywibox = awful.wibar{position = "top", height = "22", screen = s}
 
   -- Add widgets to the wibox
-  s.mywibox:setup {
+  s.mywibox:setup{
     layout = wibox.layout.align.horizontal,
-    { -- Left widgets
-      layout = wibox.layout.fixed.horizontal,
-      -- mylauncher,
-      wibox.container.background(mytextclock, "#cc241d"),
-      wibox.widget.imagebox(beautiful.arrow0),
-      wibox.container.background(mycpuusage, "#d65d0e"),
-      wibox.widget.imagebox(beautiful.arrow1),
-      wibox.container.background(mymemusage, "#d79921"),
-      wibox.widget.imagebox(beautiful.arrow2),
-      mybattery,
-      wibox.widget.imagebox(beautiful.arrow3),
-      myvolume,
-      wibox.widget.imagebox(beautiful.arrow4),
-      wibox.container.background(myweather, "#458588"),
-      wibox.widget.imagebox(beautiful.arrow5),
-      myplayer,
-      wibox.widget.imagebox(beautiful.arrow6),
-      s.mypromptbox
+    {-- Left widgets
+     layout = wibox.layout.fixed.horizontal,
+     -- mylauncher,
+     {mytextclock,
+      bg = "#cc241d",
+      fg = "#282828",
+      widget = wibox.container.background},
+     wibox.widget.imagebox(beautiful.arrow0),
+     {mycpuusage,
+      bg = "#d65d0e",
+      fg = "#282828",
+      widget = wibox.container.background},
+     wibox.widget.imagebox(beautiful.arrow1),
+     {mymemusage,
+      bg = "#d79921",
+      fg = "#282828",
+      widget = wibox.container.background},
+     wibox.widget.imagebox(beautiful.arrow2),
+     mybattery,
+     wibox.widget.imagebox(beautiful.arrow3),
+     myvolume,
+     wibox.widget.imagebox(beautiful.arrow4),
+     {myweather,
+      bg = "#458588",
+      fg = "#282828",
+      widget = wibox.container.background},
+     wibox.widget.imagebox(beautiful.arrow5),
+     myplayer,
+     wibox.widget.imagebox(beautiful.arrow6),
+     s.mypromptbox
     },
-    { -- Middle widget
-      layout = wibox.layout.fixed.horizontal,
+    {-- Middle widget
+     layout = wibox.layout.fixed.horizontal,
     },
     -- s.mytasklist,
     { -- Right widgets
@@ -433,6 +448,10 @@ local globalkeys = awful.util.table.join(
             {description = "open Luakit", group = "launcher"}),
   awful.key({modkey, "Shift"}, "b", spawner"torify luakit --nounique",
             {description = "open torified Luakit", group = "launcher"}),
+  awful.key({modkey}, "f", spawner"firefox",
+            {description = "open Firefox", group = "launcher"}),
+  awful.key({modkey, "Shift"}, "f", spawner"torbrowser-launcher",
+            {description = "open Tor Browser", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
   awful.key({modkey, "Shift"}, "r", spawner(ranger .. " Documents/B1"),
@@ -530,9 +549,9 @@ local globalkeys = awful.util.table.join(
 )
 
 local clientkeys = awful.util.table.join(
-  awful.key({modkey}, "f",
+  awful.key({modkey, "Control"}, "f",
             function (c)
-              awful.titlebar.show(c)
+              --awful.titlebar.show(c)
               c.fullscreen = not c.fullscreen
               c:raise()
             end,
@@ -716,22 +735,22 @@ client.connect_signal(
                    end)
     )
 
-    awful.titlebar(c, {size=22}) : setup {
-      { -- Left
-        awful.titlebar.widget.closebutton(c),
-        awful.titlebar.widget.ontopbutton(c),
-        awful.titlebar.widget.stickybutton(c),
-        awful.titlebar.widget.maximizedbutton(c),
-        awful.titlebar.widget.floatingbutton(c),
-        layout  = wibox.layout.fixed.horizontal
+    awful.titlebar(c, {size=22}):setup{
+      {-- Left
+       awful.titlebar.widget.closebutton(c),
+       awful.titlebar.widget.ontopbutton(c),
+       awful.titlebar.widget.stickybutton(c),
+       awful.titlebar.widget.maximizedbutton(c),
+       awful.titlebar.widget.floatingbutton(c),
+       layout  = wibox.layout.fixed.horizontal
       },
-      { -- Middle
-        { -- Title
-          align  = "center",
-          widget = awful.titlebar.widget.titlewidget(c)
-        },
-        buttons = buttons,
-        layout  = wibox.layout.flex.horizontal
+      {-- Middle
+       {-- Title
+        align  = "center",
+        widget = awful.titlebar.widget.titlewidget(c)
+       },
+       buttons = buttons,
+       layout  = wibox.layout.flex.horizontal
       },
       { -- Right
         awful.titlebar.widget.iconwidget(c),
@@ -742,25 +761,25 @@ client.connect_signal(
     }
 
     -- Show titlebar if client is floating, hide otherwise.
-    if not c.floating and
-       awful.layout.get(c.screen) ~= awful.layout.suit.floating then
-      awful.titlebar.hide(c)
-    end
+    --if not c.floating and
+    --   awful.layout.get(c.screen) ~= awful.layout.suit.floating then
+    --  awful.titlebar.hide(c)
+    --end
   end
 )
 
 -- Show titlebar if client is floating, hide otherwise.
-client.connect_signal(
-  "property::floating",
-  function (c)
-    if c.floating or
-       awful.layout.get(c.screen) == awful.layout.suit.floating then
-      awful.titlebar.show(c)
-    else
-      awful.titlebar.hide(c)
-    end
-  end
-)
+--client.connect_signal(
+--  "property::floating",
+--  function (c)
+--    if c.floating or
+--       awful.layout.get(c.screen) == awful.layout.suit.floating then
+--      awful.titlebar.show(c)
+--    else
+--      awful.titlebar.hide(c)
+--    end
+--  end
+--)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal(
@@ -779,16 +798,16 @@ client.connect_signal("unfocus",
                       function (c) c.border_color = beautiful.border_normal end)
 
 -- Show titlebar if client is floating, hide otherwise.
-tag.connect_signal(
-  "property::layout",
-  function (t)
-    if t.layout == awful.layout.suit.floating then
-      for _, c in pairs(t:clients()) do awful.titlebar.show(c) end
-    else
-      for _, c in pairs(t:clients()) do
-        if not c.floating then awful.titlebar.hide(c) end
-      end
-    end
-  end
-)
+--tag.connect_signal(
+--  "property::layout",
+--  function (t)
+--    if t.layout == awful.layout.suit.floating then
+--      for _, c in pairs(t:clients()) do awful.titlebar.show(c) end
+--    else
+--      for _, c in pairs(t:clients()) do
+--        if not c.floating then awful.titlebar.hide(c) end
+--      end
+--    end
+--  end
+--)
 -- }}}
