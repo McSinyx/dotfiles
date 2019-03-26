@@ -25,3 +25,6 @@ fi
 
 # OPAM configuration
 . /home/cnx/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# Gruvbox colorscheme
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"

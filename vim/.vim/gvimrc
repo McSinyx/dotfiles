@@ -1,12 +1,5 @@
 runtime ftplugin/man.vim
 nmap K :Man <cword><CR>
-set number relativenumber lazyredraw
 set guifont=Latin\ Modern\ Mono\ 12
 set guioptions=Pc
 set guicursor+=a:blinkon0
-if has("patch-7.4.710")
-  set listchars+=space:·,tab:\ \ 
-endif
-set background=dark
-colorscheme gruvbox
-autocmd FileType python syntax keyword pythonBoolean False True None

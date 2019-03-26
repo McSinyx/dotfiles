@@ -4,9 +4,11 @@ set directory=~/.cache/vim/swap
 set backupdir=~/.cache/vim/backup
 set viminfo+=n~/.cache/vim/viminfo
 set clipboard=exclude:cons\|linux autochdir
-set showcmd noshowmode ruler wildmenu confirm
+set showcmd noshowmode ruler wildmenu confirm number relativenumber
 set nostartofline
-set list listchars+=tab:├─
+if has("patch-7.4.710")
+  set list listchars+=space:·,tab:\ \ 
+endif
 set tabstop=8 expandtab shiftwidth=2 softtabstop=-1 smarttab
 set dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
@@ -17,6 +19,8 @@ autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
 autocmd FileType c,h,go setlocal cindent cinoptions=(0 noexpandtab shiftwidth=8
 autocmd FileType rst setlocal shiftwidth=3
 autocmd FileType css,javascript,python,perl6 setlocal shiftwidth=4
+autocmd FileType python syntax keyword pythonBoolean False True None
+let g:gruvbox_italic=1
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
 let g:jedi#show_call_signatures = 2
@@ -27,6 +31,11 @@ map Q gq
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tpope/vim-abolish.git'
+Plug 'https://github.com/drmikehenry/vim-fontsize.git'
 Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}
 Plug 'https://github.com/kovisoft/slimv', {'for': 'lisp'}
 call plug#end()
+
+set t_Co=256
+set background=dark
+colorscheme gruvbox

@@ -55,7 +55,6 @@ local ranger = "x-terminal-emulator -e ranger"
 local python3 = "x-terminal-emulator -e python3"
 local perl6 = "x-terminal-emulator -e perl6"
 local guile = "x-terminal-emulator -e guile"
-local mutt = "x-terminal-emulator -e mutt"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player
@@ -452,10 +451,14 @@ local globalkeys = awful.util.table.join(
             {description = "open Firefox", group = "launcher"}),
   awful.key({modkey, "Shift"}, "f", spawner"torbrowser-launcher",
             {description = "open Tor Browser", group = "launcher"}),
+  awful.key({modkey}, "t", spawner"thunderbird",
+            {description = "open Thunderbird", group = "launcher"}),
+  awful.key({modkey}, "m", spawner"moodledesktop",
+            {description = "open Moodle Desktop", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
   awful.key({modkey, "Shift"}, "r", spawner(ranger .. " Documents/B1"),
-            {description = "open ranger file manager", group = "launcher"}),
+            {description = "open B1", group = "launcher"}),
   awful.key({modkey}, "p", spawner(python3),
             {description = "open Python 3 interpreter", group = "launcher"}),
   awful.key({modkey, "Shift"}, "p", spawner(perl6),
@@ -464,8 +467,6 @@ local globalkeys = awful.util.table.join(
             {description = "open Guile interpreter", group = "launcher"}),
   awful.key({modkey}, "z", spawner"zathura",
             {description = "open zathura document viewer", group = "launcher"}),
-  awful.key({modkey}, "m", spawner(mutt),
-            {description = "open mutt mail client", group = "launcher"}),
   awful.key({modkey}, "d", spawner"diodon",
             {description = "open clipboard manager", group = "launcher"}),
   awful.key({modkey}, "s", spawner"slock",

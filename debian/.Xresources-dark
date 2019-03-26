@@ -22,4 +22,4 @@
 *cursorBlink: false
 *jumpScroll:  true
 URxvt.font:   xft:Latin Modern Mono:size=12
-URxvt.termName: rxvt
+URxvt.termName: rxvt-unicode-256color
