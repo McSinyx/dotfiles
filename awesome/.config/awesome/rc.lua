@@ -55,6 +55,7 @@ local ranger = "x-terminal-emulator -e ranger"
 local python3 = "x-terminal-emulator -e python3"
 local perl6 = "x-terminal-emulator -e perl6"
 local guile = "x-terminal-emulator -e guile"
+local emacs = "x-terminal-emulator -e emacs -nw"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player
@@ -441,7 +442,7 @@ local globalkeys = awful.util.table.join(
             {description = "open a root terminal", group = "launcher"}),
   awful.key({modkey}, "v", spawner(editor),
             {description = "open GVim", group = "launcher"}),
-  awful.key({modkey}, "e", spawner"emacs",
+  awful.key({modkey}, "e", spawner(emacs),
             {description = "open Emacs", group = "launcher"}),
   awful.key({modkey}, "b", spawner"luakit",
             {description = "open Luakit", group = "launcher"}),
