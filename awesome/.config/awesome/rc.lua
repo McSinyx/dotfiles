@@ -51,11 +51,12 @@ local terminal = "x-terminal-emulator"
 local editor = "gvim"
 -- And some additional applications
 local root_terminal = "x-terminal-emulator -e su -"
+local pulsemixer = "x-terminal-emulator -e pulsemixer"
 local ranger = "x-terminal-emulator -e ranger"
 local python3 = "x-terminal-emulator -e python3"
 local perl6 = "x-terminal-emulator -e perl6"
 local guile = "x-terminal-emulator -e guile"
-local emacs = "x-terminal-emulator -e emacs -nw"
+local octave = "x-terminal-emulator -e octave"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player
@@ -210,8 +211,8 @@ myvolume:buttons(awful.util.table.join(
   awful.button({}, 1, volume_setter"-5"),
   awful.button({}, 2, volume_mute),
   awful.button({}, 3, volume_setter"+5"),
-  awful.button({}, 4, volume_setter"+5"),
-  awful.button({}, 5, volume_setter"-5")
+  awful.button({}, 4, volume_setter"+1"),
+  awful.button({}, 5, volume_setter"-1")
 ))
 
 -- Create a widget for music player
@@ -442,7 +443,7 @@ local globalkeys = awful.util.table.join(
             {description = "open a root terminal", group = "launcher"}),
   awful.key({modkey}, "v", spawner(editor),
             {description = "open GVim", group = "launcher"}),
-  awful.key({modkey}, "e", spawner(emacs),
+  awful.key({modkey}, "e", spawner"emacs",
             {description = "open Emacs", group = "launcher"}),
   awful.key({modkey}, "b", spawner"luakit",
             {description = "open Luakit", group = "launcher"}),
@@ -454,7 +455,7 @@ local globalkeys = awful.util.table.join(
             {description = "open Tor Browser", group = "launcher"}),
   awful.key({modkey}, "t", spawner"thunderbird",
             {description = "open Thunderbird", group = "launcher"}),
-  awful.key({modkey}, "m", spawner"moodledesktop",
+  awful.key({modkey, "Shift"}, "m", spawner"moodledesktop",
             {description = "open Moodle Desktop", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
@@ -466,6 +467,8 @@ local globalkeys = awful.util.table.join(
             {description = "open Perl 6", group = "launcher"}),
   awful.key({modkey}, "g", spawner(guile),
             {description = "open Guile interpreter", group = "launcher"}),
+  awful.key({modkey}, "o", spawner(octave),
+            {description = "open Octave", group = "launcher"}),
   awful.key({modkey}, "z", spawner"zathura",
             {description = "open zathura document viewer", group = "launcher"}),
   awful.key({modkey}, "d", spawner"diodon",
@@ -474,6 +477,8 @@ local globalkeys = awful.util.table.join(
             {description = "lock screen", group = "launcher"}),
   awful.key({modkey, "Shift"}, "s", spawner(slock_suspend),
             {description = "lock screen then suspend", group = "launcher"}),
+  awful.key({modkey}, "m", spawner(pulsemixer),
+            {description = "open PulseAudio mixer", group = "multimedia"}),
   awful.key({modkey}, "a", spawner(audacious_jump_box),
             {description = "Audacious: jump-to-song", group = "multimedia"}),
   awful.key({modkey, "Shift"}, "a", spawner(audacious_main_window),
@@ -491,10 +496,10 @@ local globalkeys = awful.util.table.join(
   awful.key({}, "XF86AudioNext", spawner(audacious_forward),
             {description = "Audacious: next track", group = "multimedia"}),
   awful.key({}, "Print", nil, spawner(scrot_select),
-            {description = "capture a screenshot", group = "multimedia"}),
-  awful.key({"Shift"}, "Print", spawner(scrot),
             {description = "shoot a window or rectangle selected with a mouse",
              group = "multimedia"}),
+  awful.key({"Shift"}, "Print", spawner(scrot),
+            {description = "capture a screenshot", group = "multimedia"}),
   awful.key({}, "XF86AudioRaiseVolume", volume_setter"+5",
             {description = "raise 5% volume", group = "multimedia"}),
   awful.key({}, "XF86AudioLowerVolume", volume_setter"-5",

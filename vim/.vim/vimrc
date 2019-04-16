@@ -25,11 +25,13 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
 let g:jedi#show_call_signatures = 2
 let g:jedi#smart_auto_mappings = 0
+let g:polyglot_disabled = ['latex']
 map Q gq
 command Q q
 command W w
 
 call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/drmikehenry/vim-fontsize.git'

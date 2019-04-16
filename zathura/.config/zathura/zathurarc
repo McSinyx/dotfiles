@@ -22,6 +22,7 @@ set incremental-search false
 set highlight-color \#b16286
 set highlight-active-color \#689d6a
 set recolor true
+set recolor-keephue true
 set recolor-lightcolor \#1d2021
 set recolor-darkcolor \#ebdbb2
 set render-loading-bg \#282828
