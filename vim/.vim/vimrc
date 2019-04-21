@@ -16,7 +16,7 @@ set omnifunc=syntaxcomplete#Complete
 set diffopt+=algorithm:patience
 autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
 autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
-autocmd FileType c,h,go setlocal cindent cinoptions=(0 noexpandtab shiftwidth=8
+autocmd FileType c,h,go,glsl setlocal cindent cinoptions=(0 noexpandtab shiftwidth=8
 autocmd FileType rst setlocal shiftwidth=3
 autocmd FileType css,javascript,python,perl6 setlocal shiftwidth=4
 autocmd FileType python syntax keyword pythonBoolean False True None

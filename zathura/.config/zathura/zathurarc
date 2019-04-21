@@ -31,7 +31,7 @@ set index-bg \#282828
 set index-fg \#98971a
 set index-active-bg \#98971a
 set index-active-fg \#282828
-set guioptions cs
+set guioptions ''
 set show-recent 0
 set smooth-scroll true
 set statusbar-home-tilde true
