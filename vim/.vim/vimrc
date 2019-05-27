@@ -32,7 +32,7 @@ command W w
 
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/sheerun/vim-polyglot.git'
-Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'https://github.com/srcery-colors/srcery-vim.git'
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/drmikehenry/vim-fontsize.git'
 Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}
@@ -40,5 +40,4 @@ Plug 'https://github.com/kovisoft/slimv', {'for': 'lisp'}
 call plug#end()
 
 set t_Co=256
-set background=dark
-colorscheme gruvbox
+colorscheme srcery

@@ -44,7 +44,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init"~/.config/awesome/themes/gruvbox/theme.lua"
+beautiful.init"~/.config/awesome/themes/srcery/theme.lua"
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "x-terminal-emulator"
@@ -173,8 +173,8 @@ vicious.register(mybattery_text, vicious.widgets.bat,
                  function (widget, args)
                    return (" %s%03d%%"):format(args[1], args[2])
                  end, 7, "BAT0")
-local mybattery = wibox.container.background(mybattery_text, "#98971a")
-mybattery.fg = "#282828"
+local mybattery = wibox.container.background(mybattery_text, beautiful.green)
+mybattery.fg = beautiful.gray
 mybattery:buttons(awful.util.table.join(
   awful.button({}, 1, spawner"mate-power-statistics"),
   awful.button({}, 3, spawner"mate-power-preferences")
@@ -205,8 +205,8 @@ local function volume_mute(parameter)
   update_widget("pulsemixer --toggle-mute", myvolume_text)
 end
 
-local myvolume = wibox.container.background(myvolume_text, "#689d6a")
-myvolume.fg = "#282828"
+local myvolume = wibox.container.background(myvolume_text, beautiful.cyan)
+myvolume.fg = beautiful.gray
 myvolume:buttons(awful.util.table.join(
   awful.button({}, 1, volume_setter"-5"),
   awful.button({}, 2, volume_mute),
@@ -230,8 +230,8 @@ local function audacious_seeker(time)
   end
 end
 
-local myplayer = wibox.container.background(myplayer_text, "#b16286")
-myplayer.fg = "#282828"
+local myplayer = wibox.container.background(myplayer_text, beautiful.magenta)
+myplayer.fg = beautiful.gray
 myplayer:buttons(awful.util.table.join(
   awful.button({}, 1, spawner(audacious_rewind)),
   awful.button({}, 2, spawner(audacious_play_pause)),
@@ -331,18 +331,18 @@ awful.screen.connect_for_each_screen(function (s)
      layout = wibox.layout.fixed.horizontal,
      -- mylauncher,
      {mytextclock,
-      bg = "#cc241d",
-      fg = "#282828",
+      bg = beautiful.red,
+      fg = beautiful.gray,
       widget = wibox.container.background},
      wibox.widget.imagebox(beautiful.arrow0),
      {mycpuusage,
-      bg = "#d65d0e",
-      fg = "#282828",
+      bg = beautiful.orange,
+      fg = beautiful.gray,
       widget = wibox.container.background},
      wibox.widget.imagebox(beautiful.arrow1),
      {mymemusage,
-      bg = "#d79921",
-      fg = "#282828",
+      bg = beautiful.yellow,
+      fg = beautiful.gray,
       widget = wibox.container.background},
      wibox.widget.imagebox(beautiful.arrow2),
      mybattery,
@@ -350,8 +350,8 @@ awful.screen.connect_for_each_screen(function (s)
      myvolume,
      wibox.widget.imagebox(beautiful.arrow4),
      {myweather,
-      bg = "#458588",
-      fg = "#282828",
+      bg = beautiful.blue,
+      fg = beautiful.gray,
       widget = wibox.container.background},
      wibox.widget.imagebox(beautiful.arrow5),
      myplayer,
@@ -443,7 +443,7 @@ local globalkeys = awful.util.table.join(
             {description = "open a root terminal", group = "launcher"}),
   awful.key({modkey}, "v", spawner(editor),
             {description = "open GVim", group = "launcher"}),
-  awful.key({modkey}, "e", spawner"emacs",
+  awful.key({modkey}, "e", spawner"emacsclient -c",
             {description = "open Emacs", group = "launcher"}),
   awful.key({modkey}, "b", spawner"luakit",
             {description = "open Luakit", group = "launcher"}),
@@ -455,6 +455,8 @@ local globalkeys = awful.util.table.join(
             {description = "open Tor Browser", group = "launcher"}),
   awful.key({modkey}, "t", spawner"thunderbird",
             {description = "open Thunderbird", group = "launcher"}),
+  awful.key({modkey}, "g", spawner"gimp",
+            {description = "open GIMP", group = "launcher"}),
   awful.key({modkey, "Shift"}, "m", spawner"moodledesktop",
             {description = "open Moodle Desktop", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
@@ -465,7 +467,7 @@ local globalkeys = awful.util.table.join(
             {description = "open Python 3 interpreter", group = "launcher"}),
   awful.key({modkey, "Shift"}, "p", spawner(perl6),
             {description = "open Perl 6", group = "launcher"}),
-  awful.key({modkey}, "g", spawner(guile),
+  awful.key({modkey, "Shift"}, "g", spawner(guile),
             {description = "open Guile interpreter", group = "launcher"}),
   awful.key({modkey}, "o", spawner(octave),
             {description = "open Octave", group = "launcher"}),

@@ -8,9 +8,9 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-export PATH="$HOME/.local/bin:$HOME/.local/share/go/bin:$HOME/.cargo/bin:$PATH"
-export MANPATH="$HOME/.local/share/man:$MANPATH"
 export GOPATH="$HOME/.local/share/go"
+export PATH="$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.luarocks/bin:$PATH"
+export MANPATH="$HOME/.local/share/man:$MANPATH"
 export XMODIFIERS=@im=ibus
 #export WEBKIT_DISABLE_COMPOSITING_MODE=1
 export NLTK_DATA="$HOME/Sources/nlp/nltk_data"
@@ -25,6 +25,3 @@ fi
 
 # OPAM configuration
 . /home/cnx/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-
-# Gruvbox colorscheme
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
