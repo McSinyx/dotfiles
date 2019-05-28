@@ -17,11 +17,11 @@
 local theme = {}
 local color = {black = '#1C1B19', red = '#EF2F27', green = '#519F50',
                yellow = '#FBB829', blue = '#2C78BF', magenta = '#E02C6D',
-               cyan = '#0AAEB3', white = '#918175', brightblack = '#2D2C29',
-               brightred = '#F75341', brightgreen = '#98BC37',
-               brightyellow = '#FED06E', brightblue = '#68A8E4',
-               brightmagenta = '#FF5C8F', brightcyan = '#53FDE9',
-               brightwhite = '#FCE8C3'}
+               cyan = '#0AAEB3', white = '#918175', orange = '#ff5f00',
+               brightblack = '#2D2C29', brightred = '#F75341',
+               brightgreen = '#98BC37', brightyellow = '#FED06E',
+               brightblue = '#68A8E4', brightmagenta = '#FF5C8F',
+               brightcyan = '#53FDE9', brightwhite = '#FCE8C3'}
 
 
 -- Default settings
@@ -81,7 +81,7 @@ theme.ibar_bg           = theme.bg
 -- Tab label
 theme.tab_fg            = theme.fg
 theme.tab_bg            = color.brightblack
-theme.tab_hover_bg      = color.blue
+theme.tab_hover_bg      = color.orange
 theme.tab_ntheme        = color.white
 theme.selected_fg       = theme.fg
 theme.selected_bg       = theme.bg
