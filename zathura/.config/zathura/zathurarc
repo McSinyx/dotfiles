@@ -4,7 +4,7 @@ set completion-group-bg \#1c1b19
 set completion-group-fg \#519f50
 set completion-highlight-bg \#e02c6d
 set completion-highlight-fg \#fce8c3
-set default-bg \#1c1b19
+set default-bg \#2d2c29
 set default-fg \#fce8c3
 set font Latin\ Modern\ Mono\ 12
 set inputbar-bg \#1c1b19
@@ -23,7 +23,7 @@ set highlight-color \#519f50
 set highlight-active-color \#0aaeb3
 set recolor true
 set recolor-keephue true
-set recolor-lightcolor \#000000
+set recolor-lightcolor \#1c1b19
 set recolor-darkcolor \#fce8c3
 set render-loading-bg \#1c1b19
 set render-loading-fg \#fce8c3
