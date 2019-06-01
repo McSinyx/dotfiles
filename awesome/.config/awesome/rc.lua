@@ -88,7 +88,7 @@ awful.layout.layouts = {
   --awful.layout.suit.spiral,
   --awful.layout.suit.spiral.dwindle,
   awful.layout.suit.max,
-  --awful.layout.suit.max.fullscreen,
+  awful.layout.suit.max.fullscreen,
   --awful.layout.suit.magnifier,
   --awful.layout.suit.corner.nw,
   --awful.layout.suit.corner.ne,
@@ -286,14 +286,22 @@ local tasklist_buttons = awful.util.table.join(
   awful.button({}, 5, function () awful.client.focus.byidx(-1) end)
 )
 
---local function set_bg(s) end
--- Re-set background color when a screen's geometry changes
---screen.connect_signal("property::geometry", set_bg)
+local function set_wallpaper(s)
+  -- Wallpaper
+  if beautiful.wallpaper then
+    local wallpaper = beautiful.wallpaper
+    -- If wallpaper is a function, call it with the screen
+    if type(wallpaper) == "function" then
+      wallpaper = wallpaper(s)
+    end
+    gears.wallpaper.maximized(wallpaper, s, true)
+  end
+end
+
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function (s)
-  -- Background color
-  --set_bg(s)
-
   -- Each screen has its own tag table.
   awful.tag({"1", "2", "3", "4", "5", "6", "7", "8", "9"}, s,
             awful.layout.layouts[1])
@@ -471,6 +479,8 @@ local globalkeys = awful.util.table.join(
             {description = "open Guile interpreter", group = "launcher"}),
   awful.key({modkey}, "o", spawner(octave),
             {description = "open Octave", group = "launcher"}),
+  awful.key({modkey, "Shift"}, "o", spawner"geogebra-classic",
+            {description = "open GeoGebra", group = "launcher"}),
   awful.key({modkey}, "z", spawner"zathura",
             {description = "open zathura document viewer", group = "launcher"}),
   awful.key({modkey}, "d", spawner"diodon",
@@ -497,6 +507,8 @@ local globalkeys = awful.util.table.join(
             {description = "Audacious: previous track", group = "multimedia"}),
   awful.key({}, "XF86AudioNext", spawner(audacious_forward),
             {description = "Audacious: next track", group = "multimedia"}),
+  awful.key({}, "XF86Display", spawner"arandr",
+            {description = "open Arandr", group = "multimedia"}),
   awful.key({}, "Print", nil, spawner(scrot_select),
             {description = "shoot a window or rectangle selected with a mouse",
              group = "multimedia"}),

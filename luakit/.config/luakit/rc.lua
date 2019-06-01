@@ -7,7 +7,7 @@ require "lfs"
 require "unique_instance"
 
 -- Set the number of web processes to use. A value of 0 means 'no limit'.
-luakit.process_limit = 4
+luakit.process_limit = 0
 -- Set the cookie storage location
 soup.cookies_storage = luakit.data_dir .. "/cookies.db"
 
@@ -102,7 +102,6 @@ local session = require "session"
 
 -- Add command to list closed tabs & bind to open closed tabs
 local undoclose = require "undoclose"
-settings.undoclose.max_saved_tabs = 4
 
 -- Add command to list tab history items
 local tabhistory = require "tabhistory"

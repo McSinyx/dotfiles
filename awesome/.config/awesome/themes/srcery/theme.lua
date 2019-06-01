@@ -14,13 +14,15 @@
 -- You should have received a copy of the GNU General Public License
 -- along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+local gears = require'gears'
+
 local theme = {}
-
 -- Working directory (where you place this theme)
-theme.wd = "~/.config/awesome/themes/srcery/"
+local wd = '~/.config/awesome/themes/srcery/'
+local function abspath(relative) return wd .. relative end
 
-theme.font          = "Latin Modern Mono Caps 12"
-theme.hotkeys_font  = "Latin Modern Mono Bold 12"
+theme.font          = 'Latin Modern Mono Caps 12'
+theme.hotkeys_font  = 'Latin Modern Mono Bold 12'
 theme.hotkeys_description_font = theme.font
 
 -- Auxiliary colors
@@ -71,81 +73,88 @@ theme.titlebar_bg_normal = theme.bg_normal
 theme.titlebar_bg_focus = theme.bg_normal
 
 -- Display the taglist squares
-theme.taglist_squares_sel   = theme.wd .. "taglist/squaref.png"
-theme.taglist_squares_unsel = theme.wd .. "taglist/square.png"
+theme.taglist_squares_sel   = abspath'taglist/squaref.png'
+theme.taglist_squares_unsel = abspath'taglist/square.png'
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
-theme.menu_submenu_icon = theme.wd .. "submenu.png"
+theme.menu_submenu_icon = abspath'submenu.png'
 theme.menu_height = 22
 theme.menu_width  = 160
 
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
+--theme.bg_widget = '#cc0000'
 
 -- Define the image to load
-theme.titlebar_close_button_normal = theme.wd .. "titlebar/normal.png"
-theme.titlebar_close_button_focus = theme.wd .. "titlebar/close.png"
+local function titlebar(button)
+  return abspath('titlebar/' .. button .. '.png')
+end
+theme.titlebar_close_button_normal = titlebar'normal'
+theme.titlebar_close_button_focus = titlebar'close'
 
-theme.titlebar_minimize_button_normal = theme.wd .. "titlebar/normal.png"
-theme.titlebar_minimize_button_focus = theme.wd .. "titlebar/minimize.png"
+theme.titlebar_minimize_button_normal = titlebar'normal'
+theme.titlebar_minimize_button_focus = titlebar'minimize'
 
-theme.titlebar_ontop_button_normal_inactive = theme.wd .. "titlebar/normal.png"
-theme.titlebar_ontop_button_focus_inactive = theme.wd .. "titlebar/ontop_inactive.png"
-theme.titlebar_ontop_button_normal_active = theme.wd .. "titlebar/normal.png"
-theme.titlebar_ontop_button_focus_active = theme.wd .. "titlebar/ontop_active.png"
+theme.titlebar_ontop_button_normal_inactive = titlebar'normal'
+theme.titlebar_ontop_button_focus_inactive = titlebar'ontop_inactive'
+theme.titlebar_ontop_button_normal_active = titlebar'normal'
+theme.titlebar_ontop_button_focus_active = titlebar'ontop_active'
 
-theme.titlebar_sticky_button_normal_inactive = theme.wd .. "titlebar/normal.png"
-theme.titlebar_sticky_button_focus_inactive = theme.wd .. "titlebar/sticky_inactive.png"
-theme.titlebar_sticky_button_normal_active = theme.wd .. "titlebar/normal.png"
-theme.titlebar_sticky_button_focus_active = theme.wd .. "titlebar/sticky_active.png"
+theme.titlebar_sticky_button_normal_inactive = titlebar'normal'
+theme.titlebar_sticky_button_focus_inactive = titlebar'sticky_inactive'
+theme.titlebar_sticky_button_normal_active = titlebar'normal'
+theme.titlebar_sticky_button_focus_active = titlebar'sticky_active'
 
-theme.titlebar_floating_button_normal_inactive = theme.wd .. "titlebar/normal.png"
-theme.titlebar_floating_button_focus_inactive = theme.wd .. "titlebar/floating_inactive.png"
-theme.titlebar_floating_button_normal_active = theme.wd .. "titlebar/normal.png"
-theme.titlebar_floating_button_focus_active = theme.wd .. "titlebar/floating_active.png"
+theme.titlebar_floating_button_normal_inactive = titlebar'normal'
+theme.titlebar_floating_button_focus_inactive = titlebar'floating_inactive'
+theme.titlebar_floating_button_normal_active = titlebar'normal'
+theme.titlebar_floating_button_focus_active = titlebar'floating_active'
 
-theme.titlebar_maximized_button_normal_inactive = theme.wd .. "titlebar/normal.png"
-theme.titlebar_maximized_button_focus_inactive = theme.wd .. "titlebar/maximized_inactive.png"
-theme.titlebar_maximized_button_normal_active = theme.wd .. "titlebar/normal.png"
-theme.titlebar_maximized_button_focus_active = theme.wd .. "titlebar/maximized_active.png"
+theme.titlebar_maximized_button_normal_inactive = titlebar'normal'
+theme.titlebar_maximized_button_focus_inactive = titlebar'maximized_inactive'
+theme.titlebar_maximized_button_normal_active = titlebar'normal'
+theme.titlebar_maximized_button_focus_active = titlebar'maximized_active'
 
---theme.wallpaper = theme.wd .. "background.png"
+-- Desktop background
+function theme.wallpaper() gears.wallpaper.set(theme.black) end
 
 -- You can use your own layout icons like this:
-theme.layout_fairh = theme.wd .. "layouts/fairh.png"
-theme.layout_fairv = theme.wd .. "layouts/fairv.png"
-theme.layout_floating  = theme.wd .. "layouts/floating.png"
-theme.layout_magnifier = theme.wd .. "layouts/magnifier.png"
-theme.layout_max = theme.wd .. "layouts/max.png"
-theme.layout_fullscreen = theme.wd .. "layouts/fullscreen.png"
-theme.layout_tilebottom = theme.wd .. "layouts/tilebottom.png"
-theme.layout_tileleft   = theme.wd .. "layouts/tileleft.png"
-theme.layout_tile = theme.wd .. "layouts/tile.png"
-theme.layout_tiletop = theme.wd .. "layouts/tiletop.png"
-theme.layout_spiral  = theme.wd .. "layouts/spiral.png"
-theme.layout_dwindle = theme.wd .. "layouts/dwindle.png"
-theme.layout_cornernw = theme.wd .. "layouts/cornernw.png"
-theme.layout_cornerne = theme.wd .. "layouts/cornerne.png"
-theme.layout_cornersw = theme.wd .. "layouts/cornersw.png"
-theme.layout_cornerse = theme.wd .. "layouts/cornerse.png"
+local function layout(icon)
+  return abspath('layouts/' .. icon .. '.png')
+end
+theme.layout_fairh = layout'fairh'
+theme.layout_fairv = layout'fairv'
+theme.layout_floating  = layout'floating'
+theme.layout_magnifier = layout'magnifier'
+theme.layout_max = layout'max'
+theme.layout_fullscreen = layout'fullscreen'
+theme.layout_tilebottom = layout'tilebottom'
+theme.layout_tileleft   = layout'tileleft'
+theme.layout_tile = layout'tile'
+theme.layout_tiletop = layout'tiletop'
+theme.layout_spiral  = layout'spiral'
+theme.layout_dwindle = layout'dwindle'
+theme.layout_cornernw = layout'cornernw'
+theme.layout_cornerne = layout'cornerne'
+theme.layout_cornersw = layout'cornersw'
+theme.layout_cornerse = layout'cornerse'
 
-theme.awesome_icon = theme.wd .. "awesome.png"
+theme.awesome_icon = abspath'awesome.png'
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
 -- Arrows
-theme.arrow0 = theme.wd .. "arrows/0.png"
-theme.arrow1 = theme.wd .. "arrows/1.png"
-theme.arrow2 = theme.wd .. "arrows/2.png"
-theme.arrow3 = theme.wd .. "arrows/3.png"
-theme.arrow4 = theme.wd .. "arrows/4.png"
-theme.arrow5 = theme.wd .. "arrows/5.png"
-theme.arrow6 = theme.wd .. "arrows/6.png"
+theme.arrow0 = abspath'arrows/0.png'
+theme.arrow1 = abspath'arrows/1.png'
+theme.arrow2 = abspath'arrows/2.png'
+theme.arrow3 = abspath'arrows/3.png'
+theme.arrow4 = abspath'arrows/4.png'
+theme.arrow5 = abspath'arrows/5.png'
+theme.arrow6 = abspath'arrows/6.png'
 
 return theme

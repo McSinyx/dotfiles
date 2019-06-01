@@ -36,7 +36,7 @@ theme.error_fg = theme.fg
 theme.error_bg = color.red
 
 -- Warning colours
-theme.warning_fg = color.red
+theme.warning_fg = color.orange
 theme.warning_bg = theme.bg
 
 -- Notification colours
@@ -72,7 +72,7 @@ theme.sbar_bg         = theme.bg
 -- Downloadbar specific
 theme.dbar_fg         = theme.fg
 theme.dbar_bg         = theme.bg
-theme.dbar_error_fg   = color.brightred
+theme.dbar_error_fg   = color.red
 
 -- Input bar specific
 theme.ibar_fg           = theme.fg
@@ -81,7 +81,7 @@ theme.ibar_bg           = theme.bg
 -- Tab label
 theme.tab_fg            = theme.fg
 theme.tab_bg            = color.brightblack
-theme.tab_hover_bg      = color.orange
+theme.tab_hover_bg      = color.blue
 theme.tab_ntheme        = color.white
 theme.selected_fg       = theme.fg
 theme.selected_bg       = theme.bg
@@ -98,7 +98,7 @@ theme.notrust_fg        = color.brightred
 
 -- General colour pairings
 theme.ok = {fg = theme.fg, bg = theme.bg}
-theme.warn = {fg = color.brightred, bg = theme.bg}
+theme.warn = {fg = color.orange, bg = theme.bg}
 theme.error = {fg = theme.fg, bg = color.red}
 
 return theme

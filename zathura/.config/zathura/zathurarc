@@ -4,7 +4,7 @@ set completion-group-bg \#1c1b19
 set completion-group-fg \#519f50
 set completion-highlight-bg \#e02c6d
 set completion-highlight-fg \#fce8c3
-set default-bg \#2d2c29
+set default-bg \#353535
 set default-fg \#fce8c3
 set font Latin\ Modern\ Mono\ 12
 set inputbar-bg \#1c1b19
@@ -28,9 +28,9 @@ set recolor-darkcolor \#fce8c3
 set render-loading-bg \#1c1b19
 set render-loading-fg \#fce8c3
 set index-bg \#1c1b19
-set index-fg \#519f50
-set index-active-bg \#519f50
-set index-active-fg \#fce8c3
+set index-fg \#98bc37
+set index-active-bg \#98bc37
+set index-active-fg \#1c1b19
 set guioptions ''
 set show-recent 0
 set smooth-scroll true
