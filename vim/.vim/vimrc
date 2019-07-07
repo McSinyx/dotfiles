@@ -10,7 +10,7 @@ if has("patch-7.4.710")
   set list listchars+=space:·,tab:\ \ 
 endif
 set tabstop=8 expandtab shiftwidth=2 softtabstop=-1 smarttab
-set dictionary=/usr/share/dict/words
+set ignorecase infercase dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
 set omnifunc=syntaxcomplete#Complete
 set diffopt+=algorithm:patience

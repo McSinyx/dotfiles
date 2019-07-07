@@ -302,6 +302,7 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function (s)
+  set_wallpaper(s)
   -- Each screen has its own tag table.
   awful.tag({"1", "2", "3", "4", "5", "6", "7", "8", "9"}, s,
             awful.layout.layouts[1])
@@ -453,8 +454,8 @@ local globalkeys = awful.util.table.join(
             {description = "open GVim", group = "launcher"}),
   awful.key({modkey}, "e", spawner"emacsclient -c",
             {description = "open Emacs", group = "launcher"}),
-  awful.key({modkey}, "b", spawner"luakit",
-            {description = "open Luakit", group = "launcher"}),
+  awful.key({modkey}, "b", spawner"qutebrowser",
+            {description = "open qutebrowser", group = "launcher"}),
   awful.key({modkey, "Shift"}, "b", spawner"torify luakit --nounique",
             {description = "open torified Luakit", group = "launcher"}),
   awful.key({modkey}, "f", spawner"firefox",
