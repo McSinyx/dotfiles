@@ -32,6 +32,7 @@
  '(package-selected-packages
    (quote
     (glsl-mode perl6-mode fireplace lua-mode markdown-mode smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
+ '(safe-local-variable-values (quote ((Syntax . Common-Lisp))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)

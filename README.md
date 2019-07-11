@@ -10,5 +10,5 @@ and Zathura. Most of these applications are themed with the
 
 ![Fedora workstation](fedora-screenshot.png)
 
-The Fedora desktop is vanilla GNOME with Emacs. Yes you can run for systems
+The Fedora desktop is vanilla GNOME with Emacs. Yes you can run four systems
 in parallel: GNU/Linux, systemd, GNOME JS VM and Emacs.

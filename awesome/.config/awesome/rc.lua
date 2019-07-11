@@ -56,7 +56,6 @@ local ranger = "x-terminal-emulator -e ranger"
 local python3 = "x-terminal-emulator -e python3"
 local perl6 = "x-terminal-emulator -e perl6"
 local guile = "x-terminal-emulator -e guile"
-local octave = "x-terminal-emulator -e octave"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player
@@ -464,23 +463,19 @@ local globalkeys = awful.util.table.join(
             {description = "open Tor Browser", group = "launcher"}),
   awful.key({modkey}, "t", spawner"thunderbird",
             {description = "open Thunderbird", group = "launcher"}),
-  awful.key({modkey}, "g", spawner"gimp",
+  awful.key({modkey, "Shift"}, "g", spawner"gimp",
             {description = "open GIMP", group = "launcher"}),
   awful.key({modkey, "Shift"}, "m", spawner"moodledesktop",
             {description = "open Moodle Desktop", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "r", spawner(ranger .. " Documents/B1"),
-            {description = "open B1", group = "launcher"}),
   awful.key({modkey}, "p", spawner(python3),
             {description = "open Python 3 interpreter", group = "launcher"}),
   awful.key({modkey, "Shift"}, "p", spawner(perl6),
             {description = "open Perl 6", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "g", spawner(guile),
+  awful.key({modkey}, "g", spawner(guile),
             {description = "open Guile interpreter", group = "launcher"}),
-  awful.key({modkey}, "o", spawner(octave),
-            {description = "open Octave", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "o", spawner"geogebra-classic",
+  awful.key({modkey}, "o", spawner"geogebra-classic",
             {description = "open GeoGebra", group = "launcher"}),
   awful.key({modkey}, "z", spawner"zathura",
             {description = "open zathura document viewer", group = "launcher"}),
