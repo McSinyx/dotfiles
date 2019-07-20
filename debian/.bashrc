@@ -97,8 +97,8 @@ alias la='ls -A'
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 alias r=ranger
-alias gcc='gcc -O2 -lm'
-alias g++='g++ -O2 -lm'
+alias gcc='gcc -Wall -Wextra -O2 -lm'
+alias g++='g++ -Wall -Wextra -O2 -lm'
 alias fpc='fpc -O1 -XS -gl'
 alias mpa='mpv --no-video --loop=inf'
 alias raku=perl6

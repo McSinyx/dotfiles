@@ -1,0 +1,15 @@
+[general]
+drivers = pulse
+stereo-mode = speakers
+layout_STEREO = fl=-90, fr=90
+format = AL_FORMAT_STEREO32
+frequency = 44100
+stereodup = false
+
+[decoder]
+hq-mode = true
+distance-comp = true
+nfc = true
+
+[pulse]
+allow-moves = true
