@@ -243,7 +243,7 @@ myplayer:buttons(awful.util.table.join(
 local myweather = wibox.widget.textbox()
 vicious.register(myweather, vicious.widgets.weather,
                  function (widget, args)
-                   if args["{city}"] ~= "N/A" then
+                   if args["{tempf}"] ~= "N/A" then
                      return (" %s°C %s%%"):format(args["{tempc}"],
                                                   args["{humid}"])
                    else
