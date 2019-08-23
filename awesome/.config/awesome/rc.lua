@@ -182,15 +182,21 @@ mybattery:buttons(awful.util.table.join(
 -- Create a volume widget
 local myvolume_text = wibox.widget.textbox()
 vicious.register(myvolume_text,
-                 function (format, warg)
-                   local f = io.popen("pulsemixer --get-volume --get-mute")
-                   left, right, mute = f:read("*number", "*number", "*number")
-                   f:close()
-                   return {left, right, mute}
-                 end,
+                 {async = function (format, warg, callback)
+                    awful.spawn.easy_async(
+                      "pulsemixer --get-volume --get-mute",
+                      function (stdout)
+                        local volume = {}
+                        for m in stdout:gmatch"(%d+)" do
+                          table.insert(volume, tonumber(m))
+                        end
+                        callback(volume)
+                      end)
+                  end},
                  function (widget, args)
-                   return (" %s%03d%%"):format(args[3] == 0 and '🔉' or '🔈',
-                                               (args[1] + args[2]) / 2)
+                   return (" %s%03d%%"):format(
+                     args[3] == 0 and '🔉' or '🔈',
+                     math.floor((args[1] + args[2] + 1) / 2))
                  end, 1)
 
 local function volume_setter(parameter)
