@@ -1,5 +1,3 @@
--- Localize Lua standard library
-local io = {popen = io.popen}
 -- Standard awesome library
 local gears = require"gears"
 local awful = require"awful"
@@ -47,15 +45,15 @@ end
 beautiful.init"~/.config/awesome/themes/srcery/theme.lua"
 
 -- This is used later as the default terminal and editor to run.
-local terminal = "x-terminal-emulator"
+local terminal = "urxvtc"
 local editor = "gvim"
 -- And some additional applications
-local root_terminal = "x-terminal-emulator -e su -"
-local pulsemixer = "x-terminal-emulator -e pulsemixer"
-local ranger = "x-terminal-emulator -e ranger"
-local python3 = "x-terminal-emulator -e python3"
-local perl6 = "x-terminal-emulator -e perl6"
-local guile = "x-terminal-emulator -e guile"
+local root_terminal = terminal .. " -e su -"
+local pulsemixer = terminal .. " -e pulsemixer"
+local ranger = terminal .. " -e ranger"
+local python3 = terminal .. " -e python3"
+local perl6 = terminal .. " -e perl6"
+local guile = terminal .. " -e guile"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player
@@ -303,6 +301,15 @@ local function set_wallpaper(s)
   end
 end
 
+local function restore()
+  local c = awful.client.restore()
+  -- Focus restored client
+  if c then
+    client.focus = c
+    c:raise()
+  end
+end
+
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
@@ -320,6 +327,7 @@ awful.screen.connect_for_each_screen(function (s)
   s.mylayoutbox = awful.widget.layoutbox(s)
   s.mylayoutbox:buttons(awful.util.table.join(
     awful.button({}, 1, function () awful.layout.inc(1) end),
+    awful.button({}, 2, restore),
     awful.button({}, 3, function () awful.layout.inc(-1) end),
     awful.button({}, 4, function () awful.layout.inc(1) end),
     awful.button({}, 5, function () awful.layout.inc(-1) end)
@@ -401,7 +409,7 @@ local function lua_prompt()
   awful.prompt.run{prompt = " ", text = "return ",
                    exe_callback = function (s)
                      -- In case awful.util.eval returns nothing, result is nil
-                     result = awful.util.eval(s)
+                     local result = awful.util.eval(s)
                      textbox:set_text(" " .. tostring(result))
                    end,
                    history_path = awful.util.get_cache_dir() .. "/lua_history",
@@ -551,15 +559,7 @@ local globalkeys = awful.util.table.join(
   awful.key({modkey, "Shift"}, "Return", function () awful.layout.inc(-1) end,
             {description = "select previous", group = "layout"}),
 
-  awful.key({modkey, "Control"}, "n",
-            function ()
-              local c = awful.client.restore()
-              -- Focus restored client
-              if c then
-                client.focus = c
-                c:raise()
-              end
-            end,
+  awful.key({modkey, "Control"}, "n", restore,
             {description = "restore minimized", group = "client"}),
 
   -- Prompt

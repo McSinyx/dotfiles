@@ -117,6 +117,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+stty -ixon
 # emacs input
 set -o emacs
 

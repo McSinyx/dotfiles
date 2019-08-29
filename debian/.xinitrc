@@ -6,6 +6,7 @@ mate-power-manager &
 ibus-daemon -drx
 blueman-applet &
 nm-applet &
+urxvtd -q -f -o
 keynav &
 diodon &
 exec awesome
