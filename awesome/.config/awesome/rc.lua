@@ -53,6 +53,7 @@ local pulsemixer = terminal .. " -e pulsemixer"
 local ranger = terminal .. " -e ranger"
 local python3 = terminal .. " -e python3"
 local perl6 = terminal .. " -e perl6"
+local octave = terminal .. " -e octave"
 local guile = terminal .. " -e guile"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
@@ -483,13 +484,17 @@ local globalkeys = awful.util.table.join(
             {description = "open Moodle Desktop", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
+  awful.key({modkey, "Shift"}, "r", spawner(ranger .. " Documents/B2"),
+            {description = "open Riboflavin", group = "launcher"}),
   awful.key({modkey}, "p", spawner(python3),
             {description = "open Python 3 interpreter", group = "launcher"}),
   awful.key({modkey, "Shift"}, "p", spawner(perl6),
             {description = "open Perl 6", group = "launcher"}),
   awful.key({modkey}, "g", spawner(guile),
             {description = "open Guile interpreter", group = "launcher"}),
-  awful.key({modkey}, "o", spawner"geogebra-classic",
+  awful.key({modkey}, "o", spawner(octave),
+            {description = "open Octave", group = "launcher"}),
+  awful.key({modkey, "Shift"}, "o", spawner"geogebra-classic",
             {description = "open GeoGebra", group = "launcher"}),
   awful.key({modkey}, "z", spawner"zathura",
             {description = "open zathura document viewer", group = "launcher"}),
