@@ -480,8 +480,6 @@ local globalkeys = awful.util.table.join(
             {description = "open Thunderbird", group = "launcher"}),
   awful.key({modkey, "Shift"}, "g", spawner"gimp",
             {description = "open GIMP", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "m", spawner"moodledesktop",
-            {description = "open Moodle Desktop", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
   awful.key({modkey, "Shift"}, "r", spawner(ranger .. " Documents/B2"),
@@ -524,6 +522,13 @@ local globalkeys = awful.util.table.join(
             {description = "Audacious: next track", group = "multimedia"}),
   awful.key({}, "XF86Display", spawner"arandr",
             {description = "open Arandr", group = "multimedia"}),
+  awful.key({modkey},
+            "XF86Display",
+            function ()
+              awful.spawn".screenlayout/single.sh"
+              awesome.restart()
+            end,
+            {description = "switch to single display", group = "multimedia"}),
   awful.key({}, "Print", nil, spawner(scrot_select),
             {description = "shoot a window or rectangle selected with a mouse",
              group = "multimedia"}),

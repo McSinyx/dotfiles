@@ -1,5 +1,5 @@
 runtime ftplugin/man.vim
 nmap K :Man <cword><CR>
 set guifont=Latin\ Modern\ Mono\ 12
-set guioptions=Pc
+set guioptions=ci
 set guicursor+=a:blinkon0

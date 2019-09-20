@@ -3,7 +3,7 @@ set undodir=~/.cache/vim/undo
 set directory=~/.cache/vim/swap
 set backupdir=~/.cache/vim/backup
 set viminfo+=n~/.cache/vim/viminfo
-set clipboard=exclude:cons\|linux autochdir
+set clipboard=unnamedplus autochdir
 set showcmd noshowmode ruler wildmenu confirm number relativenumber
 set nostartofline
 if has("patch-7.4.710")
@@ -21,7 +21,6 @@ autocmd FileType c,h,go,glsl setlocal cindent cinoptions=(0 noexpandtab shiftwid
 autocmd FileType rst setlocal shiftwidth=3
 autocmd FileType css,javascript,python,perl6 setlocal shiftwidth=4
 autocmd FileType python syntax keyword pythonBoolean False True None
-let g:gruvbox_italic=1
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
 let g:jedi#show_call_signatures = 2
@@ -35,6 +34,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/srcery-colors/srcery-vim.git'
 Plug 'https://github.com/tpope/vim-abolish.git'
+Plug 'https://github.com/alx741/vinfo.git'
 Plug 'https://github.com/drmikehenry/vim-fontsize.git'
 Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}
 Plug 'https://github.com/kovisoft/slimv', {'for': 'lisp'}
