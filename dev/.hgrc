@@ -1,0 +1,55 @@
+[ui]
+username = Nguyễn Gia Phong <vn.mcsinyx@gmail.com>
+
+[extensions]
+color =
+histedit =
+pager =
+rebase =
+strip =
+
+[pager]
+pager = LESS='FSRX' less
+attend = help, annotate, cat, diff, export, glog, log, outgoing, incoming
+
+[diff]
+showfunc = True
+
+[color]
+mode = terminfo
+
+## Custom colors
+color.gray = 244
+color.orange = 202
+color.lightyellow = 191
+color.darkorange = 220
+color.brightyellow = 226
+
+status.modified = magenta bold
+status.added = green bold
+status.removed = red bold
+status.deleted = cyan bold
+status.unknown = gray bold
+status.ignored = gray bold
+
+## Colours for each label
+log.branch = cyan
+log.summary = lightyellow
+log.description = lightyellow
+log.bookmark = green
+log.tag = darkorange
+log.graph = blue
+
+## Colors for each phase
+changeset.secret = blue bold
+changeset.draft  = red bold
+changeset.public = orange
+
+desc.here = bold blue_background
+
+[bookmarks]
+track.current = True
+
+[alias]
+glog = log --graph
+top = log --graph -l

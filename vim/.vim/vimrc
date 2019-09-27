@@ -21,6 +21,7 @@ autocmd FileType c,h,go,glsl setlocal cindent cinoptions=(0 noexpandtab shiftwid
 autocmd FileType rst setlocal shiftwidth=3
 autocmd FileType css,javascript,python,perl6 setlocal shiftwidth=4
 autocmd FileType python syntax keyword pythonBoolean False True None
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
 let g:jedi#show_call_signatures = 2
@@ -37,7 +38,8 @@ Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/alx741/vinfo.git'
 Plug 'https://github.com/drmikehenry/vim-fontsize.git'
 Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}
-Plug 'https://github.com/kovisoft/slimv', {'for': 'lisp'}
+Plug 'https://github.com/kovisoft/slimv.git', {'for': 'lisp'}
+Plug 'https://github.com/artur-shaik/vim-javacomplete2.git', {'for': 'java'}
 call plug#end()
 
 set t_Co=256

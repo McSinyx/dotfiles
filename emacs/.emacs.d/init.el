@@ -24,14 +24,12 @@
  '(ac-auto-start nil)
  '(ac-expand-on-auto-complete nil)
  '(ac-trigger-key "M-RET")
- '(ansi-color-names-vector
-   ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (tango)))
  '(erc-nick "cnx")
  '(package-selected-packages
    (quote
-    (glsl-mode perl6-mode fireplace lua-mode markdown-mode smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
+    (glsl-mode perl6-mode fireplace lua-mode markdown-mode smart-tabs-mode
+     auctex wordnut magit geiser slime pdf-tools)))
  '(safe-local-variable-values (quote ((Syntax . Common-Lisp))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
@@ -50,6 +48,7 @@
 (savehist-mode 1)
 (setq-default inhibit-splash-screen t)
 (find-file-noselect "/usr/share/dict/words")
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 (setq-default fill-column 79)
 (add-hook 'prog-mode-hook 'ruler-mode)
 (setq-default indent-tabs-mode nil)
@@ -60,6 +59,7 @@
 (smart-tabs-insinuate 'c)
 (setq c-default-style "linux")
 (add-hook 'python-mode-hook (lambda () (setq comment-fill-column 72)))
+(add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
 (add-hook 'pdf-tools-enabled-hook 'auto-revert-mode)
 
 (when window-system (set-frame-size (selected-frame) 80 25))

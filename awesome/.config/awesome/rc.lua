@@ -525,8 +525,8 @@ local globalkeys = awful.util.table.join(
   awful.key({modkey},
             "XF86Display",
             function ()
-              awful.spawn".screenlayout/single.sh"
-              awesome.restart()
+              awful.spawn.easy_async(".screenlayout/single.sh",
+                                     function () awesome.restart() end)
             end,
             {description = "switch to single display", group = "multimedia"}),
   awful.key({}, "Print", nil, spawner(scrot_select),
