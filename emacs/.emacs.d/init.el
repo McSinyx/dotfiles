@@ -24,12 +24,16 @@
  '(ac-auto-start nil)
  '(ac-expand-on-auto-complete nil)
  '(ac-trigger-key "M-RET")
+ '(ansi-color-names-vector
+   ["#242424" "#e5786d" "#95e454" "#cae682"
+    "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(column-number-mode t)
+ '(custom-enabled-themes (quote (whiteboard)))
  '(erc-nick "cnx")
  '(package-selected-packages
    (quote
-    (glsl-mode perl6-mode fireplace lua-mode markdown-mode smart-tabs-mode
-     auctex wordnut magit geiser slime pdf-tools)))
+    (sane-term glsl-mode perl6-mode fireplace lua-mode markdown-mode
+     smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
  '(safe-local-variable-values (quote ((Syntax . Common-Lisp))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
@@ -42,7 +46,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Latin Modern Mono" :foundry "UKWN" :slant normal :weight normal :height 120 :width normal))))
+ '(default ((t (:family "Latin Modern Mono" :foundry "UKWN"
+                :slant normal :weight normal :height 120 :width normal))))
  '(whitespace-space ((t (:foreground "gray")))))
 
 (savehist-mode 1)
@@ -57,8 +62,11 @@
 (global-set-key (kbd "C-<return>") #'cua-rectangle-mark-mode)
 
 (smart-tabs-insinuate 'c)
-(setq c-default-style "linux")
+(setq c-default-style '((c-mode-hook "linux")
+                        (c++-mode-hook "gnu")
+                        (java-mode-hook "gnu")))
 (add-hook 'python-mode-hook (lambda () (setq comment-fill-column 72)))
+(add-hook 'lua-mode-hook (lambda () (setq lua-indent-level 4)))
 (add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
 (add-hook 'pdf-tools-enabled-hook 'auto-revert-mode)
 

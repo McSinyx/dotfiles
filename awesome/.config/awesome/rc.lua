@@ -55,6 +55,8 @@ local python3 = terminal .. " -e python3"
 local perl6 = terminal .. " -e perl6"
 local octave = terminal .. " -e octave"
 local guile = terminal .. " -e guile"
+local clojure = terminal .. " -e clojure"
+local emacs = terminal .. " -e emacsclient -nw"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player
@@ -466,7 +468,7 @@ local globalkeys = awful.util.table.join(
             {description = "open a root terminal", group = "launcher"}),
   awful.key({modkey}, "v", spawner(editor),
             {description = "open GVim", group = "launcher"}),
-  awful.key({modkey}, "e", spawner"emacsclient -c",
+  awful.key({modkey}, "e", spawner(emacs),
             {description = "open Emacs", group = "launcher"}),
   awful.key({modkey}, "b", spawner"qutebrowser",
             {description = "open qutebrowser", group = "launcher"}),
@@ -488,6 +490,8 @@ local globalkeys = awful.util.table.join(
             {description = "open Python 3 interpreter", group = "launcher"}),
   awful.key({modkey, "Shift"}, "p", spawner(perl6),
             {description = "open Perl 6", group = "launcher"}),
+  awful.key({modkey}, "c", spawner(clojure),
+            {description = "open Clojure interpreter", group = "launcher"}),
   awful.key({modkey}, "g", spawner(guile),
             {description = "open Guile interpreter", group = "launcher"}),
   awful.key({modkey}, "o", spawner(octave),
