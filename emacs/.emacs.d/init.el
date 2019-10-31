@@ -28,7 +28,7 @@
    ["#242424" "#e5786d" "#95e454" "#cae682"
     "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (whiteboard)))
+ '(custom-enabled-themes (quote (tango)))
  '(erc-nick "cnx")
  '(package-selected-packages
    (quote
@@ -53,7 +53,6 @@
 (savehist-mode 1)
 (setq-default inhibit-splash-screen t)
 (find-file-noselect "/usr/share/dict/words")
-(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 (setq-default fill-column 79)
 (add-hook 'prog-mode-hook 'ruler-mode)
 (setq-default indent-tabs-mode nil)
@@ -68,6 +67,9 @@
 (add-hook 'python-mode-hook (lambda () (setq comment-fill-column 72)))
 (add-hook 'lua-mode-hook (lambda () (setq lua-indent-level 4)))
 (add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
+(add-hook 'LaTeX-mode-hook
+          (lambda () (when (fboundp 'electric-indent-mode)
+                       (electric-indent-mode -1))))
 (add-hook 'pdf-tools-enabled-hook 'auto-revert-mode)
 
 (when window-system (set-frame-size (selected-frame) 80 25))
