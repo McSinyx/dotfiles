@@ -38,6 +38,7 @@
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
+ '(vc-follow-symlinks t)
  '(whitespace-style
    (quote
     (face trailing spaces newline space-mark newline-mark))))
@@ -66,7 +67,7 @@
                         (java-mode-hook "gnu")))
 (add-hook 'python-mode-hook (lambda () (setq comment-fill-column 72)))
 (add-hook 'lua-mode-hook (lambda () (setq lua-indent-level 4)))
-(add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
+;(add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
 (add-hook 'LaTeX-mode-hook
           (lambda () (when (fboundp 'electric-indent-mode)
                        (electric-indent-mode -1))))

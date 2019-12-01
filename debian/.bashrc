@@ -118,6 +118,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# fzf ** completion
+source /usr/share/doc/fzf/examples/completion.bash
+
 stty -ixon
 # emacs input
 set -o emacs

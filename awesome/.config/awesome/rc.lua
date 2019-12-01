@@ -45,7 +45,7 @@ end
 beautiful.init"~/.config/awesome/themes/srcery/theme.lua"
 
 -- This is used later as the default terminal and editor to run.
-local terminal = "urxvtc"
+local terminal = "urxvt"
 local editor = "gvim"
 -- And some additional applications
 local root_terminal = terminal .. " -e su -"
@@ -386,13 +386,11 @@ awful.screen.connect_for_each_screen(function (s)
     {-- Middle widget
      layout = wibox.layout.fixed.horizontal,
     },
-    -- s.mytasklist,
-    { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
-      -- mykeyboardlayout,
-      wibox.widget.systray(),
-      s.mytaglist,
-      s.mylayoutbox
+    {-- Right widgets
+     layout = wibox.layout.fixed.horizontal,
+     wibox.widget.systray(),
+     s.mytaglist,
+     s.mylayoutbox
     }
   }
 end)

@@ -41,6 +41,7 @@ Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}
 Plug 'https://github.com/kovisoft/slimv.git', {'for': 'lisp'}
 Plug 'https://github.com/artur-shaik/vim-javacomplete2.git', {'for': 'java'}
 call plug#end()
+source /usr/share/doc/fzf/examples/fzf.vim
 
 set t_Co=256
 colorscheme srcery
