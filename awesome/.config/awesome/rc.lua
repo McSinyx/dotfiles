@@ -46,7 +46,7 @@ beautiful.init"~/.config/awesome/themes/srcery/theme.lua"
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "urxvt"
-local editor = "gvim"
+local editor = terminal .. " -e vim"
 -- And some additional applications
 local root_terminal = terminal .. " -e su -"
 local pulsemixer = terminal .. " -e pulsemixer"

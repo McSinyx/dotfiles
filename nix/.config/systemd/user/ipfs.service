@@ -1,0 +1,10 @@
+[Unit]
+Description=IPFS daemon
+After=network.target
+
+[Service]
+ExecStart=/run/current-system/sw/bin/ipfs daemon
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

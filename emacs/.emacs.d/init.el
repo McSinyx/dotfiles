@@ -73,4 +73,5 @@
                        (electric-indent-mode -1))))
 (add-hook 'pdf-tools-enabled-hook 'auto-revert-mode)
 
-(when window-system (set-frame-size (selected-frame) 80 25))
+(add-to-list 'default-frame-alist '(width . 80))
+(add-to-list 'default-frame-alist '(height . 24))

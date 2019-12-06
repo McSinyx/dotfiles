@@ -1,6 +1,7 @@
 # dotfiles
 
-Dotfiles of my Debian testing and Fedora workstation, managed by GNU Stow.
+Dotfiles of my Debian testing, Fedora workstation and NixOS unstable,
+managed by GNU Stow.
 
 ![Debian testing](debian-screenshot.png)
 
@@ -12,3 +13,8 @@ and Zathura. Most of these applications are themed with the
 
 The Fedora desktop is vanilla GNOME with Emacs. Yes you can run four systems
 in parallel: GNU/Linux, systemd, GNOME JS VM and Emacs.
+
+![NixOS unstable](nixos-screenshot.png)
+
+The NixOS uses KDE Plasma with Emacs and Alacritty.  Nothing really special
+other than the Nix itself.
