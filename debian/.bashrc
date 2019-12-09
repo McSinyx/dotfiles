@@ -92,8 +92,8 @@ alias la='ls -A'
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 alias l='$(fc -ln -1) | less'
 alias r=ranger
-alias gcc='gcc -Wall -Wextra -O2 -lm'
-alias g++='g++ -Wall -Wextra -O2 -lm'
+alias gcc='gcc -Wall -Wextra -pedantic -O2 -lm'
+alias g++='g++ -Wall -Wextra -pedantic -O2 -lm'
 alias fpc='fpc -O1 -XS -gl'
 alias mpa='mpv --no-video --loop=inf'
 alias raku=perl6
