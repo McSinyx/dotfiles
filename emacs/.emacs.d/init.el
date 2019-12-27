@@ -32,7 +32,7 @@
  '(erc-nick "cnx")
  '(package-selected-packages
    (quote
-    (sane-term glsl-mode perl6-mode fireplace lua-mode markdown-mode
+    (sane-term glsl-mode nix-mode perl6-mode fireplace lua-mode markdown-mode
      smart-tabs-mode auctex wordnut magit geiser slime pdf-tools)))
  '(safe-local-variable-values (quote ((Syntax . Common-Lisp))))
  '(scroll-bar-mode nil)

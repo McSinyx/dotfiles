@@ -48,9 +48,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; with kdeApplications; [
     ack htop mc stow
-    alacritty emacs git
+    alacritty emacs git nix-prefetch-github
     aria2 curl firefox ipfs thunderbird w3m wget
-    ark ktorrent okular spectacle
+    ark ktorrent libreoffice okular spectacle
     audaciousQt5 ffmpeg-full mpv
     blender frei0r glfw gmic-qt-krita kdenlive krita simplescreenrecorder
     dict dictdDBs.eng2fra dictdDBs.fra2eng dictdDBs.wiktionary dictdDBs.wordnet
@@ -58,7 +58,9 @@
     gcc gdb man-pages posix_man_pages
     go guile jdk12 lua octave sbcl
     lmodern texlive.combined.scheme-full
-    python38Packages.pip python38 python38Packages.setuptools python38Packages.wheel python38Packages.twine
+    (python38.withPackages(ps: with ps;
+                           [ pip setuptools twine virtualenvwrapper wheel
+                             numpy moderngl pillow pygame ]))
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

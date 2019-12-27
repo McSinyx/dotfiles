@@ -32,11 +32,11 @@ command Q q
 command W w
 
 call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/vim/killersheep.git'
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/srcery-colors/srcery-vim.git'
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/alx741/vinfo.git'
-Plug 'https://github.com/drmikehenry/vim-fontsize.git'
 Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}
 Plug 'https://github.com/kovisoft/slimv.git', {'for': 'lisp'}
 Plug 'https://github.com/artur-shaik/vim-javacomplete2.git', {'for': 'java'}

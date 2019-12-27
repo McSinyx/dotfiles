@@ -1,7 +1,7 @@
 vim/.cache/vim/viminfo
 vim/.vim/__pycache__
 vim/.vim/plugged
-meta/.fonts/.uuid
-meta/.config/gtk-3.0/bookmarks
 awesome/.config/awesome/vicious/
+nix/.config/gtk-3.0/settings.ini
+nix/.gtkrc-2.0
 .uuid
