@@ -1,1 +1,15 @@
-/nix/store/6j0xw99ihkx2hw0nyklanydgb3bczfpb-unit-emacs.service/emacs.service
+[Unit]
+Description=Emacs: the extensible, self-documenting text editor
+
+[Service]
+Environment="LOCALE_ARCHIVE=/nix/store/l4qnw7z34dv4kbn2wnckq0bdjlyzxrmx-glibc-locales-2.27/lib/locale/locale-archive"
+Environment="PATH=/nix/store/j0lhk5xkky410h5v9af98sz6kd8cbp40-coreutils-8.31/bin:/nix/store/kmc865qs56czqk5k5vr0nj4zvfijlq7n-findutils-4.7.0/bin:/nix/store/20b535jb98hy7k4z8vkrlkjma212a3l5-gnugrep-3.3/bin:/nix/store/dv52knazq6pb1zv9pazzj666zg550zni-gnused-4.7/bin:/nix/store/jy856r03m1jk299wkk2zm3dan8gqj64s-systemd-243/bin:/nix/store/j0lhk5xkky410h5v9af98sz6kd8cbp40-coreutils-8.31/sbin:/nix/store/kmc865qs56czqk5k5vr0nj4zvfijlq7n-findutils-4.7.0/sbin:/nix/store/20b535jb98hy7k4z8vkrlkjma212a3l5-gnugrep-3.3/sbin:/nix/store/dv52knazq6pb1zv9pazzj666zg550zni-gnused-4.7/sbin:/nix/store/jy856r03m1jk299wkk2zm3dan8gqj64s-systemd-243/sbin"
+Environment="TZDIR=/nix/store/27ils7qkz0rkhq02bq104gyj9s10vaf6-tzdata-2019b/share/zoneinfo"
+
+ExecStart=/nix/store/b34zjdmq5l8k6rwdykjx55yl9r9isl8k-bash-4.4-p23/bin/bash -c 'source /nix/store/j68zvm2dnkgmflcn128la1c51bpka127-set-environment; exec /nix/store/47jy4mm9262hx88k88b8acrlb9w86z9m-emacs-26.3/bin/emacs --daemon'
+ExecStop=/nix/store/47jy4mm9262hx88k88b8acrlb9w86z9m-emacs-26.3/bin/emacsclient --eval (kill-emacs)
+Restart=always
+Type=forking
+
+[Install]
+WantedBy=default.target

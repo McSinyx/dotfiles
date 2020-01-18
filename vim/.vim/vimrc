@@ -14,9 +14,10 @@ set ignorecase infercase dictionary=/usr/share/dict/words
 set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
 set omnifunc=syntaxcomplete#Complete
 set diffopt+=algorithm:patience
-autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
 autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
 autocmd BufNewFile,BufRead *.m setlocal filetype=octave
+autocmd BufWinEnter * let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1)
+autocmd FileType python,cython let w:m1=matchadd('ColorColumn', '\%<80v.\%>73v', -1)
 autocmd FileType c,h,go,glsl setlocal cindent cinoptions=(0 noexpandtab shiftwidth=8
 autocmd FileType rst setlocal shiftwidth=3
 autocmd FileType css,javascript,python,perl6 setlocal shiftwidth=4
@@ -39,6 +40,7 @@ Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/alx741/vinfo.git'
 Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}
 Plug 'https://github.com/kovisoft/slimv.git', {'for': 'lisp'}
+Plug 'https://github.com/anntzer/vim-cython.git', {'for': 'cython'}
 Plug 'https://github.com/artur-shaik/vim-javacomplete2.git', {'for': 'java'}
 call plug#end()
 source /usr/share/doc/fzf/examples/fzf.vim
