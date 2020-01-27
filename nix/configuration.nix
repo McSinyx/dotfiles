@@ -14,11 +14,13 @@
   boot.loader.systemd-boot.enable = true;
 
   networking.hostName = "nix"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
+  # The global useDHCP flag is deprecated,
+  # therefore explicitly set to false here.
+  # Per-interface useDHCP will be mandatory in the future,
+  # so this generated config replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.enp1s0.useDHCP = true;
   networking.interfaces.wlp2s0.useDHCP = true;
@@ -32,13 +34,17 @@
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
     inputMethod = {
       enabled = "ibus";
-      ibus.engines = with pkgs.ibus-engines; [ table table-others ];
+      ibus.engines = with pkgs.ibus-engines; [ table table-others
+                                               typing-booster ];
     };
+  };
+
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
   };
 
   # Set your time zone.
@@ -47,20 +53,22 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; with kdeApplications; [
-    ack htop mc stow
-    alacritty emacs git nix-prefetch-github
+    ack htop mc stow zip
+    alacritty emacs git nix-prefetch-scripts pkg-config
+    alure2 libogg libsndfile libvorbis openal opusfile
     aria2 curl firefox ipfs thunderbird w3m wget
     ark ktorrent libreoffice okular spectacle
-    audaciousQt5 ffmpeg-full mpv
+    audaciousQt5 ffmpeg-full mpv zbar
+    azimuth duckmarines freedink gweled liquidwar lugaru tbe xonotic
     blender frei0r glfw gmic-qt-krita kdenlive krita simplescreenrecorder
+    cmake gcc gdb man-pages posix_man_pages
     dict dictdDBs.eng2fra dictdDBs.fra2eng dictdDBs.wiktionary dictdDBs.wordnet
     efibootmgr refind
-    gcc gdb man-pages posix_man_pages
-    go guile jdk12 lua octave sbcl
+    go guile jdk12 lua octave rakudo rlwrap sbcl
     lmodern texlive.combined.scheme-full
-    (python38.withPackages(ps: with ps;
-                           [ pip setuptools twine virtualenvwrapper wheel
-                             numpy moderngl pillow pygame ]))
+    (python38.withPackages(ps: with ps; [
+      flake8 pip setuptools tox twine wheel
+      cython numpy moderngl pillow pygame ]))
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
