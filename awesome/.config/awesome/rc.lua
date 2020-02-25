@@ -482,7 +482,7 @@ local globalkeys = awful.util.table.join(
             {description = "open GIMP", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "r", spawner(ranger .. " Documents/B2"),
+  awful.key({modkey, "Shift"}, "r", spawner(ranger .. " /data"),
             {description = "open Riboflavin", group = "launcher"}),
   awful.key({modkey}, "p", spawner(python3),
             {description = "open Python 3 interpreter", group = "launcher"}),
