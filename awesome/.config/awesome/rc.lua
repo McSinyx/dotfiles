@@ -46,17 +46,18 @@ beautiful.init"~/.config/awesome/themes/srcery/theme.lua"
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "urxvt"
-local editor = terminal .. " -e vim"
+local editor = "gvim"
 -- And some additional applications
 local root_terminal = terminal .. " -e su -"
 local pulsemixer = terminal .. " -e pulsemixer"
 local ranger = terminal .. " -e ranger"
+local irc = terminal .. " -e ircII cnx irc.freenode.net"
 local python3 = terminal .. " -e python3"
 local perl6 = terminal .. " -e perl6"
 local octave = terminal .. " -e octave"
 local guile = terminal .. " -e guile"
 local clojure = terminal .. " -e clojure"
-local emacs = terminal .. " -e emacsclient -nw"
+local emacs = "emacsclient -c"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player
@@ -67,7 +68,7 @@ local audacious_rewind = "audacious --rew"
 local audacious_forward = "audacious --fwd"
 
 local scrot = "scrot /home/cnx/Desktop/%FT%T.png"
-local scrot_select = "scrot --select /home/cnx/Desktop/%FT%T.png"
+local scrot_select = "scrot --border --select /home/cnx/Desktop/%FT%T.png"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -483,7 +484,9 @@ local globalkeys = awful.util.table.join(
   awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
   awful.key({modkey, "Shift"}, "r", spawner(ranger .. " /data"),
-            {description = "open Riboflavin", group = "launcher"}),
+            {description = "open ranger at /data", group = "launcher"}),
+  awful.key({modkey}, "i", spawner(irc),
+            {description = "open Freenode", group = "launcher"}),
   awful.key({modkey}, "p", spawner(python3),
             {description = "open Python 3 interpreter", group = "launcher"}),
   awful.key({modkey, "Shift"}, "p", spawner(perl6),

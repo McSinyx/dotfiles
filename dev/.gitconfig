@@ -1,5 +1,5 @@
 [user]
-	email = vn.mcsinyx@gmail.com
+	email = mcsinyx@disroot.org
 	name = Nguyễn Gia Phong
 [diff]
 	tool = vimdiff
@@ -12,3 +12,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[color]
+	ui = auto

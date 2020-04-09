@@ -127,3 +127,4 @@ set -o emacs
 
 export EDITOR=vim
 export PAGER=less
+export IRCSERVER=irc.freenode.net

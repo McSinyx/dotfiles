@@ -12,8 +12,7 @@ export GOPATH="$HOME/.local/share/go"
 export PATH="$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.luarocks/bin:$PATH"
 export MANPATH="$HOME/.local/share/man:$MANPATH"
 export XMODIFIERS=@im=ibus
-#export WEBKIT_DISABLE_COMPOSITING_MODE=1
-export NLTK_DATA="$HOME/Sources/nlp/nltk_data"
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then

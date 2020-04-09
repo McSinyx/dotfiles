@@ -32,8 +32,9 @@
  '(erc-nick "cnx")
  '(package-selected-packages
    (quote
-    (sane-term fireplace wordnut magit smart-tabs-mode yaml-mode glsl-mode
-     nix-mode perl6-mode lua-mode markdown-mode geiser slime auctex pdf-tools)))
+    (cython-mode glsl-mode lua-mode markdown-mode nix-mode perl6-mode yaml-mode
+     auctex geiser slime pdf-tools
+     fireplace magit sane-term smart-tabs-mode wordnut)))
  '(safe-local-variable-values (quote ((Syntax . Common-Lisp))))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
