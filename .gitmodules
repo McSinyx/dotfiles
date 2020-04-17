@@ -1,0 +1,3 @@
+[submodule "debian/.urxvt/ext"]
+	path = debian/.urxvt/ext
+	url = https://github.com/majutsushi/urxvt-font-size

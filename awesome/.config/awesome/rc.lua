@@ -57,7 +57,7 @@ local perl6 = terminal .. " -e perl6"
 local octave = terminal .. " -e octave"
 local guile = terminal .. " -e guile"
 local clojure = terminal .. " -e clojure"
-local emacs = "emacsclient -c"
+local emacs = "emacs"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player

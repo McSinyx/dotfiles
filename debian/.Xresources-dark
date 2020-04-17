@@ -1,26 +1,29 @@
-*.foreground:  #fce8c3
-*.background:  #1c1b19
-*.cursorColor: #fce8c3
-*.color0:     #1c1b19
-*.color1:     #ef2f27
-*.color2:     #519f50
-*.color3:     #fbb829
-*.color4:     #2c78bf
-*.color5:     #e02c6d
-*.color6:     #0aaeb3
-*.color7:     #d0bfa1
-*.color8:     #918175
-*.color9:     #f75341
-*.color10:    #98bc37
-*.color11:    #fed06e
-*.color12:    #68A8E4
-*.color13:    #ff5c8f
-*.color14:    #53fde9
-*.color15:    #fce8c3
+*.foreground:   #fce8c3
+*.background:   #1c1b19
+*.cursorColor:  #fce8c3
+*.color0:       #1c1b19
+*.color1:       #ef2f27
+*.color2:       #519f50
+*.color3:       #fbb829
+*.color4:       #2c78bf
+*.color5:       #e02c6d
+*.color6:       #0aaeb3
+*.color7:       #d0bfa1
+*.color8:       #918175
+*.color9:       #f75341
+*.color10:      #98bc37
+*.color11:      #fed06e
+*.color12:      #68A8E4
+*.color13:      #ff5c8f
+*.color14:      #53fde9
+*.color15:      #fce8c3
+
 *loginShell:  true
 *scrollBar:   false
 *saveLines:   65535
 *cursorBlink: false
 *jumpScroll:  true
-URxvt.font:   xft:Latin Modern Mono:size=12
-URxvt.termName: rxvt-unicode-256color
+
+URxvt.font:             xft:Latin Modern Mono:size=12
+URxvt.termName:         rxvt-unicode-256color
+URxvt.perl-ext-common:  font-size
