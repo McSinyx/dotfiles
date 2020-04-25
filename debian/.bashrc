@@ -90,7 +90,7 @@ alias la='ls -A'
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-alias l='$(fc -ln -1) | less'
+alias l='$(fc -ln -1) | less -r'
 alias r=ranger
 alias gcc='gcc -Wall -Wextra -pedantic -O2 -lm'
 alias g++='g++ -Wall -Wextra -pedantic -O2 -lm'

@@ -8,7 +8,7 @@ g:jedi#documentation_command	jedi-vim.txt	/*g:jedi#documentation_command*
 g:jedi#force_py_version	jedi-vim.txt	/*g:jedi#force_py_version*
 g:jedi#goto_assignments_command	jedi-vim.txt	/*g:jedi#goto_assignments_command*
 g:jedi#goto_command	jedi-vim.txt	/*g:jedi#goto_command*
-g:jedi#goto_definitions_command	jedi-vim.txt	/*g:jedi#goto_definitions_command*
+g:jedi#goto_stubs_command	jedi-vim.txt	/*g:jedi#goto_stubs_command*
 g:jedi#popup_on_dot	jedi-vim.txt	/*g:jedi#popup_on_dot*
 g:jedi#popup_select_first	jedi-vim.txt	/*g:jedi#popup_select_first*
 g:jedi#rename_command	jedi-vim.txt	/*g:jedi#rename_command*
