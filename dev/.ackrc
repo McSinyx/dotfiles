@@ -1,2 +1,3 @@
 --color
 --ignore-directory=is:.tox
+--ignore-directory=is:.mypy_cache

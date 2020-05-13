@@ -471,8 +471,6 @@ local globalkeys = awful.util.table.join(
             {description = "open Emacs", group = "launcher"}),
   awful.key({modkey}, "b", spawner"qutebrowser",
             {description = "open qutebrowser", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "b", spawner"torify luakit --nounique",
-            {description = "open torified Luakit", group = "launcher"}),
   awful.key({modkey}, "f", spawner"firefox",
             {description = "open Firefox", group = "launcher"}),
   awful.key({modkey, "Shift"}, "f", spawner"torbrowser-launcher",

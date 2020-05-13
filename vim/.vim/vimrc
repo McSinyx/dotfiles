@@ -24,10 +24,12 @@ autocmd FileType vim,sh,lua,tex,cmake,cpp,html,octave,pascal
       \ setlocal shiftwidth=2
 autocmd FileType rst setlocal shiftwidth=3
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
-autocmd FileType python,cython
-      \ let w:m1=matchadd('ColorColumn', '\%<80v.\%>73v', -1)
-autocmd BufWinEnter * if !exists('w:m1') |
-      \ let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1) | endif
+autocmd BufWinEnter *
+      \ if &filetype ==# 'python' || &filetype ==# 'cython'
+      \ | let w:m1=matchadd('ColorColumn', '\%<80v.\%>73v', -1) |
+      \ else
+      \ | let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1) |
+      \ endif
 
 let g:srcery_italic=1
 let g:jedi#popup_on_dot = 0
