@@ -95,8 +95,6 @@ alias r=ranger
 alias gcc='gcc -Wall -Wextra -pedantic -O2 -lm'
 alias g++='g++ -Wall -Wextra -pedantic -O2 -lm'
 alias fpc='fpc -O1 -XS -gl'
-alias mpa='mpv --no-video --loop=inf'
-alias raku=perl6
 alias x='cd $HOME && startx && cd -'
 alias backup='rsync -avh --delete /home/ /data/Home/'
 eval $(thefuck --alias)
@@ -128,3 +126,4 @@ set -o emacs
 export EDITOR=vim
 export PAGER=less
 export IRCSERVER=irc.freenode.net
+export PIP_UNSTABLE_FEATURE=resolver

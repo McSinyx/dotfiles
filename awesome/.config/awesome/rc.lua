@@ -53,7 +53,7 @@ local pulsemixer = terminal .. " -e pulsemixer"
 local ranger = terminal .. " -e ranger"
 local irc = terminal .. " -e ircII cnx irc.freenode.net"
 local python3 = terminal .. " -e python3"
-local perl6 = terminal .. " -e perl6"
+local raku = terminal .. " -e raku"
 local octave = terminal .. " -e octave"
 local guile = terminal .. " -e guile"
 local clojure = terminal .. " -e clojure"
@@ -477,26 +477,24 @@ local globalkeys = awful.util.table.join(
             {description = "open Tor Browser", group = "launcher"}),
   awful.key({modkey}, "t", spawner"thunderbird",
             {description = "open Thunderbird", group = "launcher"}),
+  awful.key({modkey}, "m", spawner"riot-desktop",
+            {description = "open Riot", group = "launcher"}),
   awful.key({modkey, "Shift"}, "g", spawner"gimp",
             {description = "open GIMP", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
             {description = "open ranger file manager", group = "launcher"}),
   awful.key({modkey, "Shift"}, "r", spawner(ranger .. " /data"),
             {description = "open ranger at /data", group = "launcher"}),
-  awful.key({modkey}, "i", spawner(irc),
-            {description = "open Freenode", group = "launcher"}),
   awful.key({modkey}, "p", spawner(python3),
             {description = "open Python 3 interpreter", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "p", spawner(perl6),
-            {description = "open Perl 6", group = "launcher"}),
+  awful.key({modkey, "Shift"}, "p", spawner(raku),
+            {description = "open Raku", group = "launcher"}),
   awful.key({modkey}, "c", spawner(clojure),
             {description = "open Clojure interpreter", group = "launcher"}),
   awful.key({modkey}, "g", spawner(guile),
             {description = "open Guile interpreter", group = "launcher"}),
   awful.key({modkey}, "o", spawner(octave),
             {description = "open Octave", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "o", spawner"geogebra-classic",
-            {description = "open GeoGebra", group = "launcher"}),
   awful.key({modkey}, "z", spawner"zathura",
             {description = "open zathura document viewer", group = "launcher"}),
   awful.key({modkey}, "d", spawner"diodon",
@@ -505,7 +503,7 @@ local globalkeys = awful.util.table.join(
             {description = "lock screen", group = "launcher"}),
   awful.key({modkey, "Shift"}, "s", spawner(slock_suspend),
             {description = "lock screen then suspend", group = "launcher"}),
-  awful.key({modkey}, "m", spawner(pulsemixer),
+  awful.key({modkey, "Control"}, "m", spawner(pulsemixer),
             {description = "open PulseAudio mixer", group = "multimedia"}),
   awful.key({modkey}, "a", spawner(audacious_jump_box),
             {description = "Audacious: jump-to-song", group = "multimedia"}),
