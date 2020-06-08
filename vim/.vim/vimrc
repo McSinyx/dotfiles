@@ -20,7 +20,7 @@ autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
 autocmd BufNewFile,BufRead *.m setlocal filetype=octave
 autocmd FileType asm,c,h,go,glsl
       \ setlocal cindent cinoptions=(0 noexpandtab shiftwidth=8
-autocmd FileType vim,sh,lua,tex,cmake,cpp,html,octave,pascal
+autocmd FileType vim,sh,lua,tex,cmake,cpp,sql,html,octave,pascal
       \ setlocal shiftwidth=2
 autocmd FileType rst setlocal shiftwidth=3
 autocmd FileType java setlocal omnifunc=javacomplete#Complete

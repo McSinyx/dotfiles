@@ -97,6 +97,7 @@ alias g++='g++ -Wall -Wextra -pedantic -O2 -lm'
 alias fpc='fpc -O1 -XS -gl'
 alias x='cd $HOME && startx && cd -'
 alias backup='rsync -avh --delete /home/ /data/Home/'
+alias pwip='python3 $HOME/Sources/pip/src/pip'
 eval $(thefuck --alias)
 
 function ipfs-cors {
