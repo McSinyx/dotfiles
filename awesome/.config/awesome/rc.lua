@@ -53,8 +53,6 @@ local pulsemixer = terminal .. " -e pulsemixer"
 local ranger = terminal .. " -e ranger"
 local irc = terminal .. " -e ircII cnx irc.freenode.net"
 local python3 = terminal .. " -e python3"
-local raku = terminal .. " -e raku"
-local octave = terminal .. " -e octave"
 local guile = terminal .. " -e guile"
 local clojure = terminal .. " -e clojure"
 local emacs = "emacs"
@@ -487,14 +485,10 @@ local globalkeys = awful.util.table.join(
             {description = "open ranger at /data", group = "launcher"}),
   awful.key({modkey}, "p", spawner(python3),
             {description = "open Python 3 interpreter", group = "launcher"}),
-  awful.key({modkey, "Shift"}, "p", spawner(raku),
-            {description = "open Raku", group = "launcher"}),
   awful.key({modkey}, "c", spawner(clojure),
             {description = "open Clojure interpreter", group = "launcher"}),
   awful.key({modkey}, "g", spawner(guile),
             {description = "open Guile interpreter", group = "launcher"}),
-  awful.key({modkey}, "o", spawner(octave),
-            {description = "open Octave", group = "launcher"}),
   awful.key({modkey}, "z", spawner"zathura",
             {description = "open zathura document viewer", group = "launcher"}),
   awful.key({modkey}, "d", spawner"diodon",

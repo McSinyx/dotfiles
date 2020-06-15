@@ -92,12 +92,12 @@ alias la='ls -A'
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 alias l='$(fc -ln -1) | less -r'
 alias r=ranger
+alias rp='ranger $HOME/Sources/pip/src/pip/_internal'
 alias gcc='gcc -Wall -Wextra -pedantic -O2 -lm'
 alias g++='g++ -Wall -Wextra -pedantic -O2 -lm'
 alias fpc='fpc -O1 -XS -gl'
 alias x='cd $HOME && startx && cd -'
 alias backup='rsync -avh --delete /home/ /data/Home/'
-alias pwip='python3 $HOME/Sources/pip/src/pip'
 eval $(thefuck --alias)
 
 function ipfs-cors {
