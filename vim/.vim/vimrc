@@ -43,6 +43,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/vim/killersheep.git'
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/srcery-colors/srcery-vim.git'
+Plug 'https://github.com/knsh14/vim-github-link.git'
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/alx741/vinfo.git'
 Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}

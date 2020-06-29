@@ -53,6 +53,7 @@ local pulsemixer = terminal .. " -e pulsemixer"
 local ranger = terminal .. " -e ranger"
 local irc = terminal .. " -e ircII cnx irc.freenode.net"
 local python3 = terminal .. " -e python3"
+local python2 = terminal .. " -e python2"
 local guile = terminal .. " -e guile"
 local clojure = terminal .. " -e clojure"
 local emacs = "emacs"
@@ -80,9 +81,9 @@ local modkey = "Mod4"
 awful.layout.layouts = {
   awful.layout.suit.fair,
   --awful.layout.suit.fair.horizontal,
-  --awful.layout.suit.tile,
+  awful.layout.suit.tile,
   --awful.layout.suit.tile.left,
-  awful.layout.suit.tile.bottom,
+  --awful.layout.suit.tile.bottom,
   --awful.layout.suit.tile.top,
   --awful.layout.suit.spiral,
   --awful.layout.suit.spiral.dwindle,
@@ -485,6 +486,8 @@ local globalkeys = awful.util.table.join(
             {description = "open ranger at /data", group = "launcher"}),
   awful.key({modkey}, "p", spawner(python3),
             {description = "open Python 3 interpreter", group = "launcher"}),
+  awful.key({modkey, "Shift"}, "p", spawner(python2),
+            {description = "open Python 2 interpreter", group = "launcher"}),
   awful.key({modkey}, "c", spawner(clojure),
             {description = "open Clojure interpreter", group = "launcher"}),
   awful.key({modkey}, "g", spawner(guile),

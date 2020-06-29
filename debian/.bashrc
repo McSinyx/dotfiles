@@ -93,6 +93,7 @@ alias la='ls -A'
 alias l='$(fc -ln -1) | less -r'
 alias r=ranger
 alias rp='ranger $HOME/Sources/pip/src/pip/_internal'
+alias pwip='python3 $HOME/Sources/pip/src/pip'
 alias gcc='gcc -Wall -Wextra -pedantic -O2 -lm'
 alias g++='g++ -Wall -Wextra -pedantic -O2 -lm'
 alias fpc='fpc -O1 -XS -gl'
