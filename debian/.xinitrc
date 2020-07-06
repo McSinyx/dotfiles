@@ -7,5 +7,6 @@ blueman-applet &
 nm-applet &
 keynav &
 diodon &
+audacious &
 . /etc/X11/Xsession
 exec awesome
