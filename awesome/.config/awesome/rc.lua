@@ -476,8 +476,6 @@ local globalkeys = awful.util.table.join(
             {description = "open Tor Browser", group = "launcher"}),
   awful.key({modkey}, "t", spawner"thunderbird",
             {description = "open Thunderbird", group = "launcher"}),
-  awful.key({modkey}, "m", spawner"riot-desktop",
-            {description = "open Riot", group = "launcher"}),
   awful.key({modkey, "Shift"}, "g", spawner"gimp",
             {description = "open GIMP", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),

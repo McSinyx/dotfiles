@@ -128,4 +128,3 @@ set -o emacs
 export EDITOR=vim
 export PAGER=less
 export IRCSERVER=irc.freenode.net
-export PIP_USE_FEATURE=2020-resolver
