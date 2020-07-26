@@ -57,6 +57,7 @@ local python2 = terminal .. " -e python2"
 local guile = terminal .. " -e guile"
 local clojure = terminal .. " -e clojure"
 local emacs = "emacs"
+local netrw = terminal .. " -e vim -cEx"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player
@@ -464,7 +465,7 @@ local globalkeys = awful.util.table.join(
             {description = "open a terminal", group = "launcher"}),
   awful.key({modkey, "Shift"}, "x", spawner(root_terminal),
             {description = "open a root terminal", group = "launcher"}),
-  awful.key({modkey}, "v", spawner(editor),
+  awful.key({modkey}, "v", spawner(netrw),
             {description = "open GVim", group = "launcher"}),
   awful.key({modkey}, "e", spawner(emacs),
             {description = "open Emacs", group = "launcher"}),
