@@ -82,9 +82,8 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-#alias l='ls -CF'
+alias ll='exa -l'
+alias la='exa -a'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -93,6 +92,7 @@ alias la='ls -A'
 alias l='$(fc -ln -1) | less -r'
 alias r=ranger
 alias v='vim $(fzf)'
+alias fd=fdfind
 alias cdid='cd $HOME/Sources/pip/src/pip/_internal'
 alias pwip='python3 $HOME/Sources/pip/src/pip'
 alias gcc='gcc -Wall -Wextra -pedantic -O2 -lm'

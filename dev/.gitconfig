@@ -16,3 +16,5 @@
 	ui = auto
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main

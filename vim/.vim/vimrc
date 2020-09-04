@@ -15,22 +15,24 @@ set keymap=vietnamese-telex imdisable iminsert=0 imsearch=-1
 set omnifunc=syntaxcomplete#Complete
 set diffopt+=algorithm:patience
 
-autocmd!
-autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
-autocmd BufNewFile,BufRead *.sql setlocal filetype=mysql
-autocmd BufNewFile,BufRead *.m setlocal filetype=octave
-autocmd FileType asm,c,h,go,glsl
-      \ setlocal cindent cinoptions=(0 noexpandtab shiftwidth=8
-autocmd FileType vim,sh,lua,tex,cmake,cpp,mysql,html,octave,pascal
-      \ setlocal shiftwidth=2
-autocmd FileType rst setlocal shiftwidth=3
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-autocmd BufWinEnter *
-      \ if &filetype ==# 'python' || &filetype ==# 'cython'
-      \ | let w:m1=matchadd('ColorColumn', '\%<80v.\%>73v', -1) |
-      \ else
-      \ | let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1) |
-      \ endif
+augroup vimrc
+  autocmd!
+  autocmd BufNewFile,BufRead *.PAS setlocal filetype=pascal
+  autocmd BufNewFile,BufRead *.sql setlocal filetype=mysql
+  autocmd BufNewFile,BufRead *.m setlocal filetype=octave
+  autocmd FileType asm,c,h,go,glsl
+        \ setlocal cindent cinoptions=(0 noexpandtab shiftwidth=8
+  autocmd FileType vim,sh,lua,tex,cmake,cpp,mysql,html,octave,pascal
+        \ setlocal shiftwidth=2
+  autocmd FileType rst setlocal shiftwidth=3
+  autocmd FileType java setlocal omnifunc=javacomplete#Complete
+  autocmd BufWinEnter *
+        \ if &filetype ==# 'python' || &filetype ==# 'cython'
+        \ | let w:m1=matchadd('ColorColumn', '\%<80v.\%>73v', -1) |
+        \ else
+        \ | let w:m1=matchadd('ColorColumn', '\%<81v.\%>80v', -1) |
+        \ endif
+augroup END
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
@@ -42,16 +44,16 @@ let g:jedi#smart_auto_mappings = 0
 let g:polyglot_disabled = ['latex']
 
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/vim/killersheep.git'
-Plug 'https://github.com/sheerun/vim-polyglot.git'
-Plug 'https://github.com/srcery-colors/srcery-vim.git'
-Plug 'https://github.com/knsh14/vim-github-link.git'
-Plug 'https://github.com/tpope/vim-abolish.git'
-Plug 'https://github.com/alx741/vinfo.git'
-Plug 'https://github.com/lervag/vimtex.git', {'for': 'tex'}
-Plug 'https://github.com/kovisoft/slimv.git', {'for': 'lisp'}
-Plug 'https://github.com/anntzer/vim-cython.git', {'for': 'cython'}
-Plug 'https://github.com/artur-shaik/vim-javacomplete2.git', {'for': 'java'}
+Plug 'https://github.com/vim/killersheep'
+Plug 'https://github.com/francoiscabrol/ranger.vim'
+Plug 'https://github.com/sheerun/vim-polyglot'
+Plug 'https://github.com/srcery-colors/srcery-vim'
+Plug 'https://github.com/knsh14/vim-github-link'
+Plug 'https://github.com/lervag/vimtex', {'for': 'tex'}
+Plug 'https://github.com/kovisoft/slimv', {'for': 'lisp'}
+Plug 'https://github.com/anntzer/vim-cython', {'for': 'cython'}
+Plug 'https://github.com/racer-rust/vim-racer', {'for': 'rust'}
+Plug 'https://github.com/rhysd/rust-doc.vim', {'for': 'rust'}
 call plug#end()
 source /usr/share/doc/fzf/examples/fzf.vim
 

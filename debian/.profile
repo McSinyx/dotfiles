@@ -11,6 +11,7 @@
 export GOPATH="$HOME/.local/share/go"
 export PATH="$HOME/.local/bin:$GOPATH/bin:$HOME/.cargo/bin:$HOME/.luarocks/bin:$PATH"
 export MANPATH="$HOME/.local/share/man:$MANPATH"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export XMODIFIERS=@im=ibus
 export QT_QPA_PLATFORMTHEME=qt5ct
 

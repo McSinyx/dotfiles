@@ -57,7 +57,7 @@ local python2 = terminal .. " -e python2"
 local guile = terminal .. " -e guile"
 local clojure = terminal .. " -e clojure"
 local emacs = "emacs"
-local netrw = terminal .. " -e vim -cEx"
+local netrw = terminal .. " -e vim"
 local slock_suspend = "slock systemctl --ignore-inhibitors suspend"
 
 -- Audacious media player
@@ -477,6 +477,8 @@ local globalkeys = awful.util.table.join(
             {description = "open Tor Browser", group = "launcher"}),
   awful.key({modkey}, "t", spawner"thunderbird",
             {description = "open Thunderbird", group = "launcher"}),
+  awful.key({modkey}, "m", spawner"nheko",
+            {description = "open nheko", group = "launcher"}),
   awful.key({modkey, "Shift"}, "g", spawner"gimp",
             {description = "open GIMP", group = "launcher"}),
   awful.key({modkey}, "r", spawner(ranger),
@@ -491,8 +493,6 @@ local globalkeys = awful.util.table.join(
             {description = "open Clojure interpreter", group = "launcher"}),
   awful.key({modkey}, "g", spawner(guile),
             {description = "open Guile interpreter", group = "launcher"}),
-  awful.key({modkey}, "z", spawner"zathura",
-            {description = "open zathura document viewer", group = "launcher"}),
   awful.key({modkey}, "d", spawner"diodon",
             {description = "open clipboard manager", group = "launcher"}),
   awful.key({modkey}, "s", spawner"slock",
@@ -586,6 +586,8 @@ local clientkeys = awful.util.table.join(
               c:raise()
             end,
             {description = "toggle fullscreen", group = "client"}),
+  awful.key({modkey, "Control"}, "d", spawner"kdocker",
+            {description = "select a window to be docked", group = "client"}),
   awful.key({modkey}, "q", function (c) c:kill() end,
             {description = "close", group = "client"}),
   awful.key({modkey, "Control"}, "q", spawner"xkill",
